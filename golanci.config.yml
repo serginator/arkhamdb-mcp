@@ -1,0 +1,64 @@
+# see https://golangci-lint.run/usage/configuration/ for configuration options
+run:
+  timeout: 5m
+  tests: false
+
+linters:
+  enable:
+    - govet
+    - errcheck
+    - staticcheck
+    - unused
+    - gosimple
+    - ineffassign
+    - typecheck
+    - bodyclose
+    - revive
+    - stylecheck
+    - gosec
+    - unconvert
+    - dupl
+    - goconst
+    - gocyclo
+    - reassign
+    - unparam
+    - gofmt
+
+linters-settings:
+  unused:
+    check-exported: true
+    check-generated: true
+    check-tests: false
+  dupl:
+    threshold: 180
+  reassign:
+    patterns:
+      - ".*"
+
+issues:
+  exclude-dirs:
+    - vendor
+  exclude:
+    # we don't use package comments
+    - (should have a package comment)
+    - Error return value of .((os\.)?std(out|err)\..*|.*Close|.*Flush|os\.Remove(All)?|.*printf?|os\.(Un)?Setenv). is not checked
+    # we decided to use Sprintf over Sprint even if not necessary
+    - unnecessary use of fmt.Sprintf
+  exclude-use-default: false
+  exclude-rules:
+    - linters:
+        - staticcheck
+      # exclude staticcheck "SA1019: … is deprecated"
+      text: "SA1019:"
+    - linters:
+        - revive
+      # occurs very often in our code base, and even for unused-parameters, descriptive names sometimes help to clarify intentions
+      text: "unused-parameter:"
+    - linters:
+        - gosec
+      # triggered by false positives, see https://github.com/securego/gosec/issues/714
+      text: "G307:"
+    - linters:
+        - gosec
+      # is no longer needed when using go 1.22+
+      text: "G601:"
