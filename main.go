@@ -1,9 +1,9 @@
 package main
 
 import (
+	"arkhamdb-mcp/arkhamdb"
+	"arkhamdb-mcp/server"
 	"log"
-	"mcp-arkhamdb/arkhamdb"
-	"mcp-arkhamdb/server"
 	"os"
 )
 

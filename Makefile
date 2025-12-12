@@ -1,4 +1,4 @@
-APPLICATION_NAME=mcp-arkhamdb
+APPLICATION_NAME=arkhamdb-mcp
 
 .DEFAULT_GOAL := help
 
@@ -24,7 +24,7 @@ inspect: ## Inspect code
 .PHONY: inspect
 
 build: ## Build with docker
-	docker build -t mcp-arkhamdb:latest .
+	docker build -t arkhamdb-mcp:latest .
 	docker-compose build
 .PHONY: build
 

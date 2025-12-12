@@ -9,6 +9,28 @@ An MCP (Model Context Protocol) server for interacting with the ArkhamDB public 
 - **Get Deck**: Retrieve a deck by its ID (may require authentication)
 - **Get Decklist**: Retrieve a decklist by its ID
 
+## Example of promts using the MCP server
+
+### In Spanish
+
+```
+Utiliza el mcp de arkhamdb para bajar información sobre el siguiente mazo: 5570650
+
+Quiero que analices todas sus cartas, sus sinergias, y me expliques sus puntos fuertes y sus debilidades, y cómo utilizarlo y jugar este mazo, incluyendo información sobre qué mulligan debería hacer. Puedes buscar en internet información sobre Arkham Horror LCG. Los nombres de las cartas y la explicación han de estar en español.
+```
+
+Result: [examples/darrell-spanish.md](examples/darrell-spanish.md)
+
+### In English
+
+```
+Use the arkhamdb mcp to get information about the following deck: 5570650
+
+I want you to analyze all its cards, its synergies, and explain its strengths and weaknesses, and how to use it and play this deck, including information about what mulligan should be made. You can search the internet for information about Arkham Horror LCG.
+```
+
+Result: [examples/darrell-english.md](examples/darrell-english.md)
+
 ## Installation
 
 1. Clone this repository
@@ -33,7 +55,7 @@ make build
 Or manually:
 
 ```bash
-go build -o mcp-arkhamdb
+go build -o arkhamdb-mcp
 ```
 
 ## Running with Docker
@@ -52,7 +74,7 @@ For Cursor integration, you can use the `run-docker-mcp.sh` script:
 {
   "mcpServers": {
     "arkhamdb": {
-      "command": "<path-to>/mcp-arkhamdb/run-docker-mcp.sh",
+      "command": "<path-to>/arkhamdb-mcp/run-docker-mcp.sh",
       "args": []
     }
   }
@@ -76,31 +98,31 @@ Or test manually using JSON-RPC over stdin:
 #### Initialize the server:
 
 ```bash
-echo '{"jsonrpc":"2.0","id":1,"method":"initialize","params":{"protocolVersion":"2024-11-05","capabilities":{},"clientInfo":{"name":"test-client","version":"1.0.0"}}}' | ./mcp-arkhamdb
+echo '{"jsonrpc":"2.0","id":1,"method":"initialize","params":{"protocolVersion":"2024-11-05","capabilities":{},"clientInfo":{"name":"test-client","version":"1.0.0"}}}' | ./arkhamdb-mcp
 ```
 
 #### List available tools:
 
 ```bash
-echo -e '{"jsonrpc":"2.0","id":1,"method":"initialize","params":{"protocolVersion":"2024-11-05","capabilities":{},"clientInfo":{"name":"test-client","version":"1.0.0"}}}\n{"jsonrpc":"2.0","id":2,"method":"tools/list"}' | ./mcp-arkhamdb
+echo -e '{"jsonrpc":"2.0","id":1,"method":"initialize","params":{"protocolVersion":"2024-11-05","capabilities":{},"clientInfo":{"name":"test-client","version":"1.0.0"}}}\n{"jsonrpc":"2.0","id":2,"method":"tools/list"}' | ./arkhamdb-mcp
 ```
 
 #### Get a card:
 
 ```bash
-echo -e '{"jsonrpc":"2.0","id":1,"method":"initialize","params":{"protocolVersion":"2024-11-05","capabilities":{},"clientInfo":{"name":"test-client","version":"1.0.0"}}}\n{"jsonrpc":"2.0","id":2,"method":"tools/call","params":{"name":"arkhamdb_get_card","arguments":{"cardCode":"01001"}}}' | ./mcp-arkhamdb
+echo -e '{"jsonrpc":"2.0","id":1,"method":"initialize","params":{"protocolVersion":"2024-11-05","capabilities":{},"clientInfo":{"name":"test-client","version":"1.0.0"}}}\n{"jsonrpc":"2.0","id":2,"method":"tools/call","params":{"name":"arkhamdb_get_card","arguments":{"cardCode":"01001"}}}' | ./arkhamdb-mcp
 ```
 
 #### Search cards by name:
 
 ```bash
-echo -e '{"jsonrpc":"2.0","id":1,"method":"initialize","params":{"protocolVersion":"2024-11-05","capabilities":{},"clientInfo":{"name":"test-client","version":"1.0.0"}}}\n{"jsonrpc":"2.0","id":2,"method":"tools/call","params":{"name":"arkhamdb_search_cards_by_name","arguments":{"name":"Roland"}}}' | ./mcp-arkhamdb
+echo -e '{"jsonrpc":"2.0","id":1,"method":"initialize","params":{"protocolVersion":"2024-11-05","capabilities":{},"clientInfo":{"name":"test-client","version":"1.0.0"}}}\n{"jsonrpc":"2.0","id":2,"method":"tools/call","params":{"name":"arkhamdb_search_cards_by_name","arguments":{"name":"Roland"}}}' | ./arkhamdb-mcp
 ```
 
 #### Get a deck:
 
 ```bash
-echo -e '{"jsonrpc":"2.0","id":1,"method":"initialize","params":{"protocolVersion":"2024-11-05","capabilities":{},"clientInfo":{"name":"test-client","version":"1.0.0"}}}\n{"jsonrpc":"2.0","id":2,"method":"tools/call","params":{"name":"arkhamdb_get_deck","arguments":{"deckID":12345}}}' | ./mcp-arkhamdb
+echo -e '{"jsonrpc":"2.0","id":1,"method":"initialize","params":{"protocolVersion":"2024-11-05","capabilities":{},"clientInfo":{"name":"test-client","version":"1.0.0"}}}\n{"jsonrpc":"2.0","id":2,"method":"tools/call","params":{"name":"arkhamdb_get_deck","arguments":{"deckID":12345}}}' | ./arkhamdb-mcp
 ```
 
 ## Integration with AI Models
@@ -118,7 +140,7 @@ Configure your AI client to connect to this server using the MCP protocol over s
 {
   "mcpServers": {
     "arkhamdb": {
-      "command": "<path-to>/mcp-arkhamdb/mcp-arkhamdb",
+      "command": "<path-to>/arkhamdb-mcp/arkhamdb-mcp",
       "args": []
     }
   }

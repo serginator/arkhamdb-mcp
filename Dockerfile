@@ -10,9 +10,9 @@ RUN go mod download
 
 COPY . .
 
-RUN go build -o /mcp-arkhamdb
+RUN go build -o /arkhamdb-mcp
 
 EXPOSE 8080
 
-CMD [ "/mcp-arkhamdb" ]
+CMD [ "/arkhamdb-mcp" ]
 

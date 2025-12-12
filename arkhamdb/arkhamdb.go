@@ -1,10 +1,10 @@
 package arkhamdb
 
 import (
+	"arkhamdb-mcp/tools"
 	"encoding/json"
 	"fmt"
 	"io"
-	"mcp-arkhamdb/tools"
 	"net/http"
 	"strings"
 )

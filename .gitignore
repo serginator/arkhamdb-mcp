@@ -1,5 +1,5 @@
 # Binaries
-mcp-arkhamdb
+arkhamdb-mcp
 *.exe
 *.exe~
 *.dll

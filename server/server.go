@@ -1,12 +1,12 @@
 package server
 
 import (
+	"arkhamdb-mcp/tools"
 	"bufio"
 	"encoding/json"
 	"fmt"
 	"io"
 	"log"
-	"mcp-arkhamdb/tools"
 	"os"
 	"strconv"
 	"strings"
@@ -127,7 +127,7 @@ func (s *MCPServer) handleInitialize(request MCPRequest) {
 			"tools": map[string]interface{}{},
 		},
 		"serverInfo": map[string]interface{}{
-			"name":    "mcp-arkhamdb",
+			"name":    "arkhamdb-mcp",
 			"version": "1.0.0",
 		},
 	}

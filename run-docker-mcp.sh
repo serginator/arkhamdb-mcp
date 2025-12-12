@@ -5,5 +5,5 @@
 
 cd "$(dirname "$0")"
 docker run --rm -i \
-  mcp-arkhamdb:latest
+  arkhamdb-mcp:latest
 
