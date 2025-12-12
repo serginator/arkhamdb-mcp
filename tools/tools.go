@@ -8,4 +8,5 @@ type ArkhamDBTool interface {
 	GetDeck(deckID int) (string, error)
 	GetDecklist(decklistID int) (string, error)
 	FindCardSynergies(cardCode string, maxResults int) (string, error)
+	SuggestDeckImprovements(deckID *int, decklistID *int, maxResults int) (string, error)
 }

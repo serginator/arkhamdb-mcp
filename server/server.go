@@ -294,6 +294,27 @@ func (s *MCPServer) getAvailableTools() []Tool {
 				"required": []string{"cardCode"},
 			},
 		},
+		{
+			Name:        "arkhamdb_suggest_deck_improvements",
+			Description: "Suggest cards that would improve a deck, taking into account investigator requirements (deck size, class restrictions, level, experience)",
+			InputSchema: map[string]interface{}{
+				"type": "object",
+				"properties": map[string]interface{}{
+					"deckID": map[string]interface{}{
+						"type":        "integer",
+						"description": "The ID of the deck to analyze (either deckID or decklistID must be provided)",
+					},
+					"decklistID": map[string]interface{}{
+						"type":        "integer",
+						"description": "The ID of the decklist to analyze (either deckID or decklistID must be provided)",
+					},
+					"maxResults": map[string]interface{}{
+						"type":        "integer",
+						"description": "Maximum number of card suggestions to return (default: 20, max: 50)",
+					},
+				},
+			},
+		},
 	}
 }
 
@@ -379,6 +400,73 @@ func (s *MCPServer) executeTool(name string, args map[string]interface{}) (strin
 			}
 		}
 		return s.ArkhamDB.FindCardSynergies(cardCode, maxResults)
+
+	case "arkhamdb_suggest_deck_improvements":
+		var deckID *int
+		var decklistID *int
+
+		// Parse deckID if provided
+		if deckIDVal, ok := args["deckID"]; ok && deckIDVal != nil {
+			var id int
+			switch v := deckIDVal.(type) {
+			case float64:
+				id = int(v)
+			case int:
+				id = v
+			case string:
+				parsed, err := strconv.Atoi(v)
+				if err != nil {
+					return "", fmt.Errorf("deckID must be a valid integer: %w", err)
+				}
+				id = parsed
+			default:
+				return "", fmt.Errorf("deckID must be an integer")
+			}
+			deckID = &id
+		}
+
+		// Parse decklistID if provided
+		if decklistIDVal, ok := args["decklistID"]; ok && decklistIDVal != nil {
+			var id int
+			switch v := decklistIDVal.(type) {
+			case float64:
+				id = int(v)
+			case int:
+				id = v
+			case string:
+				parsed, err := strconv.Atoi(v)
+				if err != nil {
+					return "", fmt.Errorf("decklistID must be a valid integer: %w", err)
+				}
+				id = parsed
+			default:
+				return "", fmt.Errorf("decklistID must be an integer")
+			}
+			decklistID = &id
+		}
+
+		// At least one must be provided
+		if deckID == nil && decklistID == nil {
+			return "", fmt.Errorf("either deckID or decklistID must be provided")
+		}
+
+		maxResults := 20 // default
+		if maxResultsVal, ok := args["maxResults"]; ok {
+			switch v := maxResultsVal.(type) {
+			case float64:
+				maxResults = int(v)
+			case int:
+				maxResults = v
+			case string:
+				parsed, err := strconv.Atoi(v)
+				if err != nil {
+					return "", fmt.Errorf("maxResults must be a valid integer: %w", err)
+				}
+				maxResults = parsed
+			}
+		}
+
+		return s.ArkhamDB.SuggestDeckImprovements(deckID, decklistID, maxResults)
 
 	default:
 		return "", fmt.Errorf("unknown tool: %s", name)

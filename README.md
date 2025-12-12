@@ -9,6 +9,7 @@ An MCP (Model Context Protocol) server for interacting with the ArkhamDB public 
 - **Find Card Synergies**: Discover cards that synergize with a given card based on text analysis, trait matching, and mechanic keywords
 - **Get Deck**: Retrieve a deck by its ID (may require authentication)
 - **Get Decklist**: Retrieve a decklist by its ID
+- **Suggest Deck Improvements**: Suggest cards that would improve a deck, considering investigator requirements (deck size, class restrictions, level, experience)
 
 ## Example of promts using the MCP server
 
@@ -21,6 +22,18 @@ Quiero que analices todas sus cartas, sus sinergias, y me expliques sus puntos f
 ```
 
 Result: [examples/darrell-spanish.md](examples/darrell-spanish.md)
+
+```
+Sugiéreme mejoras para este mazo 5570650 usando el mcp de arkhamdb, recuerda poner los nombres de las cartas en español, recuerda que el mazo no puede tener más de 30 cartas (sin contar las propias de darrell), por lo que no se puede añadir cartas y ya está, hay que quitar otras. Hay muchas más cartas en el mazo, intenta enfocarte en cartas que aprovechen sinergias con "evidence", con añadir pruebas y usar pruebas con la habilidad de darrell, y también con cartas para descubrir más pistas
+```
+
+Result: [examples/darrell-mejoras.md](examples/darrell-mejoras.md)
+
+```
+Usa el MCP de arkhamdb para encontrar sinergias para Darrell Simmons, que usa `evidence`, recuerda usar el nombre español de las cartas
+```
+
+Result: [examples/darrell-sinergias.md](examples/darrell-sinergias.md)
 
 ### In English
 
@@ -138,6 +151,19 @@ The synergy finder analyzes cards using multiple methods:
 - **Shared Traits**: Identifies cards with matching traits
 - **Mechanic Keywords**: Detects cards that interact with similar game mechanics (investigation, damage, resources, etc.)
 - **Slot Compatibility**: Considers equipment slot compatibility
+
+#### Suggest deck improvements:
+
+```bash
+echo -e '{"jsonrpc":"2.0","id":1,"method":"initialize","params":{"protocolVersion":"2024-11-05","capabilities":{},"clientInfo":{"name":"test-client","version":"1.0.0"}}}\n{"jsonrpc":"2.0","id":2,"method":"tools/call","params":{"name":"arkhamdb_suggest_deck_improvements","arguments":{"decklistID":5570650,"maxResults":20}}}' | ./arkhamdb-mcp
+```
+
+The deck improvement tool analyzes a deck and suggests cards that would improve it:
+
+- **Investigator Requirements**: Respects deck size, class restrictions (faction), level limits, and experience requirements
+- **Synergy Analysis**: Scores cards based on synergies with existing deck cards
+- **Deck Compatibility**: Only suggests cards that are legal for the investigator
+- **Prioritization**: Favors low-cost and level 0 cards for easier inclusion
 
 ## Integration with AI Models
 
