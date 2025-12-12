@@ -6,6 +6,7 @@ An MCP (Model Context Protocol) server for interacting with the ArkhamDB public 
 
 - **Get Card**: Retrieve details of a specific card by its code
 - **Search Cards by Name**: Search for cards by name (case-insensitive partial match)
+- **Find Card Synergies**: Discover cards that synergize with a given card based on text analysis, trait matching, and mechanic keywords
 - **Get Deck**: Retrieve a deck by its ID (may require authentication)
 - **Get Decklist**: Retrieve a decklist by its ID
 
@@ -125,6 +126,19 @@ echo -e '{"jsonrpc":"2.0","id":1,"method":"initialize","params":{"protocolVersio
 echo -e '{"jsonrpc":"2.0","id":1,"method":"initialize","params":{"protocolVersion":"2024-11-05","capabilities":{},"clientInfo":{"name":"test-client","version":"1.0.0"}}}\n{"jsonrpc":"2.0","id":2,"method":"tools/call","params":{"name":"arkhamdb_get_deck","arguments":{"deckID":12345}}}' | ./arkhamdb-mcp
 ```
 
+#### Find card synergies:
+
+```bash
+echo -e '{"jsonrpc":"2.0","id":1,"method":"initialize","params":{"protocolVersion":"2024-11-05","capabilities":{},"clientInfo":{"name":"test-client","version":"1.0.0"}}}\n{"jsonrpc":"2.0","id":2,"method":"tools/call","params":{"name":"arkhamdb_find_card_synergies","arguments":{"cardCode":"06332","maxResults":10}}}' | ./arkhamdb-mcp
+```
+
+The synergy finder analyzes cards using multiple methods:
+
+- **Trait References**: Finds cards that match explicit trait references (e.g., `[[Item]]`, `[[Spell]]`)
+- **Shared Traits**: Identifies cards with matching traits
+- **Mechanic Keywords**: Detects cards that interact with similar game mechanics (investigation, damage, resources, etc.)
+- **Slot Compatibility**: Considers equipment slot compatibility
+
 ## Integration with AI Models
 
 This MCP server can be integrated with:
@@ -152,9 +166,11 @@ Configure your AI client to connect to this server using the MCP protocol over s
 The server uses the public ArkhamDB API endpoints:
 
 - `GET /api/public/card/{card_code}.json` - Get a single card
-- `GET /api/public/cards/` - Get all cards (used for searching by name)
+- `GET /api/public/cards/` - Get all cards (used for searching by name and synergy detection)
 - `GET /api/public/deck/{deck_id}.json` - Get a deck (may require authentication)
 - `GET /api/public/decklist/{decklist_id}.json` - Get a decklist
+
+The synergy finder tool (`arkhamdb_find_card_synergies`) uses the cards endpoint to analyze all cards and identify synergies through text parsing and trait matching.
 
 For more information, see the [ArkhamDB API documentation](https://es.arkhamdb.com/api/doc).
 
@@ -182,6 +198,8 @@ The server follows a modular architecture:
 - `server/` - MCP protocol implementation
 - `tools/` - Tool interface definitions
 - `arkhamdb/` - ArkhamDB API client implementation
+  - `arkhamdb.go` - API client and card/deck fetching
+  - `synergy.go` - Synergy detection logic (text parsing, trait matching, scoring)
 
 ## License
 

@@ -276,6 +276,24 @@ func (s *MCPServer) getAvailableTools() []Tool {
 				"required": []string{"decklistID"},
 			},
 		},
+		{
+			Name:        "arkhamdb_find_card_synergies",
+			Description: "Find cards that synergize with a given card based on text analysis, trait matching, and mechanic keywords",
+			InputSchema: map[string]interface{}{
+				"type": "object",
+				"properties": map[string]interface{}{
+					"cardCode": map[string]interface{}{
+						"type":        "string",
+						"description": "The code of the card to find synergies for, e.g. '06332'",
+					},
+					"maxResults": map[string]interface{}{
+						"type":        "integer",
+						"description": "Maximum number of synergistic cards to return (default: 10, max: 50)",
+					},
+				},
+				"required": []string{"cardCode"},
+			},
+		},
 	}
 }
 
@@ -339,6 +357,28 @@ func (s *MCPServer) executeTool(name string, args map[string]interface{}) (strin
 			return "", fmt.Errorf("decklistID must be an integer")
 		}
 		return s.ArkhamDB.GetDecklist(id)
+
+	case "arkhamdb_find_card_synergies":
+		cardCode, ok := args["cardCode"].(string)
+		if !ok {
+			return "", fmt.Errorf("cardCode must be a string")
+		}
+		maxResults := 10 // default
+		if maxResultsVal, ok := args["maxResults"]; ok {
+			switch v := maxResultsVal.(type) {
+			case float64:
+				maxResults = int(v)
+			case int:
+				maxResults = v
+			case string:
+				parsed, err := strconv.Atoi(v)
+				if err != nil {
+					return "", fmt.Errorf("maxResults must be a valid integer: %w", err)
+				}
+				maxResults = parsed
+			}
+		}
+		return s.ArkhamDB.FindCardSynergies(cardCode, maxResults)
 
 	default:
 		return "", fmt.Errorf("unknown tool: %s", name)

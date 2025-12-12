@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"io"
 	"net/http"
+	"sort"
 	"strings"
 )
 
@@ -185,6 +186,135 @@ func (c *ArkhamDBClient) GetDecklist(decklistID int) (string, error) {
 	}
 
 	prettyJSON, err := json.MarshalIndent(decklist, "", "  ")
+	if err != nil {
+		return "", fmt.Errorf("failed to format JSON: %w", err)
+	}
+
+	return string(prettyJSON), nil
+}
+
+// getAllCards fetches all cards from the API (helper method)
+func (c *ArkhamDBClient) getAllCards() ([]map[string]interface{}, error) {
+	url := fmt.Sprintf("%s/api/public/cards/", c.baseURL)
+
+	resp, err := c.httpClient.Get(url)
+	if err != nil {
+		return nil, fmt.Errorf("failed to fetch cards: %w", err)
+	}
+	defer resp.Body.Close()
+
+	if resp.StatusCode != http.StatusOK {
+		body, _ := io.ReadAll(resp.Body)
+		return nil, fmt.Errorf("API returned status %d: %s", resp.StatusCode, string(body))
+	}
+
+	body, err := io.ReadAll(resp.Body)
+	if err != nil {
+		return nil, fmt.Errorf("failed to read response: %w", err)
+	}
+
+	var allCards []map[string]interface{}
+	if err := json.Unmarshal(body, &allCards); err != nil {
+		return nil, fmt.Errorf("failed to parse JSON: %w", err)
+	}
+
+	return allCards, nil
+}
+
+// FindCardSynergies finds cards that synergize with the given card
+func (c *ArkhamDBClient) FindCardSynergies(cardCode string, maxResults int) (string, error) {
+	// Default maxResults to 10 if not specified or invalid
+	if maxResults <= 0 {
+		maxResults = 10
+	}
+	if maxResults > 50 {
+		maxResults = 50 // Cap at 50 for performance
+	}
+
+	// Fetch the target card
+	url := fmt.Sprintf("%s/api/public/card/%s.json", c.baseURL, cardCode)
+	resp, err := c.httpClient.Get(url)
+	if err != nil {
+		return "", fmt.Errorf("failed to fetch card: %w", err)
+	}
+	defer resp.Body.Close()
+
+	if resp.StatusCode != http.StatusOK {
+		body, _ := io.ReadAll(resp.Body)
+		return "", fmt.Errorf("API returned status %d: %s", resp.StatusCode, string(body))
+	}
+
+	body, err := io.ReadAll(resp.Body)
+	if err != nil {
+		return "", fmt.Errorf("failed to read response: %w", err)
+	}
+
+	var targetCard map[string]interface{}
+	if err := json.Unmarshal(body, &targetCard); err != nil {
+		return "", fmt.Errorf("failed to parse JSON: %w", err)
+	}
+
+	// Fetch all cards
+	allCards, err := c.getAllCards()
+	if err != nil {
+		return "", fmt.Errorf("failed to fetch all cards: %w", err)
+	}
+
+	// Score each card for synergy
+	synergies := []SynergyScore{}
+	for _, candidateCard := range allCards {
+		score, reasons := scoreSynergy(targetCard, candidateCard)
+		if score > 0 && len(reasons) > 0 {
+			synergies = append(synergies, SynergyScore{
+				Card:    candidateCard,
+				Score:   score,
+				Reasons: reasons,
+			})
+		}
+	}
+
+	// Sort by score (descending)
+	sort.Slice(synergies, func(i, j int) bool {
+		return synergies[i].Score > synergies[j].Score
+	})
+
+	// Take top N results
+	if len(synergies) > maxResults {
+		synergies = synergies[:maxResults]
+	}
+
+	// Build result structure
+	targetCardName := getCardName(targetCard)
+	if targetCardName == "" {
+		targetCardName = cardCode
+	}
+
+	result := map[string]interface{}{
+		"card":      cardCode,
+		"cardName":  targetCardName,
+		"synergies": []map[string]interface{}{},
+	}
+
+	synergyList := []map[string]interface{}{}
+	for _, synergy := range synergies {
+		candidateCode, _ := synergy.Card["code"].(string)
+		candidateName := getCardName(synergy.Card)
+		if candidateName == "" {
+			candidateName = candidateCode
+		}
+
+		synergyList = append(synergyList, map[string]interface{}{
+			"cardCode": candidateCode,
+			"cardName": candidateName,
+			"score":    synergy.Score,
+			"reasons":  synergy.Reasons,
+		})
+	}
+
+	result["synergies"] = synergyList
+
+	// Pretty print JSON
+	prettyJSON, err := json.MarshalIndent(result, "", "  ")
 	if err != nil {
 		return "", fmt.Errorf("failed to format JSON: %w", err)
 	}
