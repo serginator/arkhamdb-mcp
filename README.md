@@ -35,6 +35,12 @@ Usa el MCP de arkhamdb para encontrar sinergias para Darrell Simmons, que usa `e
 
 Result: [examples/darrell-sinergias.md](examples/darrell-sinergias.md)
 
+```
+Ayúdame a montar un mazo de Trish Scarborough para jugar la campaña de Innsmouth. Puedes buscar información sobre mazos en internet y usar las herramientas del MCP de arkhamdb. He visto dos posibles mazos iniciales, aunque no me gusta lo de empezar con "En la brecha". https://es.arkhamdb.com/deck/view/2635733 https://es.arkhamdb.com/decklist/view/26638/trish-scarborough-starter-deck-1.0
+```
+
+Result (after some iterations): [examples/trish-scarborough-deck.md](examples/trish-scarborough-deck.md)
+
 ### In English
 
 ```
