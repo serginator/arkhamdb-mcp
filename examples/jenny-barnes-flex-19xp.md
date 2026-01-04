@@ -56,7 +56,7 @@ Este mazo está diseñado para aprovechar al máximo la habilidad especial de [J
   - Perfecto para Jenny que necesita recursos constantes
   - Combina con Ganzúas y Deducción para investigaciones eficientes que generan recursos
 
-#### **Armas y Herramientas:**
+#### **Armas y Herramientas (5 cartas):**
 
 - **[Navaja](/card/01044)** x2
 
@@ -65,19 +65,32 @@ Este mazo está diseñado para aprovechar al máximo la habilidad especial de [J
   - Funciona bien con Curtido en la vida y Licenciado en las calles para aumentar Agilidad
 
 - **[Ganzúas](/card/03031)** x2 (1 XP)
+
   - Permite investigar usando Agilidad en lugar de Intelecto
   - Versión mejorada con suministros (3 usos) en lugar de descartarse inmediatamente
   - Perfecto para Jenny con Agilidad 3
   - Combina con Dr. Milan (+1 Intelecto) y Deducción para descubrir múltiples pistas
 
+- **[Automática del .25](/card/07305)** x1 (2 XP)
+  - Versión mejorada: arma rápida que permite combatir usando Agilidad
+  - +2 Combate y +1 daño contra enemigos agotados
+  - **Reacción:** Después de evadir un enemigo, puedes combatir sin gastar acción
+  - Perfecta sinergia con Escurridizo y Carterista: evades y luego atacas automáticamente sin gastar acción
+  - También funciona bien con Ataque por sorpresa para eliminar enemigos agotados
+  - Usa Agilidad (3 de Jenny) en lugar de Combate, aprovechando mejor sus estadísticas
+
 #### **Talentos y Condiciones:**
+
+- **[Carisma](/card/02158)** x1 (3 XP)
+
+  - Permanente: Tienes 1 espacio de aliado adicional
+  - Permite llevar tanto [Leo De Luca](/card/01048) como [Dr. Milan Christopher](/card/01033) simultáneamente
+  - Sinergia perfecta: Leo da acción extra, Dr. Milan genera recursos al investigar
 
 - **[Licenciado en las calles](/card/02189)** x1 (3 XP)
 
   - Versión permanente que gasta 2 recursos para +3 Intelecto o +3 Agilidad
   - Versátil para investigación o evasión
-  - No se descarta al usar, puedes usarlo múltiples veces por ronda
-  - Como es permanente, solo necesitas 1 copia
   - Con Jenny generando recursos constantes, es muy eficiente
 
 - **[Curtido en la vida](/card/07266)** x1 (4 XP)
@@ -107,12 +120,18 @@ Este mazo está diseñado para aprovechar al máximo la habilidad especial de [J
 
 #### **Eventos:**
 
-- **[Alijo de emergencia](/card/01088)** x2
+- **[Alijo de emergencia](/card/01088)** x1
 
   - Gana 3 recursos instantáneamente
-  - Más económico que Buena racha (0 XP vs 2 XP)
   - Perfecto para activar Bien conectado o tener recursos para múltiples usos de Licenciado en las calles
   - Con Jenny generando recursos constantes y Dr. Milan, la generación de recursos sigue siendo sólida
+
+- **[Presa fácil](/card/06026)** x1 (1 XP)
+
+  - Gana 2 recursos y roba 1 carta
+  - Reacción: Después de jugarla, juegas otra copia gratis desde tu mano (aunque sólo hemos metido una)
+  - Perfecta sinergia con Jenny: genera recursos y roba cartas
+  - Combina bien con la generación constante de recursos de Jenny
 
 - **[Ataque por sorpresa](/card/01052)** x2
 
@@ -146,13 +165,13 @@ Este mazo está diseñado para aprovechar al máximo la habilidad especial de [J
   - Mantiene la mano llena
   - Útil en cualquier prueba de Intelecto, especialmente con Ganzúas
 
-- **["¡Mira esto!"](/card/11061)** x2 (3 XP)
+- **["¡Mira esto!"](/card/03233)** x1
 
   - Gasta hasta 3 recursos al asignarla a una prueba
   - Si tienes éxito por 1+, ganas el doble de recursos gastados
+  - Versión básica (0 XP): +1 Agilidad, +1 Combate, +1 Voluntad
   - Excelente sinergia con la generación de recursos de Jenny
   - Combina perfectamente con tus bonificaciones para asegurar éxitos y generar recursos adicionales
-  - Tener 2 copias aumenta las oportunidades de generar recursos adicionales
 
 - **[Reacción rápida](/card/02229)** x1
   - Si esta prueba tiene éxito por 2 o más, después de que se resuelva, puedes realizar una acción inmediatamente
@@ -166,7 +185,7 @@ Este mazo está diseñado para aprovechar al máximo la habilidad especial de [J
 
 #### **1. Motor de Recursos**
 
-[Jenny Barnes](/card/02003) genera 1 recurso extra cada upkeep. [Dr. Milan Christopher](/card/01033) genera recursos al investigar. [Alijo de emergencia](/card/01088) proporciona ráfagas de recursos cuando es necesario. [Bien conectado](/card/05028) se vuelve más poderoso con más recursos acumulados.
+[Jenny Barnes](/card/02003) genera 1 recurso extra cada mantenimiento. [Dr. Milan Christopher](/card/01033) genera recursos al investigar. [Alijo de emergencia](/card/01088) y [Presa fácil](/card/06026) proporcionan ráfagas de recursos cuando es necesario. [Presa fácil](/card/06026) además roba cartas. [Bien conectado](/card/05028) se vuelve más poderoso con más recursos acumulados.
 
 #### **2. Investigación Flexible**
 
@@ -174,7 +193,7 @@ Este mazo está diseñado para aprovechar al máximo la habilidad especial de [J
 
 #### **3. Combate Versátil**
 
-[Navaja](/card/01044) usa Agilidad para combatir. [Curtido en la vida](/card/07266) puede dar +2 Combate o +2 Agilidad. [Licenciado en las calles](/card/02189) puede dar +3 Agilidad (útil para Navaja). [Ataque por sorpresa](/card/01052) para daño sin combate. [Bien conectado](/card/05028) puede dar bonificaciones masivas con recursos acumulados.
+[Navaja](/card/01044) y [Automática del .25](/card/07305) usan Agilidad para combatir. [Curtido en la vida](/card/07266) puede dar +2 Combate o +2 Agilidad. [Licenciado en las calles](/card/02189) puede dar +3 Agilidad. [Automática del .25](/card/07305) es especialmente efectiva contra enemigos agotados: su reacción permite combatir gratis después de evadir (sinergia perfecta con [Escurridizo](/card/01050) y [Carterista](/card/01046)). [Ataque por sorpresa](/card/01052) para daño sin combate. [Bien conectado](/card/05028) puede dar bonificaciones masivas con recursos acumulados.
 
 #### **4. Sustento y Eficiencia**
 
@@ -182,7 +201,11 @@ Este mazo está diseñado para aprovechar al máximo la habilidad especial de [J
 
 #### **5. Movilidad y Control**
 
-[Escurridizo](/card/01050) para reposicionamiento. [Carterista](/card/01046) al evadir. [Ataque por sorpresa](/card/01052) para eliminar enemigos agotados.
+[Escurridizo](/card/01050) para reposicionamiento. [Carterista](/card/01046) al evadir. [Automática del .25](/card/07305) ataca enemigos agotados automáticamente sin gastar acción gracias a su reacción. [Ataque por sorpresa](/card/01052) para eliminar enemigos agotados.
+
+#### **6. Dos Aliados Simultáneos**
+
+[Carisma](/card/02158) permite llevar [Leo De Luca](/card/01048) y [Dr. Milan Christopher](/card/01033) al mismo tiempo. Leo da acción extra, Dr. Milan genera recursos al investigar. Combinación muy poderosa para Jenny.
 
 ---
 
@@ -192,8 +215,8 @@ Este mazo está diseñado para aprovechar al máximo la habilidad especial de [J
 
 1. **Prioridad 1:** Juega [Leo De Luca](/card/01048) para acción extra
 2. **Prioridad 2:** Juega [Dr. Milan Christopher](/card/01033) para bonificación de investigación
-3. **Prioridad 3:** Juega [Ganzúas](/card/03031) o [Navaja](/card/01044) según necesidad
-4. **Prioridad 4:** Juega [Licenciado en las calles](/card/02189) y [Curtido en la vida](/card/07266) para bonificaciones
+3. **Prioridad 3:** Juega [Ganzúas](/card/03031), [Navaja](/card/01044) o [Automática del .25](/card/07305) según necesidad
+4. **Prioridad 4:** Juega [Curtido en la vida](/card/07266) para bonificaciones
 
 #### **Fase de Investigación:**
 
@@ -205,16 +228,17 @@ Este mazo está diseñado para aprovechar al máximo la habilidad especial de [J
 
 #### **Fase de Combate:**
 
-- Usa [Navaja](/card/01044) con [Curtido en la vida](/card/07266) o [Licenciado en las calles](/card/02189) para aumentar Agilidad
+- Usa [Navaja](/card/01044) o [Automática del .25](/card/07305) con [Curtido en la vida](/card/07266) o [Licenciado en las calles](/card/02189) para aumentar Agilidad
+- [Automática del .25](/card/07305) es especialmente efectiva contra enemigos agotados: usa [Escurridizo](/card/01050) o [Carterista](/card/01046) para evadir, luego ataca con la Automática automáticamente sin gastar acción gracias a su reacción
 - [Bien conectado](/card/05028) puede dar bonificaciones masivas si tienes recursos acumulados
 - [Ataque por sorpresa](/card/01052) para eliminar enemigos agotados
-- [Escurridizo](/card/01050) para reposicionamiento si es necesario
 - [Reacción rápida](/card/02229) puede darte una acción extra después de combatir con éxito por 2+
 
 #### **Gestión de Recursos:**
 
 - Acumula recursos en los primeros turnos
-- Usa [Alijo de emergencia](/card/01088) cuando necesites recursos adicionales
+- Usa [Alijo de emergencia](/card/01088) o [Presa fácil](/card/06026) cuando necesites recursos adicionales
+- [Presa fácil](/card/06026) es especialmente útil: genera recursos y roba cartas
 - [Bien conectado](/card/05028) se vuelve más poderoso con 5+ recursos
 - No tengas miedo de gastar recursos con [Licenciado en las calles](/card/02189) o [Curtido en la vida](/card/07266)
 
@@ -223,10 +247,12 @@ Este mazo está diseñado para aprovechar al máximo la habilidad especial de [J
 ### **Distribución de XP (19 XP total):**
 
 - **[Ganzúas](/card/03031)** x2 (1 XP) = 2 XP
+- **[Automática del .25](/card/07305)** x1 (2 XP) = 2 XP
+- **[Presa fácil](/card/06026)** x1 (1 XP) = 1 XP
 - **[Oportunista](/card/02231)** x2 (2 XP) = 4 XP
+- **[Carisma](/card/02158)** x1 (3 XP) = 3 XP
 - **[Licenciado en las calles](/card/02189)** x1 (3 XP) = 3 XP
 - **[Curtido en la vida](/card/07266)** x1 (4 XP) = 4 XP
-- **["¡Mira esto!"](/card/11061)** x2 (3 XP) = 6 XP
 
 **Total:** 19 XP
 
@@ -263,9 +289,9 @@ Este mazo está diseñado para aprovechar al máximo la habilidad especial de [J
 **Mantener:**
 
 - [Leo De Luca](/card/01048) (prioridad alta)
-- [Ganzúas](/card/03031) o [Navaja](/card/01044) (según el escenario)
-- [Licenciado en las calles](/card/02189) o [Curtido en la vida](/card/07266) para bonificaciones
-- Una carta de recursos ([Alijo de emergencia](/card/01088) si es posible)
+- [Ganzúas](/card/03031), [Navaja](/card/01044) o [Automática del .25](/card/07305) (según el escenario)
+- [Curtido en la vida](/card/07266) para bonificaciones
+- Una carta de recursos ([Alijo de emergencia](/card/01088) o [Presa fácil](/card/06026) si es posible)
 
 **Descartar:**
 
