@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__arkhamdb__arkhamdb_get_decklist",
+      "mcp__arkhamdb__arkhamdb_suggest_deck_improvements",
+      "mcp__arkhamdb__arkhamdb_get_card",
+      "mcp__arkhamdb__arkhamdb_find_card_synergies",
+      "mcp__arkhamdb__arkhamdb_search_cards_by_name",
+      "WebSearch",
+      "WebFetch(domain:arkhamdb.com)"
+    ]
+  }
+}
