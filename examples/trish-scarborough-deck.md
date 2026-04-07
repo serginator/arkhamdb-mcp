@@ -254,12 +254,12 @@ En Innsmouth hay muchos lugares con velo alto (3-4). [Resolver el caso](/card/05
 
 **Gastar 6 XP:**
 
-| Coste | Añade                            | Total |
-| ----- | -------------------------------- | ----- |
-|       | [Lola Santiago](/card/04196) ••• | 3 XP  |
-|       | [Carisma](/card/02158) •••       | 3 XP  |
+| Coste                      | Sustitución/Añade                | Total |
+| -------------------------- | -------------------------------- | ----- |
+| [Linterna](/card/01087) x1 | → [Lola Santiago](/card/04196) ••• | 3 XP  |
+|                            | [Carisma](/card/02158) •••       | 3 XP  |
 
-**Por qué**: [Lola Santiago](/card/04196) proporciona +1 Intelecto y +1 Agilidad, y permite gastar recursos para descubrir pistas. [Carisma](/card/02158) es permanente (no cuenta para tamaño del mazo activo) y permite tener a [Dr. Milan Christopher](/card/01033) y [Lola Santiago](/card/04196) simultáneamente.
+**Por qué**: [Lola Santiago](/card/04196) proporciona +1 Intelecto y +1 Agilidad, y permite gastar recursos para descubrir pistas (haciendo la Linterna menos necesaria). [Carisma](/card/02158) es permanente (no cuenta para tamaño del mazo activo) y permite tener a [Dr. Milan Christopher](/card/01033) y [Lola Santiago](/card/04196) simultáneamente.
 
 **Sinergia**: [Dr. Milan Christopher](/card/01033) genera recursos, [Lola Santiago](/card/04196) los convierte en pistas.
 
@@ -304,10 +304,11 @@ En Innsmouth hay muchos lugares con velo alto (3-4). [Resolver el caso](/card/05
    - Mejora la economía de forma muy eficiente
    - Reemplaza [Alijo de emergencia](/card/01088)
 
-2. **Escenario 3-4 (6 XP)**: [Lola Santiago](/card/04196) + [Carisma](/card/02158)
+2. **Escenario 3-4 (6 XP)**: [Lola Santiago](/card/04196) (reemplaza [Linterna](/card/01087)) + [Carisma](/card/02158)
 
-   - Añade aliado poderoso y permite tener ambos aliados
-   - [Carisma](/card/02158) es permanente (no se baraja), así que el mazo activo sigue siendo 30 cartas
+   - Añade aliado poderoso que permite convertir recursos en pistas
+   - [Carisma](/card/02158) es permanente (no se baraja), permite tener ambos aliados
+   - La Linterna es menos necesaria con la habilidad de Lola Santiago
 
 3. **Escenario 5-6 (6 XP)**: [Carterista mejorado](/card/03195) x2 + [Allanamiento mejorado](/card/09074) x2
 
@@ -330,11 +331,10 @@ En Innsmouth hay muchos lugares con velo alto (3-4). [Resolver el caso](/card/05
 - [Deducción](/card/01039) → [Deducción mejorada](/card/02150): Descubre 2 pistas adicionales
 - [Escurridizo](/card/01050) → [Atajo](/card/03232): Movimiento gratuito más útil
 
-#### **Añadidos (No sustituyen):**
+#### **Añadidos (Solo permanentes, no cuentan para el mazo de 30):**
 
-- [Lola Santiago](/card/04196): Aliado poderoso
-- [Carisma](/card/02158): Permite dos aliados
-- [Otro día, otro dólar](/card/05278): Economía al inicio
+- [Carisma](/card/02158): Permite dos aliados simultáneamente
+- [Otro día, otro dólar](/card/05278): Economía al inicio de cada escenario
 
 ---
 
