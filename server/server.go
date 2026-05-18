@@ -315,6 +315,14 @@ func (s *MCPServer) getAvailableTools() []Tool {
 				},
 			},
 		},
+		{
+			Name:        "arkhamdb_get_packs_and_cycles",
+			Description: "Get all available packs and cycles for Arkham Horror LCG, grouped by cycle, with chapter (1 or 2) and release information. Use this to understand which content belongs to Chapter 1 (legacy) vs Chapter 2 (2026 relaunch).",
+			InputSchema: map[string]interface{}{
+				"type":       "object",
+				"properties": map[string]interface{}{},
+			},
+		},
 	}
 }
 
@@ -467,6 +475,9 @@ func (s *MCPServer) executeTool(name string, args map[string]interface{}) (strin
 		}
 
 		return s.ArkhamDB.SuggestDeckImprovements(deckID, decklistID, maxResults)
+
+	case "arkhamdb_get_packs_and_cycles":
+		return s.ArkhamDB.GetPacksAndCycles()
 
 	default:
 		return "", fmt.Errorf("unknown tool: %s", name)
