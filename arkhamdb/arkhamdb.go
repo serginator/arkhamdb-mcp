@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"io"
 	"net/http"
+	"regexp"
 	"sort"
 	"strings"
 )
@@ -801,6 +802,147 @@ func (c *ArkhamDBClient) GetInvestigatorConstraints(investigatorCode string) (st
 		"chapter":            chapter,
 	}
 
+	out, err := json.MarshalIndent(result, "", "  ")
+	if err != nil {
+		return "", fmt.Errorf("failed to format JSON: %w", err)
+	}
+	return string(out), nil
+}
+
+// baseCardName strips the level suffix " (N)" from a card name to get the upgrade base name
+func baseCardName(name string) string {
+	re := regexp.MustCompile(`\s*\(\d+\)\s*$`)
+	return strings.TrimSpace(re.ReplaceAllString(name, ""))
+}
+
+// GetUpgradePath suggests card upgrades for a deck given an XP budget
+func (c *ArkhamDBClient) GetUpgradePath(deckID *int, decklistID *int, xpBudget int) (string, error) {
+	if xpBudget <= 0 {
+		return "", fmt.Errorf("xpBudget must be greater than 0")
+	}
+
+	var deckData map[string]interface{}
+	if deckID != nil {
+		raw, err := c.GetDeck(*deckID)
+		if err != nil {
+			return "", err
+		}
+		if err := json.Unmarshal([]byte(raw), &deckData); err != nil {
+			return "", err
+		}
+	} else if decklistID != nil {
+		raw, err := c.GetDecklist(*decklistID)
+		if err != nil {
+			return "", err
+		}
+		if err := json.Unmarshal([]byte(raw), &deckData); err != nil {
+			return "", err
+		}
+	} else {
+		return "", fmt.Errorf("either deckID or decklistID must be provided")
+	}
+
+	deckCards := extractDeckCards(deckData)
+	allCards, err := c.getAllCards()
+	if err != nil {
+		return "", err
+	}
+
+	cardByCode := make(map[string]map[string]interface{}, len(allCards))
+	type nameKey struct{ baseName, faction string }
+	cardsByBaseName := make(map[nameKey][]map[string]interface{})
+	for _, card := range allCards {
+		code, _ := card["code"].(string)
+		cardByCode[code] = card
+		name := getCardName(card)
+		faction, _ := card["faction_code"].(string)
+		base := baseCardName(name)
+		key := nameKey{base, faction}
+		cardsByBaseName[key] = append(cardsByBaseName[key], card)
+	}
+
+	type upgradeOption struct {
+		FromCode string   `json:"fromCode"`
+		FromName string   `json:"fromName"`
+		FromXP   int      `json:"fromXP"`
+		ToCode   string   `json:"toCode"`
+		ToName   string   `json:"toName"`
+		ToXP     int      `json:"toXP"`
+		Cost     int      `json:"xpCost"`
+		Score    int      `json:"synergyScore"`
+		Reasons  []string `json:"reasons"`
+	}
+
+	var upgrades []upgradeOption
+
+	for code := range deckCards {
+		card, ok := cardByCode[code]
+		if !ok {
+			continue
+		}
+		name := getCardName(card)
+		faction, _ := card["faction_code"].(string)
+		cardXP := int(floatVal(card["xp"]))
+		base := baseCardName(name)
+		key := nameKey{base, faction}
+
+		for _, candidate := range cardsByBaseName[key] {
+			candCode, _ := candidate["code"].(string)
+			if candCode == code {
+				continue
+			}
+			candXP := int(floatVal(candidate["xp"]))
+			if candXP <= cardXP {
+				continue
+			}
+			cost := candXP - cardXP
+			if cost > xpBudget {
+				continue
+			}
+			score, reasons := scoreSynergy(card, candidate)
+			upgrades = append(upgrades, upgradeOption{
+				FromCode: code,
+				FromName: name,
+				FromXP:   cardXP,
+				ToCode:   candCode,
+				ToName:   getCardName(candidate),
+				ToXP:     candXP,
+				Cost:     cost,
+				Score:    score,
+				Reasons:  reasons,
+			})
+		}
+	}
+
+	sort.Slice(upgrades, func(i, j int) bool {
+		if upgrades[i].Score != upgrades[j].Score {
+			return upgrades[i].Score > upgrades[j].Score
+		}
+		return upgrades[i].Cost < upgrades[j].Cost
+	})
+
+	usedCodes := map[string]bool{}
+	var plan []upgradeOption
+	xpRemaining := xpBudget
+	for _, u := range upgrades {
+		if usedCodes[u.FromCode] {
+			continue
+		}
+		if u.Cost > xpRemaining {
+			continue
+		}
+		plan = append(plan, u)
+		usedCodes[u.FromCode] = true
+		xpRemaining -= u.Cost
+	}
+
+	result := map[string]interface{}{
+		"xpBudget":    xpBudget,
+		"xpUsed":      xpBudget - xpRemaining,
+		"xpRemaining": xpRemaining,
+		"upgrades":    plan,
+		"allOptions":  upgrades,
+	}
 	out, err := json.MarshalIndent(result, "", "  ")
 	if err != nil {
 		return "", fmt.Errorf("failed to format JSON: %w", err)

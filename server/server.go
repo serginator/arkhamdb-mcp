@@ -435,6 +435,18 @@ func (s *MCPServer) getAvailableTools() []Tool {
 				},
 			},
 		},
+		{
+			Name:        "arkhamdb_get_upgrade_path",
+			Description: "Given an existing deck and an XP budget, identify which cards can be upgraded to higher-level versions and produce a prioritised spending plan. Upgrades are scored by synergy with existing cards and sorted by value. Either deckID or decklistID must be provided.",
+			InputSchema: map[string]interface{}{
+				"type": "object",
+				"properties": map[string]interface{}{
+					"deckID":     map[string]interface{}{"type": "integer", "description": "Private deck ID"},
+					"decklistID": map[string]interface{}{"type": "integer", "description": "Public decklist ID"},
+					"xpBudget":   map[string]interface{}{"type": "integer", "description": "XP available to spend on upgrades"},
+				},
+			},
+		},
 	}
 }
 
@@ -636,6 +648,23 @@ func (s *MCPServer) executeTool(name string, args map[string]interface{}) (strin
 		daysBack := intFromArgDefault(args["daysBack"], 30)
 		maxResults := intFromArgDefault(args["maxResults"], 10)
 		return s.ArkhamDB.SearchReferenceDecks(invCode, xpMin, xpMax, tags, daysBack, maxResults)
+
+	case "arkhamdb_get_upgrade_path":
+		var deckID *int
+		var decklistID *int
+		if v, ok := args["deckID"]; ok && v != nil {
+			id := int(floatFromArg(v))
+			deckID = &id
+		}
+		if v, ok := args["decklistID"]; ok && v != nil {
+			id := int(floatFromArg(v))
+			decklistID = &id
+		}
+		if deckID == nil && decklistID == nil {
+			return "", fmt.Errorf("either deckID or decklistID must be provided")
+		}
+		xpBudget := intFromArgDefault(args["xpBudget"], 0)
+		return s.ArkhamDB.GetUpgradePath(deckID, decklistID, xpBudget)
 
 	default:
 		return "", fmt.Errorf("unknown tool: %s", name)

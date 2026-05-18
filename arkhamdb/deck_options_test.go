@@ -92,3 +92,22 @@ func TestIsCardAllowedByOptions_TraitOption(t *testing.T) {
 		t.Error("Blessed card should be allowed by trait option")
 	}
 }
+
+func TestBaseCardName(t *testing.T) {
+	cases := []struct {
+		input    string
+		expected string
+	}{
+		{"Beat Cop", "Beat Cop"},
+		{"Beat Cop (2)", "Beat Cop"},
+		{"Hot Streak (4)", "Hot Streak"},
+		{"Emergency Cache (2)", "Emergency Cache"},
+		{"Lockpicks (1)", "Lockpicks"},
+	}
+	for _, tc := range cases {
+		got := baseCardName(tc.input)
+		if got != tc.expected {
+			t.Errorf("baseCardName(%q) = %q, want %q", tc.input, got, tc.expected)
+		}
+	}
+}
