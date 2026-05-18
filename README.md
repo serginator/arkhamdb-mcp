@@ -4,12 +4,29 @@ An MCP (Model Context Protocol) server for interacting with the ArkhamDB public 
 
 ## Features
 
+### Card Lookup
 - **Get Card**: Retrieve details of a specific card by its code
 - **Search Cards by Name**: Search for cards by name (case-insensitive partial match)
-- **Find Card Synergies**: Discover cards that synergize with a given card based on text analysis, trait matching, and mechanic keywords
-- **Get Deck**: Retrieve a deck by its ID (may require authentication)
+- **Search Cards Advanced**: Filter cards by chapter (1=legacy, 2=2026 relaunch), cycle, faction, type, XP range, cost range, traits, and tags
+
+### Packs & Campaigns
+- **Get Packs and Cycles**: List all packs grouped by cycle with chapter and availability information
+
+### Deck Analysis
+- **Get Deck**: Retrieve a deck by its ID
 - **Get Decklist**: Retrieve a decklist by its ID
-- **Suggest Deck Improvements**: Suggest cards that would improve a deck, considering investigator requirements (deck size, class restrictions, level, experience)
+- **Find Card Synergies**: Discover cards that synergize with a given card based on text analysis, trait matching, and mechanic keywords
+- **Suggest Deck Improvements**: Suggest cards that would improve an existing deck, respecting investigator restrictions
+
+### AI Deck Building
+- **Get Investigator Constraints**: Full deck-building rules for an investigator — deck size, required signatures, random weaknesses, and all `deck_options` (faction/level/trait/tag/limit restrictions)
+- **Build Starter Deck**: Build a complete legal deck for an investigator with chapter, campaign cycle, and XP budget awareness
+- **Search Reference Decks**: Search recently published community decklists filtered by investigator, XP spent, and tags
+- **Get Upgrade Path**: Suggest XP spending plan for upgrading an existing deck — upgrades scored by synergy
+- **Validate Deck**: Full legality check — deck size, required signatures, deck_options compliance, card limits
+
+### Performance
+- **24h in-memory cache** for cards and packs — expensive API calls made at most once per day
 
 ## Example of promts using the MCP server
 
@@ -198,11 +215,11 @@ Configure your AI client to connect to this server using the MCP protocol over s
 The server uses the public ArkhamDB API endpoints:
 
 - `GET /api/public/card/{card_code}.json` - Get a single card
-- `GET /api/public/cards/` - Get all cards (used for searching by name and synergy detection)
+- `GET /api/public/cards/` - Get all cards (cached 24h)
+- `GET /api/public/packs/` - Get all packs (cached 24h)
 - `GET /api/public/deck/{deck_id}.json` - Get a deck (may require authentication)
 - `GET /api/public/decklist/{decklist_id}.json` - Get a decklist
-
-The synergy finder tool (`arkhamdb_find_card_synergies`) uses the cards endpoint to analyze all cards and identify synergies through text parsing and trait matching.
+- `GET /api/public/decklists/by_date/{date}.json` - Get community decklists for a date (used by search reference decks)
 
 For more information, see the [ArkhamDB API documentation](https://es.arkhamdb.com/api/doc).
 
@@ -227,10 +244,16 @@ For more information, see the [ArkhamDB API documentation](https://es.arkhamdb.c
 The server follows a modular architecture:
 
 - `main.go` - Entry point and initialization
-- `server/` - MCP protocol implementation
+- `server/` - MCP protocol implementation and tool dispatch
 - `tools/` - Tool interface definitions
 - `arkhamdb/` - ArkhamDB API client implementation
-  - `arkhamdb.go` - API client and card/deck fetching
+  - `arkhamdb.go` - API client, card/deck fetching, SearchCardsAdvanced, GetInvestigatorConstraints, GetUpgradePath
+  - `cache.go` - 24h in-memory cache for cards and packs
+  - `deck_options.go` - `deck_options` / `deck_requirements` JSON parsing and card legality checking
+  - `packs.go` - Pack fetching, cycle grouping, GetPacksAndCycles
+  - `builder.go` - BuildStarterDeck and helpers (pack filtering, option limit tracking)
+  - `reference_decks.go` - SearchReferenceDecks (date-iteration over community decklists)
+  - `validator.go` - ValidateDeck (full legality check)
   - `synergy.go` - Synergy detection logic (text parsing, trait matching, scoring)
 
 ## License
