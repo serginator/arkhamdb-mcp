@@ -77,11 +77,26 @@ func isCardAllowedByOptions(card map[string]interface{}, options []DeckOption) b
 	cardType, _ := card["type_code"].(string)
 	cardText := getCardText(card)
 
+	// Pre-compile text regexes to avoid recompiling per card
+	textRegexes := make(map[string]*regexp.Regexp)
+	for _, opt := range options {
+		if opt.Text != "" {
+			if _, ok := textRegexes[opt.Text]; !ok {
+				if re, err := regexp.Compile("(?i)" + opt.Text); err == nil {
+					textRegexes[opt.Text] = re
+				}
+			}
+		}
+	}
+
+	// Note: DeckOption.Limit is a count-based constraint (e.g. "max 5 survivor cards in deck"),
+	// not a card eligibility filter. It is enforced during deck construction in BuildStarterDeck
+	// and ValidateDeck via per-option counting, not here.
 	for _, opt := range options {
 		if opt.Size > 0 && len(opt.Faction) == 0 && opt.Level == nil {
 			continue // size-only option
 		}
-		if cardMatchesDeckOption(card, opt, cardFaction, cardXP, cardType, cardText) {
+		if cardMatchesDeckOption(card, opt, cardFaction, cardXP, cardType, cardText, textRegexes) {
 			return true
 		}
 	}
@@ -89,7 +104,7 @@ func isCardAllowedByOptions(card map[string]interface{}, options []DeckOption) b
 }
 
 // cardMatchesDeckOption returns true if all non-empty constraints in opt are satisfied
-func cardMatchesDeckOption(card map[string]interface{}, opt DeckOption, faction string, xp int, cardType string, text string) bool {
+func cardMatchesDeckOption(card map[string]interface{}, opt DeckOption, faction string, xp int, cardType string, text string, textRegexes map[string]*regexp.Regexp) bool {
 	// Faction check
 	if len(opt.Faction) > 0 {
 		factionMatch := false
@@ -160,11 +175,17 @@ func cardMatchesDeckOption(card map[string]interface{}, opt DeckOption, faction 
 		}
 	}
 
-	// Text regex check
+	// Text regex check — use pre-compiled regex if available
 	if opt.Text != "" {
-		matched, _ := regexp.MatchString("(?i)"+opt.Text, text)
-		if !matched {
-			return false
+		if re, ok := textRegexes[opt.Text]; ok {
+			if !re.MatchString(text) {
+				return false
+			}
+		} else {
+			matched, _ := regexp.MatchString("(?i)"+opt.Text, text)
+			if !matched {
+				return false
+			}
 		}
 	}
 
