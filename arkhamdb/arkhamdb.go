@@ -708,4 +708,104 @@ func min(a, b int) int {
 	return b
 }
 
+// GetInvestigatorConstraints returns structured deck building constraints for an investigator
+func (c *ArkhamDBClient) GetInvestigatorConstraints(investigatorCode string) (string, error) {
+	cardJSON, err := c.GetCard(investigatorCode)
+	if err != nil {
+		return "", err
+	}
+	var inv map[string]interface{}
+	if err := json.Unmarshal([]byte(cardJSON), &inv); err != nil {
+		return "", fmt.Errorf("failed to parse investigator: %w", err)
+	}
+
+	if tc, _ := inv["type_code"].(string); tc != "investigator" {
+		return "", fmt.Errorf("card %s is not an investigator (type: %s)", investigatorCode, tc)
+	}
+
+	allPacks, err := c.getAllPacks()
+	if err != nil {
+		return "", err
+	}
+	packLookup := buildPackLookup(allPacks)
+
+	packCode, _ := inv["pack_code"].(string)
+	chapter := 0
+	if pack, ok := packLookup[packCode]; ok {
+		chapter = int(floatVal(pack["chapter"]))
+	}
+
+	deckReqs := parseDeckRequirements(inv["deck_requirements"])
+	deckOpts := parseDeckOptions(inv["deck_options"])
+
+	deckSize := 30
+	weaknessCount := 0
+	requiredSignatures := []map[string]interface{}{}
+
+	if deckReqs != nil {
+		if deckReqs.Size > 0 {
+			deckSize = deckReqs.Size
+		}
+		weaknessCount = len(deckReqs.Random)
+		for code := range deckReqs.Card {
+			sig := map[string]interface{}{"code": code}
+			sigJSON, err := c.GetCard(code)
+			if err == nil {
+				var sigCard map[string]interface{}
+				if json.Unmarshal([]byte(sigJSON), &sigCard) == nil {
+					sig["name"] = getCardName(sigCard)
+					sig["type"] = sigCard["type_code"]
+				}
+			}
+			requiredSignatures = append(requiredSignatures, sig)
+		}
+	}
+
+	optDescriptions := make([]map[string]interface{}, 0, len(deckOpts))
+	for _, opt := range deckOpts {
+		levelMin := 0
+		levelMax := 5
+		if opt.Level != nil {
+			levelMin = opt.Level.Min
+			levelMax = opt.Level.Max
+		}
+		optDescriptions = append(optDescriptions, map[string]interface{}{
+			"description": deckOptionsDescription(opt),
+			"faction":     opt.Faction,
+			"levelMin":    levelMin,
+			"levelMax":    levelMax,
+			"limit":       opt.Limit,
+			"trait":       opt.Trait,
+			"tag":         opt.Tag,
+			"type":        opt.Type,
+			"not":         opt.Not,
+			"size":        opt.Size,
+		})
+	}
+
+	result := map[string]interface{}{
+		"code":               investigatorCode,
+		"name":               getCardName(inv),
+		"subname":            inv["subname"],
+		"health":             inv["health"],
+		"sanity":             inv["sanity"],
+		"willpower":          inv["skill_willpower"],
+		"intellect":          inv["skill_intellect"],
+		"combat":             inv["skill_combat"],
+		"agility":            inv["skill_agility"],
+		"deckSize":           deckSize,
+		"randomWeaknesses":   weaknessCount,
+		"requiredSignatures": requiredSignatures,
+		"deckOptions":        optDescriptions,
+		"packCode":           packCode,
+		"chapter":            chapter,
+	}
+
+	out, err := json.MarshalIndent(result, "", "  ")
+	if err != nil {
+		return "", fmt.Errorf("failed to format JSON: %w", err)
+	}
+	return string(out), nil
+}
+
 var _ tools.ArkhamDBTool = &ArkhamDBClient{}

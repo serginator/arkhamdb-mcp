@@ -392,6 +392,20 @@ func (s *MCPServer) getAvailableTools() []Tool {
 				},
 			},
 		},
+		{
+			Name:        "arkhamdb_get_investigator_constraints",
+			Description: "Get full deck-building constraints for an investigator: deck size, required signature cards, random weakness count, and all deck_options rules (faction/level/trait/tag/limit restrictions). Use this before building or validating a deck.",
+			InputSchema: map[string]interface{}{
+				"type": "object",
+				"properties": map[string]interface{}{
+					"investigatorCode": map[string]interface{}{
+						"type":        "string",
+						"description": "The investigator's card code, e.g. '01001' for Roland Banks",
+					},
+				},
+				"required": []string{"investigatorCode"},
+			},
+		},
 	}
 }
 
@@ -564,6 +578,13 @@ func (s *MCPServer) executeTool(name string, args map[string]interface{}) (strin
 
 	case "arkhamdb_get_packs_and_cycles":
 		return s.ArkhamDB.GetPacksAndCycles()
+
+	case "arkhamdb_get_investigator_constraints":
+		code, ok := args["investigatorCode"].(string)
+		if !ok {
+			return "", fmt.Errorf("investigatorCode must be a string")
+		}
+		return s.ArkhamDB.GetInvestigatorConstraints(code)
 
 	default:
 		return "", fmt.Errorf("unknown tool: %s", name)
