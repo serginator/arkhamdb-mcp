@@ -6,9 +6,7 @@ import (
 	"fmt"
 	"io"
 	"net/http"
-	"regexp"
 	"sort"
-	"strconv"
 	"strings"
 )
 
@@ -357,12 +355,12 @@ func (c *ArkhamDBClient) SuggestDeckImprovements(deckID *int, decklistID *int, m
 	}
 
 	// Extract deck requirements from investigator
-	deckSize, _ := investigatorCard["deck_size"].(float64)
-	deckbuildingOptions, _ := investigatorCard["deckbuilding_options"].(string)
-	_ = investigatorCard["deckbuilding_requirements"] // Reserved for future use
-
-	// Parse deckbuilding options (e.g., "Rogue 0-5, Guardian 0-2, Neutral 0-5")
-	allowedFactions, allowedLevels := parseDeckbuildingOptions(deckbuildingOptions)
+	deckReqs := parseDeckRequirements(investigatorCard["deck_requirements"])
+	deckOptions := parseDeckOptions(investigatorCard["deck_options"])
+	deckSize := float64(30)
+	if deckReqs != nil && deckReqs.Size > 0 {
+		deckSize = float64(deckReqs.Size)
+	}
 
 	// Get all cards in the current deck
 	deckCards := extractDeckCards(deckData)
@@ -398,11 +396,7 @@ func (c *ArkhamDBClient) SuggestDeckImprovements(deckID *int, decklistID *int, m
 		}
 
 		// Check if card matches deckbuilding requirements
-		cardFaction, _ := candidateCard["faction_code"].(string)
-		cardLevel, _ := candidateCard["xp"].(float64)
-		cardLevelInt := int(cardLevel)
-
-		if !isCardAllowed(cardFaction, cardLevelInt, allowedFactions, allowedLevels) {
+		if !isCardAllowedByOptions(candidateCard, deckOptions) {
 			continue
 		}
 
@@ -438,7 +432,7 @@ func (c *ArkhamDBClient) SuggestDeckImprovements(deckID *int, decklistID *int, m
 		"investigatorCode":    investigatorCode,
 		"investigatorName":    investigatorName,
 		"deckSize":            int(deckSize),
-		"deckbuildingOptions": deckbuildingOptions,
+		"deckOptions": deckOptions,
 		"suggestions":         []map[string]interface{}{},
 	}
 
@@ -473,57 +467,6 @@ func (c *ArkhamDBClient) SuggestDeckImprovements(deckID *int, decklistID *int, m
 	}
 
 	return string(prettyJSON), nil
-}
-
-// parseDeckbuildingOptions parses deckbuilding options string
-// Returns maps of faction -> allowed level ranges
-func parseDeckbuildingOptions(options string) (map[string][]int, map[string]int) {
-	allowedFactions := make(map[string][]int) // faction -> [minLevel, maxLevel]
-	allowedLevels := make(map[string]int)     // faction -> maxLevel (for backward compatibility)
-
-	if options == "" {
-		return allowedFactions, allowedLevels
-	}
-
-	// Parse format like "Rogue 0-5, Guardian 0-2, Neutral 0-5"
-	parts := strings.Split(options, ",")
-	for _, part := range parts {
-		part = strings.TrimSpace(part)
-		if part == "" {
-			continue
-		}
-
-		// Try to match "Faction min-max" or "Faction max"
-		re := regexp.MustCompile(`(\w+)\s+(\d+)(?:-(\d+))?`)
-		matches := re.FindStringSubmatch(part)
-		if len(matches) >= 3 {
-			faction := strings.ToLower(matches[1])
-			minLevel, _ := strconv.Atoi(matches[2])
-			maxLevel := minLevel
-			if len(matches) >= 4 && matches[3] != "" {
-				maxLevel, _ = strconv.Atoi(matches[3])
-			}
-			allowedFactions[faction] = []int{minLevel, maxLevel}
-			allowedLevels[faction] = maxLevel
-		}
-	}
-
-	return allowedFactions, allowedLevels
-}
-
-// isCardAllowed checks if a card matches deckbuilding requirements
-func isCardAllowed(cardFaction string, cardLevel int, allowedFactions map[string][]int, allowedLevels map[string]int) bool {
-	if cardFaction == "" {
-		return false
-	}
-
-	cardFactionLower := strings.ToLower(cardFaction)
-	levelRange, ok := allowedFactions[cardFactionLower]
-	if !ok {
-		return false
-	}
-
-	return cardLevel >= levelRange[0] && cardLevel <= levelRange[1]
 }
 
 // extractDeckCards extracts card codes and counts from deck/decklist data
