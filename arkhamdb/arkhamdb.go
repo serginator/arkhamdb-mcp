@@ -63,28 +63,9 @@ func (c *ArkhamDBClient) GetCard(cardCode string) (string, error) {
 
 // SearchCardsByName searches for cards by name (case-insensitive partial match)
 func (c *ArkhamDBClient) SearchCardsByName(name string) (string, error) {
-	url := fmt.Sprintf("%s/api/public/cards/", c.baseURL)
-
-	resp, err := c.httpClient.Get(url)
+	allCards, err := c.getAllCards()
 	if err != nil {
 		return "", fmt.Errorf("failed to fetch cards: %w", err)
-	}
-	defer resp.Body.Close()
-
-	if resp.StatusCode != http.StatusOK {
-		body, _ := io.ReadAll(resp.Body)
-		return "", fmt.Errorf("API returned status %d: %s", resp.StatusCode, string(body))
-	}
-
-	body, err := io.ReadAll(resp.Body)
-	if err != nil {
-		return "", fmt.Errorf("failed to read response: %w", err)
-	}
-
-	// Parse all cards
-	var allCards []map[string]interface{}
-	if err := json.Unmarshal(body, &allCards); err != nil {
-		return "", fmt.Errorf("failed to parse JSON: %w", err)
 	}
 
 	// Filter cards by name (case-insensitive partial match)
@@ -92,23 +73,17 @@ func (c *ArkhamDBClient) SearchCardsByName(name string) (string, error) {
 	var matchingCards []map[string]interface{}
 
 	for _, card := range allCards {
-		// Check both name and real_name fields for matches (either can match)
 		matches := false
-
-		// Check name field
 		if nameVal, ok := card["name"].(string); ok && nameVal != "" {
 			if strings.Contains(strings.ToLower(nameVal), nameLower) {
 				matches = true
 			}
 		}
-
-		// Check real_name field (check independently, not just if name didn't match)
 		if realNameVal, ok := card["real_name"].(string); ok && realNameVal != "" {
 			if strings.Contains(strings.ToLower(realNameVal), nameLower) {
 				matches = true
 			}
 		}
-
 		if matches {
 			matchingCards = append(matchingCards, card)
 		}
@@ -117,13 +92,10 @@ func (c *ArkhamDBClient) SearchCardsByName(name string) (string, error) {
 	if len(matchingCards) == 0 {
 		return fmt.Sprintf("No cards found matching '%s'", name), nil
 	}
-
-	// Pretty print matching cards
 	prettyJSON, err := json.MarshalIndent(matchingCards, "", "  ")
 	if err != nil {
 		return "", fmt.Errorf("failed to format JSON: %w", err)
 	}
-
 	return fmt.Sprintf("Found %d card(s) matching '%s':\n%s", len(matchingCards), name, string(prettyJSON)), nil
 }
 
@@ -225,8 +197,10 @@ func (c *ArkhamDBClient) getAllCards() ([]map[string]interface{}, error) {
 	}
 
 	cardsCache.mu.Lock()
-	cardsCache.data = allCards
-	cardsCache.cachedAt = timeNow()
+	if cardsCache.cachedAt.IsZero() || timeNow().Sub(cardsCache.cachedAt) >= cacheTTL {
+		cardsCache.data = allCards
+		cardsCache.cachedAt = timeNow()
+	}
 	cardsCache.mu.Unlock()
 
 	return allCards, nil
