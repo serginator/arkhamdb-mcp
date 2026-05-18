@@ -88,6 +88,7 @@ func (c *ArkhamDBClient) GetPacksAndCycles() (string, error) {
 		available, _ := p["available"].(string)
 		replaced, _ := p["replaced"].(bool)
 
+		// chapter is set from the first pack in the cycle; all packs in a cycle share the same chapter
 		if _, ok := cycleMap[cyclePos]; !ok {
 			cycleMap[cyclePos] = &cycleSummary{
 				CyclePosition: cyclePos,
@@ -101,6 +102,13 @@ func (c *ArkhamDBClient) GetPacksAndCycles() (string, error) {
 			Position:  pos,
 			Available: available,
 			Replaced:  replaced,
+		})
+	}
+
+	// Sort packs within each cycle by position for deterministic output
+	for _, cy := range cycleMap {
+		sort.Slice(cy.Packs, func(i, j int) bool {
+			return cy.Packs[i].Position < cy.Packs[j].Position
 		})
 	}
 
