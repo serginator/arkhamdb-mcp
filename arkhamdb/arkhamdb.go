@@ -97,6 +97,154 @@ func (c *ArkhamDBClient) SearchCardsByName(name string) (string, error) {
 	return fmt.Sprintf("Found %d card(s) matching '%s':\n%s", len(matchingCards), name, string(prettyJSON)), nil
 }
 
+// SearchCardsAdvanced searches cards with multiple filters.
+// chapter: 1 or 2 (0 = any). xpMin/xpMax/costMin/costMax: -1 = unset.
+func (c *ArkhamDBClient) SearchCardsAdvanced(
+	chapter int,
+	cycleCode string,
+	factionCode string,
+	typeCode string,
+	xpMin int, xpMax int,
+	costMin int, costMax int,
+	traits []string,
+	tags []string,
+	maxResults int,
+) (string, error) {
+	if maxResults <= 0 {
+		maxResults = 50
+	}
+	if maxResults > 200 {
+		maxResults = 200
+	}
+
+	allCards, err := c.getAllCards()
+	if err != nil {
+		return "", err
+	}
+
+	var packLookup map[string]map[string]interface{}
+	if chapter > 0 || cycleCode != "" {
+		allPacks, err := c.getAllPacks()
+		if err != nil {
+			return "", err
+		}
+		packLookup = buildPackLookup(allPacks)
+	}
+
+	var matched []map[string]interface{}
+	for _, card := range allCards {
+		// Skip investigator and weakness cards from generic searches
+		if tc, _ := card["type_code"].(string); tc == "investigator" {
+			continue
+		}
+		if st, _ := card["subtype_code"].(string); st == "basicweakness" || st == "weakness" {
+			continue
+		}
+
+		// Chapter filter
+		if chapter > 0 && packLookup != nil {
+			packCode, _ := card["pack_code"].(string)
+			if pack, ok := packLookup[packCode]; ok {
+				packChapter := int(floatVal(pack["chapter"]))
+				if packChapter != chapter {
+					continue
+				}
+			}
+		}
+
+		// Cycle filter — match pack_code equal to cycleCode or starting with cycleCode prefix
+		if cycleCode != "" && packLookup != nil {
+			packCode, _ := card["pack_code"].(string)
+			pack, ok := packLookup[packCode]
+			if !ok {
+				continue
+			}
+			packCodeVal, _ := pack["code"].(string)
+			if !strings.EqualFold(packCodeVal, cycleCode) &&
+				!strings.HasPrefix(strings.ToLower(packCodeVal), strings.ToLower(cycleCode)) {
+				continue
+			}
+		}
+
+		// Faction filter
+		if factionCode != "" {
+			fc, _ := card["faction_code"].(string)
+			if !strings.EqualFold(fc, factionCode) {
+				continue
+			}
+		}
+
+		// Type filter
+		if typeCode != "" {
+			tc, _ := card["type_code"].(string)
+			if !strings.EqualFold(tc, typeCode) {
+				continue
+			}
+		}
+
+		// XP range filter
+		xpVal := int(floatVal(card["xp"]))
+		if xpMin >= 0 && xpVal < xpMin {
+			continue
+		}
+		if xpMax >= 0 && xpVal > xpMax {
+			continue
+		}
+
+		// Cost range filter
+		costVal := int(floatVal(card["cost"]))
+		if costMin >= 0 && costVal < costMin {
+			continue
+		}
+		if costMax >= 0 && costVal > costMax {
+			continue
+		}
+
+		// Traits filter (ALL must match)
+		if len(traits) > 0 {
+			allMatch := true
+			for _, t := range traits {
+				if !hasTrait(card, t) {
+					allMatch = false
+					break
+				}
+			}
+			if !allMatch {
+				continue
+			}
+		}
+
+		// Tags filter (ANY must match)
+		if len(tags) > 0 {
+			tagVal, _ := card["tags"].(string)
+			anyMatch := false
+			for _, tag := range tags {
+				if strings.Contains(tagVal, tag) {
+					anyMatch = true
+					break
+				}
+			}
+			if !anyMatch {
+				continue
+			}
+		}
+
+		matched = append(matched, card)
+		if len(matched) >= maxResults {
+			break
+		}
+	}
+
+	out, err := json.MarshalIndent(map[string]interface{}{
+		"count": len(matched),
+		"cards": matched,
+	}, "", "  ")
+	if err != nil {
+		return "", fmt.Errorf("failed to format JSON: %w", err)
+	}
+	return string(out), nil
+}
+
 // GetDeck gets a deck by its ID (requires authentication, so this may not work for public API)
 func (c *ArkhamDBClient) GetDeck(deckID int) (string, error) {
 	url := fmt.Sprintf("%s/api/public/deck/%d.json", c.baseURL, deckID)

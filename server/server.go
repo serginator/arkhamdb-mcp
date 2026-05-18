@@ -217,6 +217,55 @@ func (s *MCPServer) sendJSON(v interface{}) {
 	fmt.Println(string(data))
 }
 
+// floatFromArg extracts a float64 from interface{}
+func floatFromArg(v interface{}) float64 {
+	switch x := v.(type) {
+	case float64:
+		return x
+	case int:
+		return float64(x)
+	}
+	return 0
+}
+
+// intFromArgDefault extracts an int from interface{} with a default fallback
+func intFromArgDefault(v interface{}, def int) int {
+	if v == nil {
+		return def
+	}
+	switch x := v.(type) {
+	case float64:
+		return int(x)
+	case int:
+		return x
+	case string:
+		n, err := strconv.Atoi(x)
+		if err != nil {
+			return def
+		}
+		return n
+	}
+	return def
+}
+
+// stringSliceFromArg extracts a []string from interface{}
+func stringSliceFromArg(v interface{}) []string {
+	if v == nil {
+		return nil
+	}
+	arr, ok := v.([]interface{})
+	if !ok {
+		return nil
+	}
+	result := make([]string, 0, len(arr))
+	for _, item := range arr {
+		if s, ok := item.(string); ok {
+			result = append(result, s)
+		}
+	}
+	return result
+}
+
 // getAvailableTools returns the list of available tools
 func (s *MCPServer) getAvailableTools() []Tool {
 	return []Tool{
@@ -321,6 +370,26 @@ func (s *MCPServer) getAvailableTools() []Tool {
 			InputSchema: map[string]interface{}{
 				"type":       "object",
 				"properties": map[string]interface{}{},
+			},
+		},
+		{
+			Name:        "arkhamdb_search_cards_advanced",
+			Description: "Search cards with filters: chapter (1=Chapter 1 legacy, 2=Chapter 2 2026 relaunch), cycleCode (e.g. 'dwl' for Dunwich Legacy), factionCode (e.g. 'guardian'), typeCode (e.g. 'asset'), XP range, cost range, traits (ALL must match), tags (ANY must match, e.g. 'hd'=heals damage, 'hh'=heals horror). Skips investigators and weakness cards.",
+			InputSchema: map[string]interface{}{
+				"type": "object",
+				"properties": map[string]interface{}{
+					"chapter":     map[string]interface{}{"type": "integer", "description": "1 for Chapter 1, 2 for Chapter 2 (2026). Omit for any."},
+					"cycleCode":   map[string]interface{}{"type": "string", "description": "Pack code or cycle prefix, e.g. 'dwl', 'core', 'eoe'"},
+					"factionCode": map[string]interface{}{"type": "string", "description": "e.g. 'guardian', 'rogue', 'neutral'"},
+					"typeCode":    map[string]interface{}{"type": "string", "description": "e.g. 'asset', 'event', 'skill'"},
+					"xpMin":       map[string]interface{}{"type": "integer", "description": "Minimum XP level (0-5). Omit for no minimum."},
+					"xpMax":       map[string]interface{}{"type": "integer", "description": "Maximum XP level (0-5). Omit for no maximum."},
+					"costMin":     map[string]interface{}{"type": "integer", "description": "Minimum resource cost. Omit for no minimum."},
+					"costMax":     map[string]interface{}{"type": "integer", "description": "Maximum resource cost. Omit for no maximum."},
+					"traits":      map[string]interface{}{"type": "array", "items": map[string]interface{}{"type": "string"}, "description": "All traits must be present, e.g. [\"Ally\", \"Blessed\"]"},
+					"tags":        map[string]interface{}{"type": "array", "items": map[string]interface{}{"type": "string"}, "description": "Any tag must be present, e.g. [\"hd\", \"hh\"]"},
+					"maxResults":  map[string]interface{}{"type": "integer", "description": "Max results (default 50, max 200)"},
+				},
 			},
 		},
 	}
@@ -475,6 +544,23 @@ func (s *MCPServer) executeTool(name string, args map[string]interface{}) (strin
 		}
 
 		return s.ArkhamDB.SuggestDeckImprovements(deckID, decklistID, maxResults)
+
+	case "arkhamdb_search_cards_advanced":
+		chapter := 0
+		if v, ok := args["chapter"]; ok && v != nil {
+			chapter = int(floatFromArg(v))
+		}
+		cycleCode, _ := args["cycleCode"].(string)
+		factionCode, _ := args["factionCode"].(string)
+		typeCode, _ := args["typeCode"].(string)
+		xpMin := intFromArgDefault(args["xpMin"], -1)
+		xpMax := intFromArgDefault(args["xpMax"], -1)
+		costMin := intFromArgDefault(args["costMin"], -1)
+		costMax := intFromArgDefault(args["costMax"], -1)
+		traits := stringSliceFromArg(args["traits"])
+		tags := stringSliceFromArg(args["tags"])
+		maxResults := intFromArgDefault(args["maxResults"], 50)
+		return s.ArkhamDB.SearchCardsAdvanced(chapter, cycleCode, factionCode, typeCode, xpMin, xpMax, costMin, costMax, traits, tags, maxResults)
 
 	case "arkhamdb_get_packs_and_cycles":
 		return s.ArkhamDB.GetPacksAndCycles()

@@ -5,6 +5,7 @@ package tools
 type ArkhamDBTool interface {
 	GetCard(cardCode string) (string, error)
 	SearchCardsByName(name string) (string, error)
+	SearchCardsAdvanced(chapter int, cycleCode string, factionCode string, typeCode string, xpMin int, xpMax int, costMin int, costMax int, traits []string, tags []string, maxResults int) (string, error)
 	GetDeck(deckID int) (string, error)
 	GetDecklist(decklistID int) (string, error)
 	FindCardSynergies(cardCode string, maxResults int) (string, error)
