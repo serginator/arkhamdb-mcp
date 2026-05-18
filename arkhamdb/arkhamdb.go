@@ -197,28 +197,37 @@ func (c *ArkhamDBClient) GetDecklist(decklistID int) (string, error) {
 
 // getAllCards fetches all cards from the API (helper method)
 func (c *ArkhamDBClient) getAllCards() ([]map[string]interface{}, error) {
-	url := fmt.Sprintf("%s/api/public/cards/", c.baseURL)
+	cardsCache.mu.RLock()
+	if !cardsCache.cachedAt.IsZero() && timeNow().Sub(cardsCache.cachedAt) < cacheTTL {
+		data := cardsCache.data
+		cardsCache.mu.RUnlock()
+		return data, nil
+	}
+	cardsCache.mu.RUnlock()
 
+	url := fmt.Sprintf("%s/api/public/cards/", c.baseURL)
 	resp, err := c.httpClient.Get(url)
 	if err != nil {
 		return nil, fmt.Errorf("failed to fetch cards: %w", err)
 	}
 	defer resp.Body.Close()
-
 	if resp.StatusCode != http.StatusOK {
 		body, _ := io.ReadAll(resp.Body)
 		return nil, fmt.Errorf("API returned status %d: %s", resp.StatusCode, string(body))
 	}
-
 	body, err := io.ReadAll(resp.Body)
 	if err != nil {
 		return nil, fmt.Errorf("failed to read response: %w", err)
 	}
-
 	var allCards []map[string]interface{}
 	if err := json.Unmarshal(body, &allCards); err != nil {
 		return nil, fmt.Errorf("failed to parse JSON: %w", err)
 	}
+
+	cardsCache.mu.Lock()
+	cardsCache.data = allCards
+	cardsCache.cachedAt = timeNow()
+	cardsCache.mu.Unlock()
 
 	return allCards, nil
 }
