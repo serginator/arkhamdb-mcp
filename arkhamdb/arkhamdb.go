@@ -191,13 +191,18 @@ func (c *ArkhamDBClient) SearchCardsAdvanced(
 			continue
 		}
 
-		// Cost range filter
-		costVal := int(floatVal(card["cost"]))
-		if costMin >= 0 && costVal < costMin {
-			continue
-		}
-		if costMax >= 0 && costVal > costMax {
-			continue
+		// Cost range filter — skip cards with no cost field when a cost filter is active
+		if costMin >= 0 || costMax >= 0 {
+			if card["cost"] == nil {
+				continue
+			}
+			costVal := int(floatVal(card["cost"]))
+			if costMin >= 0 && costVal < costMin {
+				continue
+			}
+			if costMax >= 0 && costVal > costMax {
+				continue
+			}
 		}
 
 		// Traits filter (ALL must match)
