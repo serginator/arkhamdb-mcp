@@ -447,6 +447,17 @@ func (s *MCPServer) getAvailableTools() []Tool {
 				},
 			},
 		},
+		{
+			Name:        "arkhamdb_validate_deck",
+			Description: "Validate a deck or decklist for legality: checks deck size, required signature cards, investigator deck_options compliance (faction/level/trait/tag/limit rules), and per-card deck limits. Returns a list of errors and warnings. Use before finalising any deck.",
+			InputSchema: map[string]interface{}{
+				"type": "object",
+				"properties": map[string]interface{}{
+					"deckID":     map[string]interface{}{"type": "integer", "description": "Private deck ID"},
+					"decklistID": map[string]interface{}{"type": "integer", "description": "Public decklist ID"},
+				},
+			},
+		},
 	}
 }
 
@@ -665,6 +676,22 @@ func (s *MCPServer) executeTool(name string, args map[string]interface{}) (strin
 		}
 		xpBudget := intFromArgDefault(args["xpBudget"], 0)
 		return s.ArkhamDB.GetUpgradePath(deckID, decklistID, xpBudget)
+
+	case "arkhamdb_validate_deck":
+		var deckID *int
+		var decklistID *int
+		if v, ok := args["deckID"]; ok && v != nil {
+			id := int(floatFromArg(v))
+			deckID = &id
+		}
+		if v, ok := args["decklistID"]; ok && v != nil {
+			id := int(floatFromArg(v))
+			decklistID = &id
+		}
+		if deckID == nil && decklistID == nil {
+			return "", fmt.Errorf("either deckID or decklistID must be provided")
+		}
+		return s.ArkhamDB.ValidateDeck(deckID, decklistID)
 
 	default:
 		return "", fmt.Errorf("unknown tool: %s", name)
