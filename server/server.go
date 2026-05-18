@@ -406,6 +406,35 @@ func (s *MCPServer) getAvailableTools() []Tool {
 				"required": []string{"investigatorCode"},
 			},
 		},
+		{
+			Name:        "arkhamdb_build_starter_deck",
+			Description: "Build a complete legal deck for an investigator. Respects deck_options (faction/level/trait restrictions), deck size, and required signature cards. Use chapter (1 or 2) to restrict to a content generation; use cycleCodes to restrict to specific campaigns (e.g. [\"core\",\"dwl\"]). xpBudget=0 produces a standard 0-XP starter deck; higher values allow upgraded cards.",
+			InputSchema: map[string]interface{}{
+				"type": "object",
+				"properties": map[string]interface{}{
+					"investigatorCode": map[string]interface{}{"type": "string", "description": "Investigator card code, e.g. '01001'"},
+					"chapter":          map[string]interface{}{"type": "integer", "description": "1 or 2 to restrict card pool by chapter. 0 or omit for all chapters."},
+					"cycleCodes":       map[string]interface{}{"type": "array", "items": map[string]interface{}{"type": "string"}, "description": "Pack/cycle code prefixes to restrict card pool, e.g. [\"core\", \"dwl\"]. Empty = all packs."},
+					"xpBudget":         map[string]interface{}{"type": "integer", "description": "XP budget (0 for starter, e.g. 15 for an upgraded deck). Default: 0."},
+				},
+				"required": []string{"investigatorCode"},
+			},
+		},
+		{
+			Name:        "arkhamdb_search_reference_decks",
+			Description: "Search recently published community decklists on ArkhamDB. Filter by investigator code, XP spent range, and tags (e.g. 'solo', 'multiplayer', 'beginner'). Iterates the public API backwards from today. Use this to find reference decks for inspiration or comparison.",
+			InputSchema: map[string]interface{}{
+				"type": "object",
+				"properties": map[string]interface{}{
+					"investigatorCode": map[string]interface{}{"type": "string", "description": "Filter by investigator, e.g. '01001'. Empty = any."},
+					"xpMin":            map[string]interface{}{"type": "integer", "description": "Minimum XP spent (0 = starter decks included). -1 or omit = no minimum."},
+					"xpMax":            map[string]interface{}{"type": "integer", "description": "Maximum XP spent. -1 or omit = no maximum."},
+					"tags":             map[string]interface{}{"type": "string", "description": "Comma-separated tags to search for, e.g. 'solo,beginner'"},
+					"daysBack":         map[string]interface{}{"type": "integer", "description": "How many days back to search (default 30, max 90)"},
+					"maxResults":       map[string]interface{}{"type": "integer", "description": "Max results to return (default 10, max 50)"},
+				},
+			},
+		},
 	}
 }
 
@@ -585,6 +614,28 @@ func (s *MCPServer) executeTool(name string, args map[string]interface{}) (strin
 			return "", fmt.Errorf("investigatorCode must be a string")
 		}
 		return s.ArkhamDB.GetInvestigatorConstraints(code)
+
+	case "arkhamdb_build_starter_deck":
+		invCode, ok := args["investigatorCode"].(string)
+		if !ok {
+			return "", fmt.Errorf("investigatorCode must be a string")
+		}
+		chapter := 0
+		if v, ok := args["chapter"]; ok && v != nil {
+			chapter = int(floatFromArg(v))
+		}
+		cycleCodes := stringSliceFromArg(args["cycleCodes"])
+		xpBudget := intFromArgDefault(args["xpBudget"], 0)
+		return s.ArkhamDB.BuildStarterDeck(invCode, chapter, cycleCodes, xpBudget)
+
+	case "arkhamdb_search_reference_decks":
+		invCode, _ := args["investigatorCode"].(string)
+		xpMin := intFromArgDefault(args["xpMin"], -1)
+		xpMax := intFromArgDefault(args["xpMax"], -1)
+		tags, _ := args["tags"].(string)
+		daysBack := intFromArgDefault(args["daysBack"], 30)
+		maxResults := intFromArgDefault(args["maxResults"], 10)
+		return s.ArkhamDB.SearchReferenceDecks(invCode, xpMin, xpMax, tags, daysBack, maxResults)
 
 	default:
 		return "", fmt.Errorf("unknown tool: %s", name)

@@ -12,4 +12,6 @@ type ArkhamDBTool interface {
 	SuggestDeckImprovements(deckID *int, decklistID *int, maxResults int) (string, error)
 	GetPacksAndCycles() (string, error)
 	GetInvestigatorConstraints(investigatorCode string) (string, error)
+	BuildStarterDeck(investigatorCode string, chapter int, cycleCodes []string, xpBudget int) (string, error)
+	SearchReferenceDecks(investigatorCode string, xpMin int, xpMax int, tags string, daysBack int, maxResults int) (string, error)
 }

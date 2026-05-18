@@ -233,7 +233,7 @@ func scoreSynergy(targetCard, candidateCard map[string]interface{}) (int, []stri
 	}
 
 	if targetHasSlot && candidateHasSlot && targetSlot != "" && candidateSlot != "" {
-		if strings.ToLower(targetSlot) == strings.ToLower(candidateSlot) {
+		if strings.EqualFold(targetSlot, candidateSlot) {
 			score += 15
 			reasons = append(reasons, fmt.Sprintf("Both cards use the same slot: %s", targetSlot))
 		}
