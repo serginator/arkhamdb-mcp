@@ -62,7 +62,7 @@ La estrategia se construye sobre tres pilares:
 
 **Armamento místico:** La XP de campaña se convierte en hechizos Místicos de nivel 1-5 (Adivinación, Rito de búsqueda, Atlas astronómico) que amplifican cada investigación. Resolver el caso cubre la economía de recursos al limpiar ubicaciones.
 
-Para enemigos, Norman usa [La mente sobre la materia](/card/01036) para esquivar usando su Intelecto alto, y [¡Suerte!](/card/01080) como red de seguridad cuando falla cualquier prueba.
+Para enemigos, Norman usa [La mente sobre la materia](/card/01036) para esquivar usando su Intelecto alto. [Estudios arcanos](/card/01062) actúa como red de seguridad para reforzar cualquier prueba difícil con +1 Voluntad o +1 Intelecto.
 
 ---
 
@@ -106,8 +106,6 @@ Para enemigos, Norman usa [La mente sobre la materia](/card/01036) para esquivar
 
 **[Resolver el caso](/card/05110)** — Buscador nivel 0, coste 0, rápido. Tras descubrir la última pista en tu Lugar: obtén recursos igual al velo del lugar. Con Norman limpiando ubicaciones de velo 3-4 de forma rutinaria, esto genera 3-4 recursos sin coste ni acción. El icono de +1 Intelecto también lo hace útil como habilidad en la cima del mazo.
 
-**[¡Suerte!](/card/01080)** — Neutral nivel 0, coste 0. Tras ver el resultado fallido de una prueba: cancela todos sus efectos y trátala como éxito; además roba 1 carta. Primera línea de defensa contra traiciones devastadoras de EotE. A coste 0, nunca penaliza aparecer en la cima del mazo.
-
 **[Alijo de emergencia](/card/01088)** — Neutral nivel 0, coste 0. Obtén 3 recursos. Economía básica para los primeros turnos antes de que Milan esté en juego.
 
 #### Habilidades
@@ -117,6 +115,8 @@ Para enemigos, Norman usa [La mente sobre la materia](/card/01036) para esquivar
 **[¡Eureka!](/card/03231)** — Buscador nivel 0. Si la prueba tiene éxito, busca 1 carta entre las 3 primeras del mazo. Iconos de Voluntad, Intelecto y Agilidad: versátil. Cuando la asignas a una investigación, seleccionas la próxima carta de la cima — doble sinergia con Norman.
 
 **[Percepción](/card/01090)** — Neutral nivel 0. +2 Intelecto. Si la prueba tiene éxito, roba 1 carta. Robo de cartas extra en cualquier prueba exitosa.
+
+**[Agallas](/card/01089)** — Neutral nivel 0. +2 Voluntad. Si la prueba tiene éxito, roba 1 carta. La red de seguridad ante las traiciones de EotE: convierte la Voluntad 4 de Norman de punto débil a stat respetable. A coste 0, nunca penaliza aparecer en la cima del mazo.
 
 ---
 
@@ -131,9 +131,6 @@ Milan genera 1 recurso por investigación exitosa. Con Intelecto 7-8 en lugares 
 #### Whitton Greene + Tomos + Carisma
 Whitton da +1 Intelecto mientras controles un Tomo o Reliquia y busca Tomos/Reliquias al revelar Lugares. El Livre d'Eibon la activa permanentemente. El Bibliotecario busca el primer Tomo al entrar en juego. Con Carisma en escenario 2-3, tener a Milan y Whitton simultáneamente sube el Intelecto a 7-8 de forma permanente.
 
-#### ¡Suerte! como protección reactiva
-¡Suerte! se juega tras ver el resultado fallido: cancela cualquier prueba y la convierte en éxito. A coste 0 nunca duele tener en mano ni en la cima del mazo. En EotE, donde las traiciones de Voluntad imponen daño y horror severo, convertir un fallo crítico en éxito puede salvar la partida.
-
 #### Bocetos absurdos + Investigación eficiente
 Con Intelecto alto, Norman limpia ubicaciones en 1-2 turnos. Bocetos absurdos aprovecha esas pistas para robar 3 cartas, recargando la mano con más opciones para el topdeck. El ciclo investigar → robar → jugar desde topdeck → investigar es el corazón del mazo.
 
@@ -143,6 +140,9 @@ La mente sobre la materia convierte el Intelecto 7-8 de Norman en un stat univer
 #### Embelesado + Videncia + Livre d'Eibon (mantenimiento de hechizos)
 Embelesado recarga cargas en cualquier Apoyo al investigar con éxito — gratis, simplemente haciendo lo que Norman ya hace. El Livre d'Eibon también puede añadir cargas gastando recursos. Esta doble fuente de recarga asegura que Videncia (y más adelante Adivinación y Rito de búsqueda) nunca se queden sin cargas.
 
+#### Agallas como protección de Voluntad
+Agallas añade +2 Voluntad a cualquier prueba y roba 1 carta si tiene éxito. En EotE, donde las traiciones de Voluntad imponen horror severo, asignarla convierte un fallo potencialmente catastrófico en una prueba superada con margen. Con Voluntad 4+2=6, Norman supera la mayoría de traiciones de la campaña. A coste 0, es ideal en la cima del mazo: se juega gratis y deja otra carta para el siguiente turno.
+
 ---
 
 ### **Cómo Jugar el Mazo:**
@@ -151,7 +151,7 @@ Embelesado recarga cargas en cualquier Apoyo al investigar con éxito — gratis
 - **Prioridad 1:** Dr. Milan Christopher (sin él, no hay motor económico)
 - **Prioridad 2:** Lupa (rápida, +1 Intelecto inmediato sin coste de acción)
 - **Prioridad 3:** Bibliotecario investigador (encuentra el Livre d'Eibon para activar Whitton)
-- **Descartar siempre:** Bocetos absurdos (requiere pistas), Resolver el caso (reactivo), ¡Suerte! (guardar para emergencias)
+- **Descartar siempre:** Bocetos absurdos (requiere pistas), Resolver el caso (reactivo)
 
 Si tienes Milan y Whitton Greene en la mano inicial sin Carisma, juega Milan y descarta Whitton — el Bibliotecario la puede encontrar más adelante, y Milan es el aliado prioritario.
 
@@ -173,13 +173,12 @@ Si la carta en la cima es cara (coste 3+) pero útil, evalúa si puedes pagarla 
 
 #### Manejo de Enemigos:
 - **Primera opción:** La mente sobre la materia → evade con Intelecto 7-8
-- **Segunda opción:** ¡Suerte! → cancela un fallo de evasión y roba una carta
 - **No combatir directamente:** Combate 2 es insuficiente. Si el enemigo es ineludible, pide ayuda a un compañero o muévete
 
 #### Protección contra Encuentros:
-- **¡Suerte!** es la primera línea: guarda siempre al menos una en mano en escenarios con traiciones brutales
+- **Agallas:** +2 Voluntad y roba 1 carta; asigna ante cualquier traición de Voluntad
+- **Estudios arcanos:** +1 Voluntad o +1 Intelecto a coste 1 recurso para pruebas ajustadas
 - **Escrito en las estrellas:** si ves una Debilidad en la cima, muévela al fondo antes de que te la roben
-- **Estudios arcanos:** +1 Voluntad para pruebas de traición difíciles
 
 ---
 
@@ -206,13 +205,13 @@ Si la carta en la cima es cara (coste 3+) pero útil, evalúa si puedes pagarla 
 | [Siguiendo una corazonada](/card/01037) | Buscador 0 | 2 | 2 |
 | [Bocetos absurdos](/card/02186) | Buscador 0 | 2 | 2 |
 | [Resolver el caso](/card/05110) | Buscador 0 | 2 | 0 |
-| [¡Suerte!](/card/01080) | Neutral 0 | 2 | 0 |
 | [Alijo de emergencia](/card/01088) | Neutral 0 | 2 | 0 |
 | **HABILIDADES** | | | |
 | [Deducción](/card/01039) | Buscador 0 | 2 | — |
 | [¡Eureka!](/card/03231) | Buscador 0 | 2 | — |
 | [Embelesado](/card/04157) | Místico **0** ★ | 2 | — |
 | [Percepción](/card/01090) | Neutral 0 | 2 | — |
+| [Agallas](/card/01089) | Neutral 0 | 2 | — |
 | **TOTAL** | | **30** | |
 
 ★ = Místico nivel 0 (plazas limitadas). Total: 1+2+2 = **5 plazas usadas de 5 disponibles** ✓
@@ -272,7 +271,7 @@ Si la carta en la cima es cara (coste 3+) pero útil, evalúa si puedes pagarla 
 ### **Consideraciones para Los Confines de la Tierra:**
 
 **1. Traiciones brutales**
-EotE es conocida por traiciones devastadoras de Voluntad. Con Voluntad 4, Norman es vulnerable sin apoyo. ¡Suerte! es la primera línea — guarda siempre al menos una en mano en los escenarios más duros. Recordar el futuro (mejora del bloque 2) añade protección permanente al nombrar la ficha más probable antes de cada prueba.
+EotE es conocida por traiciones devastadoras de Voluntad. Con Voluntad 4, Norman es vulnerable sin apoyo. [Agallas](/card/01089) (+2 Voluntad) y [Estudios arcanos](/card/01062) (+1 Voluntad o Intelecto) son las dos líneas de defensa — guarda al menos una en mano en los escenarios más duros. Recordar el futuro (mejora del bloque 2) añade protección permanente al nombrar la ficha más probable antes de cada prueba.
 
 **2. Lugares de alto velo**
 EotE incluye ubicaciones de velo 3-4 con frecuencia. Con Intelecto 7-8 (Milan + Whitton + Lupa), Norman los investiga cómodamente. Resolver el caso convierte esas ubicaciones de velo alto en fuentes de recursos además de pistas.
@@ -287,7 +286,7 @@ El Livre d'Eibon es especialmente valioso en EotE por la dificultad económica d
 Sin Carisma (primera mejora del bloque 1), solo puedes tener 1 aliado en juego. Si tienes a Milan y Whitton en mano al mismo tiempo, juega siempre a Milan primero. El Bibliotecario actúa como puente: lo juegas, buscas el Livre d'Eibon, y lo reemplazas cuando puedas.
 
 **6. Aislamiento del grupo**
-Varios escenarios de EotE separan a los investigadores. ¡Suerte! puede aplicarse a pruebas de compañeros en tu Lugar, añadiendo utilidad de grupo. En solitario, Norman puede limpiar ubicaciones en 1-2 turnos con Intelecto alto — la campaña en solitario es uno de sus mejores formatos.
+Varios escenarios de EotE separan a los investigadores. En solitario, Norman puede limpiar ubicaciones en 1-2 turnos con Intelecto alto — la campaña en solitario es uno de sus mejores formatos.
 
 **7. Recompensas de tomos y reliquias**
 EotE reparte recompensas de equipo como tomos y reliquias antárticos. Muchos son Neutral o Buscador y activan a Whitton Greene. Prioriza los que tengan el rasgo [[Tomo]] o [[Reliquia]] para ampliar el número de objetivos que Whitton puede encontrar y que el Livre d'Eibon puede recargar.

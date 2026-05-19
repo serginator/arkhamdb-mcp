@@ -54,11 +54,11 @@ Mazo para Lily Chen en Los Confines de la Tierra, enfocado en combate.
 
 Lily Chen es una guerrera marcial de élite. Su sistema de Disciplinas la convierte en una de las luchadoras más peligrosas del juego: Combate base 4 que sube a 5 con la **Presciencia del destino** activa, y el **Equilibrio del cuerpo** permite realizar hasta 3 acciones de combatir o evitar con una sola acción de juego.
 
-La restricción de construcción más importante de Lily es que solo puede incluir **5 cartas totales de Guardián nivel 0**. Este mazo asigna esas 5 plazas estratégicamente: **Cuchillo de trinchera ×2** (arma económica escalable), **Perro guardián ×2** (aliado defensivo indispensable) y **Primeros auxilios ×1** (curación de supervivencia). El resto del mazo se llena con **Guardián nivel 1-2** (Entrenamiento de combate, Bien preparado), **Místico nivel 0** (Espada encantada, Premonición) y **Neutral** (habilidades y herramientas).
+La restricción de construcción más importante de Lily es que solo puede incluir **5 cartas totales de Guardián nivel 0**. Este mazo asigna esas 5 plazas estratégicamente: **Cuchillo de trinchera ×2** (arma económica escalable), **Perro guardián ×2** (aliado defensivo indispensable) y **Primeros auxilios ×1** (curación de supervivencia). El resto del mazo se llena con **Místico nivel 0** (Espada encantada, Rosario sagrado, Cuchilla espectral, Premonición, Absorción de esencia, Barrera de protección) y **Neutral nivel 0** (habilidades y la Mochila para setup).
 
 La **Espada encantada** (Místico nivel 0) es el arma de mayor rendimiento del mazo: +1 combate base, y gastando cargas gana +1 combate y +1 daño adicionales. Con Combate 5 base (4 de Lily + 1 de la Presciencia activa), la Espada encantada con 1 carga da valor 7 — suficiente para derrotar a la mayoría de enemigos de la campaña.
 
-El **Alijo de emergencia** es la carta de soporte más importante del mazo: el setup completo (Espada encantada 3 + Perro guardián 3 + Entrenamiento de combate 1 + As de espadas 3) cuesta 10+ recursos, y el Alijo los genera gratis en cualquier momento.
+El **Alijo de emergencia** es la carta de soporte más importante del mazo: el setup completo (Espada encantada 3 + Perro guardián 3) cuesta 6+ recursos, y el Alijo los genera gratis en cualquier momento.
 
 A medio plazo, los **Cuchillos mariposa** (XP 2) son la mejora prioritaria, seguidos del **Arma encantada** (XP 3), que transforma cada ataque de los Cuchillos mariposa en un golpe de Combate 11-12 al añadir la Voluntad de Lily.
 
@@ -72,19 +72,15 @@ A medio plazo, los **Cuchillos mariposa** (XP 2) son la mejora prioritaria, segu
 
 **[Cuchillo de trinchera](/card/03147)** — Guardián nivel 0 ★, coste 1. Las acciones de enfrentarse no provocan ataques de oportunidad. Da +1 combate base + X combate adicional donde X = número de enemigos enfrentados. Con 2 enemigos: Combate 5+1+2 = 8. Una de las mejores armas para el slot de segunda mano.
 
-**[Cuchillo](/card/01086)** — Neutral nivel 0, coste 1. Herramienta básica: +1 combate al atacar; si se descarta, +2 combate y +1 daño en ese ataque. Recurso de emergencia barato que también actúa como arma de apertura si no se tiene nada mejor.
+**[Cuchilla espectral](/card/06201)** — Místico nivel 0, evento, coste 2. Acción de combate: añade tu valor de Voluntad al valor de habilidad para ese ataque. Puedes enfrentarte al enemigo justo antes. El ataque inflige +1 daño (+2 si el enemigo no es [[Élite]]). Con Voluntad 4-5 y Combate 5 de base: valor de ataque 9-10, infligiendo 3 daño. Mata a casi cualquier no-Élite de un golpe. La sinergia con las Disciplinas de Lily es excepcional: la Alineación del espíritu sube Voluntad a 5, elevando el ataque a valor 10.
 
 #### Aliados y Apoyos
 
 **[Perro guardián](/card/01021)** — Guardián nivel 0 ★, coste 3. Vida 3. Reacción: cuando un ataque enemigo inflija daño al perro, inflige 1 daño al enemigo atacante. Escudo viviente que genera daño de represalia y libera a Lily del primer golpe cada ronda.
 
-**[Entrenamiento de combate](/card/03107)** — Guardián **nivel 1**, coste 1. Compostura (1 en juego máximo). El horror no directo se asigna primero aquí antes de ir a Lily. Gasta 1 recurso para +1 combate o +1 agilidad en cualquier prueba. Accesible como Guardián nivel 1 sin ocupar plazas de nivel 0.
-
-**[Bien preparado](/card/04151)** — Guardián **nivel 2**, coste 2. Agota para +X a tu valor de habilidad en una prueba, donde X = iconos de habilidad coincidentes del Apoyo elegido. Con el Entrenamiento de combate en juego (1 combate + 1 agilidad): aporta +2 flexibles a combate o agilidad.
-
 **[Primeros auxilios](/card/01019)** — Guardián nivel 0 ★, coste 2. Usos (3 suministros). Cura 1 daño o horror. La única carta de curación del mazo inicial; esencial para la supervivencia antártica.
 
-**[Linterna](/card/01087)** — Neutral nivel 0, coste 2. Usos (3 suministros). Al investigar, tu Lugar recibe -2 de velo para esa investigación. Aporta la capacidad de obtener pistas que Lily normalmente no tiene con Intelecto 2.
+**[Rosario sagrado](/card/01059)** — Místico nivel 0, coste 2, slot Accesorio. +1 Voluntad permanente y +2 Cordura. Lily no usa el slot Accesorio, por lo que entra gratis de restricciones. Los +2 Cordura efectivos (total 9) son muy valiosos en EotE donde las traiciones del entorno causan horror frecuente. El +1 Voluntad potencia las Cuchillas espectrales (valor 10 de ataque con Voluntad 5) y mejora las pruebas de Barrera de protección y Absorción de esencia.
 
 #### Habilidades
 
@@ -92,9 +88,11 @@ A medio plazo, los **Cuchillos mariposa** (XP 2) son la mejora prioritaria, segu
 
 **[Percepción](/card/01090)** — Neutral nivel 0. +2 Intelecto. Si la prueba tiene éxito, roba 1 carta. Fluidez para el mazo e intelecto adicional para investigaciones.
 
-**[As de espadas](/card/05023)** — Guardián **nivel 1**, Tarot, coste 3. Da +1 Combate permanente. Reacción: si está en la mano inicial al comenzar la partida, entra en juego gratis. Bono pasivo muy valioso para un combatiente.
+**[Dominar](/card/01091)** — Neutral nivel 0. +2 Combate. Si la prueba tiene éxito, roba 1 carta. La habilidad de combate más eficiente del juego: refuerza ataques difíciles y genera robo en el proceso. Rasgo [[Experimentado]].
 
-**[Determinación](/card/01091)** — Neutral nivel 0. +1 a cualquier habilidad. Comodín flexible que puede reforzar un ataque importante o una prueba de Voluntad según el momento. El icono de comodín también alimenta cartas que piden habilidades específicas.
+**[Destreza manual](/card/01092)** — Neutral nivel 0. +2 Agilidad. Si la prueba tiene éxito, roba 1 carta. Cubre las pruebas de Agilidad de EotE (trampas, evitar cuando conviene) y genera flujo de cartas.
+
+**[Coraje inesperado](/card/01093)** — Neutral nivel 0. +2 comodín. El comodín más flexible del juego: sirve para cualquier tipo de prueba. Indispensable para reforzar Voluntad ante traiciones del entorno antártico.
 
 #### Eventos
 
@@ -104,7 +102,9 @@ A medio plazo, los **Cuchillos mariposa** (XP 2) son la mejora prioritaria, segu
 
 **[Absorción de esencia](/card/10094)** — Místico nivel 0, coste 2. Prueba de Voluntad (combate del enemigo). Si tiene éxito, mueve 1 daño (o hasta 2 si el enemigo no es Élite) de Lily al enemigo. Curación de daño vía hechizo, aprovechando Voluntad 4.
 
-**[Preparado para lo peor](/card/09036)** — Guardián **nivel 2**, coste 0. Un investigador en tu Lugar busca entre las 9 primeras cartas de su mazo 1 Apoyo [[Arma]] y lo añade a la mano o lo juega pagando su coste. Consistencia para encontrar la Espada encantada o el Cuchillo de trinchera en los primeros turnos.
+**[Barrera de protección](/card/01065)** — Místico nivel 0, coste 1. Rápido. Juega cuando robes una traición que no sea debilidad: cancela su efecto de Revelación. Recibes 1 punto de horror. En EotE, donde las traiciones del entorno antártico (frío, ventisca, agotamiento) castigan duramente, esta carta convierte situaciones potencialmente devastadoras en un simple 1 de horror asumible. Aprovecha el slot Místico de Lily y sus 7 de Cordura.
+
+**[Mochila](/card/04037)** — Neutral nivel 0, coste 2, slot Cuerpo. Al entrar en juego, busca hasta 3 cartas [[Objeto]] o [[Suministro]] entre las 6 primeras del mazo y las vincula boca abajo. Pueden jugarse como si estuviesen en mano. Sinergia clave con el equipo del mazo: puede localizar el **Cuchillo de trinchera** (Arma. Objeto.), el **Rosario sagrado** (Objeto. Amuleto.), los **Primeros auxilios** (Suministros.) y el **Alijo de emergencia** (Suministros.) en un único movimiento. Garantiza el setup en los primeros turnos y funciona especialmente bien con las recompensas de equipo de EotE (muchas tienen rasgo [[Objeto]] o [[Suministro]]).
 
 ---
 
@@ -144,8 +144,14 @@ Con Presciencia activa: Combate 5. Espada con 1 carga: +2 combate, +1 daño. Val
 #### Cuchillo de trinchera + múltiples enemigos
 Con 2 enemigos enfrentados y Presciencia activa: Combate 5+1+2 = 8. Las acciones de enfrentarse no provocan ataques de oportunidad, así que Lily puede juntar enemigos deliberadamente para maximizar este bono antes de atacar.
 
-#### Perro guardián + Entrenamiento de combate (escudo doble)
-El Entrenamiento de combate absorbe horror no directo; el Perro guardián absorbe daño físico de los enemigos. Juntos forman un escudo que permite a Lily aguantar 5-6 rondas en combate antes de necesitar curación. Cada golpe que recibe el Perro guardián inflige 1 daño de represalia al atacante.
+#### Perro guardián + Barrera de protección (escudo doble)
+La Barrera de protección cancela traiciones antes de que afecten a Lily (a cambio de 1 horror); el Perro guardián absorbe daño físico de los enemigos y devuelve 1 daño de represalia. Juntos forman un escudo que protege a Lily de los dos tipos de amenaza: encuentros y combate cuerpo a cuerpo. Con 7 de Cordura y la Absorción de esencia para gestionar el daño, Lily puede aguantar muchas rondas sin necesitar curación directa.
+
+#### Mochila + equipo del mazo (setup ultra-consistente)
+La Mochila al entrar busca hasta 3 cartas [[Objeto]] o [[Suministro]] en las 6 primeras del mazo. Del mazo de Lily tiene acceso a: **Cuchillo de trinchera** (Arma. Objeto.), **Rosario sagrado** (Objeto. Amuleto.), **Primeros auxilios** (Suministros.) y **Alijo de emergencia** (Suministros.). En un único turno puedes tener en mano el arma, la curación y la economía del mazo. Además, en EotE muchas recompensas de campaña tienen el rasgo [[Objeto]] — la Mochila las encuentra automáticamente al entrar.
+
+#### Cuchilla espectral + Voluntad de Lily (burst de daño definitivo)
+La Cuchilla espectral suma el valor de Voluntad al Combate para un único ataque devastador. Con el setup base: Combate 5 (Presciencia) + Voluntad 4 = valor 9, infligiendo 3 daño (2 base + 1 del evento). Con el Rosario sagrado equipado: Voluntad 5 → valor 10, 3 daño. Contra no-Élite (la mayoría de los enemigos) el bono sube a +2 daño: 4 daño total, eliminando cualquier enemigo de la campaña en un solo golpe. La Alineación del espíritu en estado [[Firme]] (Voluntad 5) lleva el valor a 10 sin gastar Disciplinas activas.
 
 #### Absorción de esencia + Voluntad 4 (o 5 con Alineación)
 Con Voluntad 5 activa, la Absorción de esencia supera sin problema la mayoría de chequeos (combate del enemigo suele ser 3-4). Mueve hasta 2 puntos de daño de Lily al enemigo. Curación táctica que también daña al objetivo.
@@ -162,21 +168,22 @@ El combo central del path de mejoras. El Arma encantada (Guardián nivel 3) se a
 
 #### Mulligan — Qué buscar:
 - **Prioridad 1:** Espada encantada o Cuchillo de trinchera
-- **Prioridad 2:** Entrenamiento de combate o As de espadas (si entra gratis)
-- **Prioridad 3:** Alijo de emergencia o Preparado para lo peor
-- **Descartar siempre:** Linterna, Absorción de esencia, Premonición si no tienes arma aún
+- **Prioridad 2:** Mochila o Alijo de emergencia
+- **Prioridad 3:** Barrera de protección (si el escenario es pesado en traiciones)
+- **Descartar siempre:** Absorción de esencia, Premonición, Cuchilla espectral si no tienes arma aún (necesitas el arma antes del burst)
 
-El As de espadas entra en juego gratis desde la mano inicial; si está en el mulligan, quédate con él. Preparado para lo peor en apertura garantiza encontrar el arma en los 9 primeros turnos sin gastar una acción de búsqueda.
+La **Mochila** en apertura (turno 1-2) es el setup más eficiente del mazo: encuentra el arma, los Primeros auxilios y el Alijo en un único movimiento. Si no tienes Mochila, guarda el Alijo de emergencia para el turno en que quieras instalar la Espada encantada + Perro guardián el mismo turno.
 
 #### Turno 1 — Setup:
 - Juega el arma más barata disponible inmediatamente (Cuchillo de trinchera coste 1; o Cuchillo neutral coste 1 si no tienes el trinchera).
-- Si tienes recursos sobrantes, juega el Entrenamiento de combate (coste 1).
-- Si la mano está cargada de apoyos caros (Espada 3 + Perro 3), juega el Alijo de emergencia antes de cualquier otra cosa para financiar el setup.
+- Si tienes la Mochila, juégala inmediatamente para buscar el arma, los Primeros auxilios y/o el Alijo de emergencia.
+- Si la mano está cargada de apoyos caros (Espada 3 + Perro 3) y no tienes Mochila, juega el Alijo de emergencia antes de cualquier otra cosa para financiar el setup.
 
 #### Rondas 2-4 — Motor en marcha:
-- Con arma + Entrenamiento de combate en juego, ataca con Combate 5-6 y gasta recursos para asegurar pruebas difíciles.
+- Con arma en juego, ataca con Combate 5 (4 base + 1 Presciencia). Usa **Dominar** para asegurar ataques difíciles y robar al mismo tiempo.
 - Instala el **Perro guardián** (coste 3) cuando tengas recursos; es la instalación más prioritaria del mazo.
-- Reserva las **Agallas** para traiciones de Voluntad; la **Percepción** para pruebas de Intelecto o cuando el mazo necesite fluir.
+- Reserva las **Agallas** o **Coraje inesperado** para traiciones críticas de Voluntad; la **Percepción** para pruebas de Intelecto.
+- Usa la **Barrera de protección** para cancelar traiciones devastadoras (daño masivo, robo de cartas, penalizadores de acción).
 - Usa la **Premonición** antes de ataques o traiciones críticas para tener control del resultado.
 
 #### Rondas 5+ — Modo limpia:
@@ -201,29 +208,29 @@ El As de espadas entra en juego gratis desde la mano inicial; si está en el mul
 | **ARMAS** | | | |
 | [Espada encantada](/card/05118) | Místico 0 | 2 | 3 |
 | [Cuchillo de trinchera](/card/03147) | Guardián **0** ★ | 2 | 1 |
-| [Cuchillo](/card/01086) | Neutral 0 | 1 | 1 |
 | **ALIADOS** | | | |
 | [Perro guardián](/card/01021) | Guardián **0** ★ | 2 | 3 |
 | **APOYOS** | | | |
-| [Entrenamiento de combate](/card/03107) | Guardián 1 | 2 | 1 |
-| [Bien preparado](/card/04151) | Guardián 2 | 2 | 2 |
 | [Primeros auxilios](/card/01019) | Guardián **0** ★ | 1 | 2 |
-| [Linterna](/card/01087) | Neutral 0 | 2 | 2 |
+| [Rosario sagrado](/card/01059) | Místico 0 | 1 | 2 |
+| [Mochila](/card/04037) | Neutral 0 | 2 | 2 |
 | **EVENTOS** | | | |
 | [Alijo de emergencia](/card/01088) | Neutral 0 | 2 | 0 |
 | [Premonición](/card/04199) | Místico 0 | 2 | 0 |
+| [Cuchilla espectral](/card/06201) | Místico 0 | 2 | 2 |
 | [Absorción de esencia](/card/10094) | Místico 0 | 2 | 2 |
-| [Preparado para lo peor](/card/09036) | Guardián 2 | 2 | 0 |
+| [Barrera de protección](/card/01065) | Místico 0 | 2 | 1 |
 | **HABILIDADES** | | | |
 | [Agallas](/card/01089) | Neutral 0 | 2 | — |
 | [Percepción](/card/01090) | Neutral 0 | 2 | — |
-| [As de espadas](/card/05023) | Guardián 1 | 2 | 3 |
-| [Determinación](/card/01091) | Neutral 0 | 2 | — |
+| [Dominar](/card/01091) | Neutral 0 | 2 | — |
+| [Destreza manual](/card/01092) | Neutral 0 | 2 | — |
+| [Coraje inesperado](/card/01093) | Neutral 0 | 2 | — |
 | **TOTAL** | | **30** | |
 
 ★ = Guardián nivel 0 (plazas limitadas). Total: 2+2+1 = **5 plazas usadas de 5 disponibles** ✓
 
-> **Construcción de mazo:** Guardián nivel 1-2 (Entrenamiento de combate, Bien preparado, Preparado para lo peor, As de espadas) no cuentan para el límite de Guardián nivel 0 — son cartas de Guardián nivel ≥1, incluibles ilimitadas. Místico nivel 0 (Espada encantada, Premonición, Absorción de esencia) y Neutral nivel 0 (Cuchillo, Linterna, Alijo de emergencia, Agallas, Percepción) tampoco cuentan.
+> **Construcción de mazo:** Las 5 plazas de Guardián nivel 0 están ocupadas por Cuchillo de trinchera ×2, Perro guardián ×2 y Primeros auxilios ×1. Místico nivel 0 (Espada encantada, Rosario sagrado, Premonición, Cuchilla espectral, Absorción de esencia, Barrera de protección) y Neutral nivel 0 (Mochila, Alijo de emergencia, Agallas, Percepción, Dominar, Destreza manual, Coraje inesperado) no cuentan para ese límite.
 
 ---
 
@@ -234,9 +241,9 @@ El As de espadas entra en juego gratis desde la mano inicial; si está en el mul
 | Prioridad | Carta | XP | Descripción |
 |-----------|-------|----|-------------|
 | 1 | [Cuchillos mariposa](/card/08025) ×2 | 4 | El arma icónica de Lily (Guardián nivel 2). 2 manos, +1 combate y +1 agilidad. Después del primer ataque, agota para volver a combatir sumando la Agilidad (4) al valor. El segundo ataque inflige +1 daño. Diseñada para ella. |
-| 2 | [Entrenamiento de combate (lvl 3)](/card/08027) ×1 | 3 | La versión Edge of the Earth. Compostura con +1 combate y +1 agilidad **pasivos permanentes** (sin gastar recursos). El daño/horror no directo va primero aquí. Coste 0. |
+| 2 | [Entrenamiento de combate (lvl 3)](/card/08027) ×1 | 3 | La versión Edge of the Earth. Compostura con +1 combate y +1 agilidad **pasivos permanentes** (sin gastar recursos). El daño/horror no directo va primero aquí. Coste 0. Se añade directamente (no hay copia nivel 1 que reemplazar). |
 
-**XP gastados en este bloque:** 7. Retira: 1× Entrenamiento de combate nivel 1 (sustituido), 1-2× Cuchillo de trinchera según el espacio de manos.
+**XP gastados en este bloque:** 7. Retira: 1× Mochila o 1× Linterna para hacer hueco al Entrenamiento de combate. Retira 1-2× Cuchillo de trinchera según el espacio de manos disponible.
 
 ---
 
