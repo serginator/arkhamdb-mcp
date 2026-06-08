@@ -39,9 +39,9 @@ Este mazo aprovecha la habilidad única de [Miguel de la Cruz](/card/60551) de t
 
 **Conceptos Clave:**
 
-- **Acción extra de eventos:** Miguel tiene efectivamente 4-5 acciones por turno (3 normales + 1 exclusiva para eventos). Con 14 eventos en el mazo (47%), siempre tienes opciones para usar esta acción.
+- **Acción extra de eventos:** Miguel tiene efectivamente 4-5 acciones por turno (3 normales + 1 exclusiva para eventos). Con 16 eventos en el mazo (53%), siempre tienes opciones para usar esta acción.
 - **Control de área con trampas:** Coloca trampas ([Esperar al acecho](/card/60566), [Trampa de señuelo](/card/60562), [Otear con prismáticos](/card/60563)) en ubicaciones conectadas que se activan automáticamente cuando enemigos entran, permitiéndote combatir/investigar/evadir desde cualquier lugar.
-- **Arco largo como arma principal:** El [Arco largo](/card/60580) (3 XP) usa agilidad para combatir (+2 AGI, +2 daño), ignora Aloof, y se recarga con una acción. Con AGI 4 base + Peter Sylvestre (+1) + Daniel Jameson (+1) = AGI 6-7 efectiva.
+- **Arco largo como arma principal:** El [Arco largo](/card/60580) (3 XP) usa agilidad para combatir (+2 AGI, +2 daño), ignora Aloof, y se recarga con una acción. Con AGI 4 base + Peter Sylvestre (+1) = AGI 5 efectiva (solo 1 aliado en juego sin Carisma). Daniel Jameson actúa como aliado de respaldo cuando Peter cae.
 - **Reciclaje continuo:** [Instinto de cazador](/card/60574) (2 XP) te devuelve eventos nivel 0-2 de tu pila de descartes cada vez que enganchas un enemigo, creando un motor de recursión.
 - **Tácticas de guerrilla mejorado:** La versión de 2 XP otorga +2 combate/agilidad (en lugar de +1) y hace 1 daño extra automático, funcionando a distancia en ubicaciones conectadas.
 - **Protección flexible:** [¡Qué suerte!](/card/01084) (2 XP) te salva de fallos críticos mientras robas cartas adicionales.
@@ -72,7 +72,7 @@ Este mazo aprovecha la habilidad única de [Miguel de la Cruz](/card/60551) de t
     - +2 daño = 3 daño total por disparo (suficiente para enemigos de 3 HP en 1 ataque)
     - Recargable infinitamente sin coste de recursos
     - Ignora Aloof (puedes disparar a enemigos que normalmente no podrías enganchar)
-  - Combo letal: AGI 6 (base + allies) + Arco largo (+2) = 8 agilidad efectiva para combate
+  - Combo letal: AGI 5 (base + 1 aliado) + Arco largo (+2) = 7 agilidad efectiva para combate
 
 #### **Aliados protectores y de soporte (4 cartas):**
 
@@ -91,7 +91,7 @@ Este mazo aprovecha la habilidad única de [Miguel de la Cruz](/card/60551) de t
   - +1 agilidad permanente
   - **Reacción:** Tras fallar un ataque o evasión, agota a Daniel: reintenta esa prueba con +1 al valor de habilidad
   - Seguro contra fallos: convierte fracasos en éxitos con +1 extra
-  - Con Daniel + Peter = AGI 6 efectiva (4 base +1 +1)
+  - Sin Carisma, no puedes tener Peter y Daniel en juego al mismo tiempo. Daniel entra cuando Peter muere o es descartado, manteniendo AGI 5 efectiva (4 base +1)
   - Soak adicional: 2 salud / 2 cordura
 
 #### **Reciclaje de eventos (2 cartas):**
@@ -105,7 +105,7 @@ Este mazo aprovecha la habilidad única de [Miguel de la Cruz](/card/60551) de t
   - 3 iconos (combate + agilidad + comodín) = excelente para commit
   - Sinergia con habilidad de Miguel: enganchas enemigos frecuentemente → recuperas eventos → usas acción extra para jugarlos
 
-#### **Equipo de supervivencia (2 cartas):**
+#### **Equipo de supervivencia y movilidad (4 cartas):**
 
 - **[Pata de conejo](/card/01075)** x2 (0 PX)
   - Accesorio [[Charm]], coste 1
@@ -114,6 +114,14 @@ Este mazo aprovecha la habilidad única de [Miguel de la Cruz](/card/60551) de t
   - Barato (1 recurso) y siempre útil
   - Survivor philosophy: acepta fallos, conviértelos en ventaja
   - 1 icono comodín para commit
+
+- **[Solitario](/card/60557)** x2 (0 PX)
+  - Apoyo [[Talento]], coste 2, límite 1 por investigador
+  - **[Rápido]** Agota Solitario: Muévete a una ubicación conectada vacía
+  - Acción de movimiento gratuita: Miguel pasa de 4 a 5 acciones efectivas por turno cuando Solitario está en juego
+  - Combo con trampas: coloca trampa en ubicación adyacente (con Mochila de Miguel), activa Solitario para moverte allí sin coste → enemigos Cazadores te siguen y entran en la ubicación trampeada → se activa automáticamente
+  - Para enemigos no-Cazadores: te alejas de ellos hacia la trampa y los rematas con [Tácticas de guerrilla](/card/60576) desde la distancia
+  - Reposicionamiento sin coste = cobertura de mapa superior en todos los turnos
 
 #### **Eventos tácticos y trampas (14 cartas):**
 
@@ -154,14 +162,12 @@ Este mazo aprovecha la habilidad única de [Miguel de la Cruz](/card/60551) de t
   - Usa agilidad (4 base) en lugar de intelecto (2 base)
   - 3 iconos (agilidad + intelecto + comodín)
 
-- **[Refugio oculto](/card/60565)** x2 (0 PX)
-  - Coste 1, [[Suministros]] [[Truco]]
-  - Adjunta a tu ubicación. Límite 1 por ubicación
-  - **Reacción:** Al final de la ronda, cada investigador en esta ubicación puede elegir: robar 1 carta, ganar 1 recurso, curar 1 daño, o curar 1 horror
-  - **Obligado:** Tras entrar un enemigo en esta ubicación, descarta Refugio oculto
-  - Soporte de grupo: 1 recurso para 4 beneficios posibles al final de ronda
-  - Económicamente eficiente si sobrevive 2-3 rondas
-  - Mejor en ubicaciones "seguras" sin tráfico de enemigos
+- **[Alijo de emergencia](/card/01088)** x2 (0 PX)
+  - Coste 0, Neutral
+  - **Efecto:** Gana 3 recursos
+  - Generación de recursos pura y sin condiciones: 3 recursos por 0 coste
+  - Evento: Miguel puede jugarlo con su **acción extra gratuita**, convirtiendo un turno de setup en 3 recursos sin gastar acciones normales
+  - El motor económico del mazo: disponible desde el turno 1 para alcanzar el setup completo en turno 2-3
 
 - **[Acechar a la presa](/card/60567)** x2 (0 PX)
   - Coste 1, [[Táctica]]
@@ -191,20 +197,13 @@ Este mazo aprovecha la habilidad única de [Miguel de la Cruz](/card/60551) de t
   - 1 icono comodín
   - Recuperable con [Instinto de cazador](/card/60574)
 
-#### **Habilidades de combate e investigación (4 cartas):**
+#### **Habilidades de recursión (2 cartas):**
 
 - **[Matar o morir](/card/60568)** x2 (0 PX)
   - [[Fortuna]]
   - Si la prueba tiene éxito, elige un apoyo o evento [[Survivor]] de tu pila de descartes y añádelo a tu mano
-  - Recursión adicional: recupera [Arco largo](/card/60580), [Peter Sylvestre](/card/02035), [Instinto de cazador](/card/60574), o cualquier evento
+  - Recursión adicional: recupera [Arco largo](/card/60580), [Peter Sylvestre](/card/02035), [Instinto de cazador](/card/60574), [Solitario](/card/60557), o cualquier evento
   - 3 iconos (voluntad + intelecto + agilidad)
-
-- **[Al filo](/card/60569)** x2 (0 PX)
-  - [[Gambito]] [[Desesperado]], máximo 1 por prueba
-  - Si esta prueba falla, devuelve cada otra carta asignada a esta prueba a la mano de su dueño
-  - Seguro de fallo: "all-in" sin riesgo de perder otras habilidades
-  - 1 icono comodín
-  - Útil cuando commiteas múltiples cartas en prueba crítica
 
 #### **Habilidad de recursión adicional (1 carta):**
 
@@ -247,9 +246,9 @@ Este mazo aprovecha la habilidad única de [Miguel de la Cruz](/card/60551) de t
 
 [Miguel de la Cruz](/card/60551) tiene una acción extra exclusiva para eventos → [Instinto de cazador](/card/60574) recupera eventos nivel 0-2 tras enganchar enemigos → juegas eventos recuperados con acción extra → enganchas más enemigos → recuperas más eventos → ciclo infinito. **Resultado: 4-5 acciones efectivas por turno con flujo constante de eventos.**
 
-#### **2. Arco largo + Peter Sylvestre + Daniel Jameson: guerrero ágil**
+#### **2. Arco largo + Peter Sylvestre (+ Daniel de respaldo): guerrero ágil**
 
-AGI base 4 + [Peter Sylvestre](/card/02035) (+1) + [Daniel Jameson](/card/60555) (+1) = **AGI 6 efectiva**. [Arco largo](/card/60580) otorga +2 AGI adicional = **8 agilidad para combate**. Ataque: 8 AGI vs enemigo combate 3-4 = éxito casi garantizado. Daño: 3 por disparo (1 base +2 Arco largo) = derrota enemigos de 3 HP en 1 ataque. Si fallas, [Daniel Jameson](/card/60555) reintenta con +1 adicional (9 AGI total). Prácticamente no puedes fallar combates estándar.
+Sin Carisma, Miguel solo puede tener **1 aliado en juego simultáneamente**. AGI base 4 + [Peter Sylvestre](/card/02035) (+1) = **AGI 5 efectiva**. [Arco largo](/card/60580) otorga +2 AGI adicional = **7 agilidad para combate**. Ataque: 7 AGI vs enemigo combate 3-4 = éxito muy probable. Daño: 3 por disparo (1 base +2 Arco largo) = derrota enemigos de 3 HP en 1 ataque. [Daniel Jameson](/card/60555) entra como reemplazo cuando Peter muere o es descartado, manteniendo AGI 5. Si tienes a Daniel en juego y fallas, reintenta con +1 adicional. Las 2 copias de cada uno garantizan continuidad de aliado durante toda la partida.
 
 #### **3. Trampas remotas con Mochila de Miguel**
 
@@ -271,9 +270,13 @@ AGI base 4 + [Peter Sylvestre](/card/02035) (+1) + [Daniel Jameson](/card/60555)
 
 3 usos = 3 eventos recuperados antes de agotar → recupera [Tácticas de guerrilla](/card/60576) (combate), [¡Qué suerte!](/card/01084) (protección), [Vivir y aprender](/card/04200) (reintento), o trampas → [Matar o morir](/card/60568) recupera Instinto de cazador desde descartes → rejuegas Instinto de cazador → 3 usos más. **Ciclo sostenible de recursión infinita.**
 
-#### **8. Refugio oculto para soporte económico**
+#### **8. Solitario + trampas: posicionamiento gratuito**
 
-[Refugio oculto](/card/60565) en ubicación segura (ej: punto de partida) → cada investigador al final de ronda elige: carta, recurso, curar daño, curar horror → si sobrevive 3 rondas = 3 beneficios por 1 recurso → extremadamente eficiente en multijugador. **Apoyo de grupo con inversión mínima.**
+[Solitario](/card/60557) permite moverse a ubicación conectada vacía como acción gratuita → colocas trampa en la ubicación adyacente con [Mochila de Miguel](/card/60552) → activas Solitario para moverte allí sin gastar acción → enemigos Cazadores te siguen y entran en la ubicación con trampa → [Esperar al acecho](/card/60566) o [Otear con prismáticos](/card/60563) se activan automáticamente. Para enemigos no-Cazadores: te quedas en la ubicación trampeada y los rematas con [Tácticas de guerrilla](/card/60576) o [Arco largo](/card/60580) sin moverte. **Solitario convierte cada turno en 5 acciones efectivas y optimiza la colocación de trampas sin coste.**
+
+#### **9. Alijo de emergencia + acción extra de Miguel: motor económico**
+
+[Alijo de emergencia](/card/01088) no tiene coste y otorga 3 recursos → Miguel usa su **acción extra de eventos** para jugarlo → resultado: 3 recursos gratis sin gastar acciones normales → setup completo (Mochila + Peter + Arco largo + Instinto de cazador = 10 recursos) alcanzable en turno 2-3 sin sacrificar eficiencia de combate. **La acción extra de Miguel no es solo táctica: también es motor económico.**
 
 ---
 
@@ -286,11 +289,12 @@ AGI base 4 + [Peter Sylvestre](/card/02035) (+1) + [Daniel Jameson](/card/60555)
 - [Arco largo](/card/60580) (arma principal, única copia)
 - [Peter Sylvestre](/card/02035) (aliado core, +1 AGI/WIL)
 - [Instinto de cazador](/card/60574) (motor de recursión)
+- [Solitario](/card/60557) (movimiento gratuito, activa combos de trampa)
 - [Pata de conejo](/card/01075) (economía de cartas barata)
 
 **Descartar:**
 - [Daniel Jameson](/card/60555) (2 copias, no urgente)
-- Skills ([Matar o morir](/card/60568), [Al filo](/card/60569))
+- Skills ([Matar o morir](/card/60568))
 - Eventos duplicados (tienes recursión con Instinto de cazador)
 - Trampas (las jugarás durante la partida cuando las necesites)
 
@@ -300,8 +304,9 @@ AGI base 4 + [Peter Sylvestre](/card/02035) (+1) + [Daniel Jameson](/card/60555)
 
 **Turno 1:**
 1. **Prioridad 1:** Juega [Mochila de Miguel](/card/60552) (2 recursos)
-2. **Prioridad 2:** Juega [Peter Sylvestre](/card/02035) (3 recursos) - Si no tienes 5 recursos total, espera al turno 2
-3. Si te sobra acción: juega [Pata de conejo](/card/01075) (1 recurso) o muévete hacia ubicación objetivo
+2. **Acción extra:** Juega [Alijo de emergencia](/card/01088) si está en mano (gana 3 recursos sin coste)
+3. **Prioridad 2:** Juega [Peter Sylvestre](/card/02035) (3 recursos) — con Alijo de emergencia ya tienes recursos suficientes desde el turno 1
+4. Si te sobra acción: juega [Pata de conejo](/card/01075) (1 recurso) o muévete hacia ubicación objetivo
 
 **Turno 2-3:**
 - Juega [Arco largo](/card/60580) (3 recursos) cuando tengas recursos
@@ -319,7 +324,7 @@ AGI base 4 + [Peter Sylvestre](/card/02035) (+1) + [Daniel Jameson](/card/60555)
 #### **Fase media (turnos 4-8):**
 
 **Combate:**
-- [Arco largo](/card/60580): 8 AGI efectiva (4 base +1 Peter +1 Daniel +2 Arco largo) vs enemigos estándar (3-4 combate)
+- [Arco largo](/card/60580): 7 AGI efectiva (4 base +1 aliado +2 Arco largo) vs enemigos estándar (3-4 combate)
 - 3 daño por disparo = derrota enemigos de 3 HP en 1 ataque
 - Contra enemigos de 4 HP: 2 ataques (3+3=6 daño) o 1 ataque con [Tácticas de guerrilla](/card/60576) (4 daño total)
 - Recarga infinita: acción gratuita para reponer flecha sin coste de recursos
@@ -334,9 +339,9 @@ AGI base 4 + [Peter Sylvestre](/card/02035) (+1) + [Daniel Jameson](/card/60555)
 **Investigación oportunística:**
 - [Otear con prismáticos](/card/60563): cuando enemigo spawneae, investiga con AGI 5 (4 base +1 Peter), 2 pistas si descartado
 - [Acechar a la presa](/card/60567): 1 pista automática + carta + enemigo controlado = 1 acción, 3 beneficios
-- [Refugio oculto](/card/60565) en ubicación segura: robar carta al final de ronda si necesitas economía
 
 **Gestión de recursos:**
+- [Alijo de emergencia](/card/01088): usa la acción extra de Miguel para ganar 3 recursos en turnos de setup o cuando la economía está apretada
 - [Instinto de cazador](/card/60574): tras enganchar enemigo, recupera evento crítico ([Tácticas de guerrilla](/card/60576), [¡Qué suerte!](/card/01084), trampas)
 - [Pata de conejo](/card/01075): convierte fallos en cartas (especialmente útil en investigaciones con INT 2)
 - [Matar o morir](/card/60568): recupera Instinto de cazador o Arco largo desde descartes si perdidos
@@ -364,7 +369,7 @@ AGI base 4 + [Peter Sylvestre](/card/02035) (+1) + [Daniel Jameson](/card/60555)
 - [Tácticas de guerrilla](/card/60576) (2 XP): +2 combate, 1 daño extra = 4 daño con Arco largo
 - [¡Qué suerte!](/card/01084) (2 XP): seguro contra fichas malas + roba carta
 - [Vivir y aprender](/card/04200): reintenta ataque crítico fallido con +2
-- [Al filo](/card/60569): commit múltiples skills sin riesgo de perderlas al fallar
+- [Solitario](/card/60557): reposicionamiento rápido para activar trampa o escapar de peligro
 - Arco largo recargable = ataques sostenidos sin preocuparte por munición
 
 **Contra la debilidad (Híbrido felino):**
@@ -392,27 +397,27 @@ AGI base 4 + [Peter Sylvestre](/card/02035) (+1) + [Daniel Jameson](/card/60555)
 
 ### **Lista completa del mazo (30 cartas + obligatorias):**
 
-#### Assets (9):
+#### Assets (11):
 - [Arco largo](/card/60580) x1 (3 PX)
 - [Peter Sylvestre](/card/02035) x2 (2 PX cada)
 - [Daniel Jameson](/card/60555) x2
 - [Instinto de cazador](/card/60574) x2 (2 PX cada)
-- [Pata de conejo](/card/01075) (Pata de conejo) x2
+- [Pata de conejo](/card/01075) x2
+- [Solitario](/card/60557) x2
 
 #### Events (16):
 - [Tácticas de guerrilla](/card/60576) x2 (2 PX cada)
 - [Trampa de señuelo](/card/60562) x2
 - [Otear con prismáticos](/card/60563) x2
 - [Esperar al acecho](/card/60566) x2
-- [Refugio oculto](/card/60565) x2
+- [Alijo de emergencia](/card/01088) x2
 - [Acechar a la presa](/card/60567) x2
 - [¡Qué suerte!](/card/01084) x2 (2 PX cada)
 - [Vivir y aprender](/card/04200) x2
 
-#### Skills (5):
+#### Skills (3):
 - [Matar o morir](/card/60568) x2
-- [Al filo](/card/60569) x2
-- [Habilidoso](/card/03039) (Habilidoso) x1
+- [Habilidoso](/card/03039) x1
 
 #### Obligatorias (no cuentan para tamaño de mazo):
 - [Mochila de Miguel](/card/60552) x1 (Firma)
@@ -429,10 +434,10 @@ AGI base 4 + [Peter Sylvestre](/card/02035) (+1) + [Daniel Jameson](/card/60555)
 - **Control de mapa superior:** Trampas en 3-4 ubicaciones simultáneamente que se activan automáticamente. Combates/evades/investigas sin estar presente.
 - **Combate sólido:** AGI 6-8 efectiva con Arco largo = derrota enemigos estándar (3-4 HP) en 1-2 ataques sin gastar munición (recarga infinita).
 - **Recursión sostenible:** Instinto de cazador recupera eventos cada vez que enganchas enemigos. Matar o morir recupera apoyos/eventos desde descartes. Elder Sign recupera Trucos/Trampas. Nunca te quedas sin opciones.
-- **Economía de cartas excelente:** Pata de conejo (fallo→carta), ¡Qué suerte! (2 XP: +2 y roba), Mochila de Miguel (evento→carta), Instinto de cazador (enganchar→evento), Acechar a la presa (+carta). Mantienes 5-7 cartas en mano constantemente.
+- **Economía sólida:** [Alijo de emergencia](/card/01088) con la acción extra = 3 recursos gratuitos cuando se necesitan, acelerando el setup sin sacrificar acciones. Pata de conejo (fallo→carta), ¡Qué suerte! (2 XP: +2 y roba), Mochila de Miguel (evento→carta), Instinto de cazador (enganchar→evento), Acechar a la presa (+carta). Mantienes recursos y 5-7 cartas en mano constantemente.
 - **Flexibilidad real:** Combate con Arco largo/Tácticas de guerrilla, investigación con Otear con prismáticos/Acechar a la presa, evasión con Trampa de señuelo/Tácticas de guerrilla, soporte con Refugio oculto. Adaptable a cualquier situación.
-- **Protección múltiple:** ¡Qué suerte! (2 XP) convierte fallos en éxitos + carta. Vivir y aprender reintenta pruebas. Daniel Jameson reintenta combates/evasiones. Al filo protege otras skills al fallar.
-- **Soak renovable:** Peter Sylvestre (3 cordura, auto-cura 1 horror/turno) + Miguel base (8 salud, 8 cordura) + Daniel Jameson (2 salud, 2 cordura) = 10 salud / 13 cordura efectiva. Muy resistente.
+- **Protección múltiple:** ¡Qué suerte! (2 XP) convierte fallos en éxitos + carta. Vivir y aprender reintenta pruebas. Daniel Jameson reintenta combates/evasiones.
+- **Soak renovable:** Peter Sylvestre (3 cordura, auto-cura 1 horror/turno) + Miguel base (8 salud, 8 cordura) = 9 salud / 11 cordura con Peter. Cuando Peter muere, Daniel Jameson (2 salud, 2 cordura) toma el relevo. Tener 2 copias de cada aliado significa que puedes reponer soak varias veces. Muy resistente.
 - **Setup acelerado:** Cartas baratas (Pata de conejo 1, ¡Qué suerte! 1, eventos 0-2) permiten setup rápido turnos 1-3.
 
 ---
@@ -445,7 +450,6 @@ AGI base 4 + [Peter Sylvestre](/card/02035) (+1) + [Daniel Jameson](/card/60555)
 - **Debilidad paralizante:** Híbrido felino (4 combate, 4 salud, Represalia) + Blood Drinker (segunda fase) son amenazas serias. Hay que eliminarlos rápidamente o bloquean tu progreso.
 - **Arma única:** Solo 1 copia de Arco largo. Si la pierdes y Matar o morir/Instinto de cazador no están disponibles, combate baja significativamente hasta recuperarla.
 - **Trampas limitadas:** Límite 1 [[Trampa]] por ubicación. No puedes apilar múltiples trampas en mismo lugar. Planificación de ubicaciones crítica.
-- **Recursos iniciales ajustados:** Mochila de Miguel (2) + Peter (3) + Arco largo (3) + Instinto de cazador (2) = 10 recursos para setup completo. Turnos 1-3 son ajustados económicamente.
 - **Sin evasión masiva:** Puedes evadir 1 enemigo a la vez con Trampa de señuelo o Tácticas de guerrilla. Contra hordas de 3+ enemigos simultáneos, tienes problemas.
 - **Dependencia de enemigos:** Instinto de cazador requiere enganchar enemigos para recuperar eventos. En escenarios con pocos enemigos (investigación pura), su efectividad baja.
 
@@ -469,12 +473,12 @@ AGI base 4 + [Peter Sylvestre](/card/02035) (+1) + [Daniel Jameson](/card/60555)
    - Comunica al equipo dónde tienes trampas activas para que aprovechen.
 
 4. **Gestión de economía compartida:**
-   - Refugio oculto en ubicación segura beneficia a TODO el equipo (4 investigadores = 4 beneficios por 1 recurso tuyo).
+   - [Alijo de emergencia](/card/01088) con la acción extra de Miguel es ideal en turnos donde el equipo necesita que estés activo tácticamente pero tú tienes presión económica: 3 recursos gratis sin renunciar a acciones de combate.
    - Si compañeros tienen eventos críticos ([Barrera de protección](/card/01065), [Intrépido](/card/01067)), considera que Mochila de Miguel NO puede jugarlos (solo tus eventos).
 
 5. **Uso eficiente de acción extra:**
-   - Prioriza eventos de impacto: Tácticas de guerrilla (combate), ¡Qué suerte! (salvar fallo crítico), Vivir y aprender (reintento).
-   - Evita "desperdiciar" acción extra en eventos de bajo impacto (ej: jugar Refugio oculto si ya hay 2+ en juego).
+   - Prioriza eventos de impacto: Tácticas de guerrilla (combate), ¡Qué suerte! (salvar fallo crítico), Vivir y aprender (reintento), Alijo de emergencia (recursos).
+   - Solitario no es un evento (no usa la acción extra) pero libera una acción regular, lo que de hecho te deja más acciones para jugar eventos de impacto con la acción extra.
 
 6. **Combate colaborativo:**
    - Asalto a distancia puede ayudar a compañeros en ubicaciones conectadas (no está en este mazo, pero considera añadirlo).
@@ -490,8 +494,8 @@ AGI base 4 + [Peter Sylvestre](/card/02035) (+1) + [Daniel Jameson](/card/60555)
 ### **Opciones de personalización según meta del grupo:**
 
 **Si necesitas MÁS combate (contra hordas):**
-- Reemplaza [Refugio oculto](/card/60565) x2 → [Trampa de lazo](/card/03199) x2 (1 PX cada, 2 PX total): trampa que inflige 2 daño automático cuando enemigo entra
-- Reemplaza [Al filo](/card/60569) x2 → [Asalto a distancia](/card/10116) x2: skill que inflige +1 daño en combates/evasiones a distancia
+- Reemplaza [Vivir y aprender](/card/04200) x2 → [Trampa de lazo](/card/60578) x2 (2 PX cada, 4 PX total): trampa que inflige 1 daño automático cuando enemigo entra, con posibilidad de mantenerse activa
+- Reemplaza [Matar o morir](/card/60568) x2 → [Asalto a distancia](/card/10116) x2: skill que inflige +1 daño en combates/evasiones a distancia
 
 **Si necesitas MÁS investigación (cluever débil):**
 - Reemplaza [Esperar al acecho](/card/60566) x2 → [Brújula vieja](/card/60558) x2: herramienta de investigación -1 shroud, retry al fallar
