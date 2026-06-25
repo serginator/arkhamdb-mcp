@@ -23,8 +23,12 @@ inspect: ## Inspect code
 	npx @modelcontextprotocol/inspector
 .PHONY: inspect
 
-build: ## Build with docker
+build: ## Build native binary
+	go build -o arkhamdb-mcp main.go
+.PHONY: build
+
+build-docker: ## Build with docker
 	docker build -t arkhamdb-mcp:latest .
 	docker-compose build
-.PHONY: build
+.PHONY: build-docker
 

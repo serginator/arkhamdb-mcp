@@ -92,33 +92,54 @@ make build
 Or manually:
 
 ```bash
-go build -o arkhamdb-mcp
+go build -o arkhamdb-mcp main.go
 ```
 
-## Running with Docker
+## Usage with MCP Clients (Recommended)
 
-1. Build and start the server:
+The easiest way to use this server is to configure it directly in your MCP client configuration file (e.g., `mcp.json` for Cursor or Claude Desktop).
 
-```bash
-docker-compose up --build
-```
-
-2. The server will listen on stdin/stdout using the MCP protocol.
-
-For Cursor integration, you can use the `run-docker-mcp.sh` script:
+Add the following to your `mcp.json`:
 
 ```json
 {
   "mcpServers": {
     "arkhamdb": {
-      "command": "<path-to>/arkhamdb-mcp/run-docker-mcp.sh",
+      "command": "/absolute/path/to/arkhamdb-mcp/arkhamdb-mcp",
       "args": []
     }
   }
 }
 ```
 
-## Usage
+Replace `/absolute/path/to/arkhamdb-mcp/arkhamdb-mcp` with the full path to the binary in this repository.
+
+The server will start automatically when your AI client needs it and communicate via stdin/stdout using the MCP protocol.
+
+## Running with Docker (Alternative)
+
+If you prefer to use Docker instead of the native binary:
+
+1. Build the Docker image:
+
+```bash
+make build-docker
+```
+
+2. For MCP client integration with Docker, use the `run-docker-mcp.sh` script:
+
+```json
+{
+  "mcpServers": {
+    "arkhamdb": {
+      "command": "/absolute/path/to/arkhamdb-mcp/run-docker-mcp.sh",
+      "args": []
+    }
+  }
+}
+```
+
+## How It Works
 
 The server communicates via stdin/stdout using the MCP protocol. It connects to the ArkhamDB API at `https://es.arkhamdb.com`.
 
@@ -197,18 +218,7 @@ This MCP server can be integrated with:
 - ChatGPT with MCP support
 - Any MCP-compatible AI client
 
-Configure your AI client to connect to this server using the MCP protocol over stdio. For Cursor, add to your `mcp.json`:
-
-```json
-{
-  "mcpServers": {
-    "arkhamdb": {
-      "command": "<path-to>/arkhamdb-mcp/arkhamdb-mcp",
-      "args": []
-    }
-  }
-}
-```
+See the **Usage with MCP Clients** section above for configuration instructions.
 
 ## API Reference
 
