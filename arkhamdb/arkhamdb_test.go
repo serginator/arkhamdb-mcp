@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"net/http"
 	"net/http/httptest"
+	"strings"
 	"testing"
 	"time"
 )
@@ -243,5 +244,21 @@ func TestSearchCardsAdvanced_SkipsInvestigatorsAndWeaknesses(t *testing.T) {
 	count := int(out["count"].(float64))
 	if count != 4 {
 		t.Errorf("expected 4 non-investigator non-weakness cards, got %d", count)
+	}
+}
+
+func TestSearchPopularDecksURL(t *testing.T) {
+	var capturedURL string
+	ts := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		capturedURL = r.URL.Path
+		w.Write([]byte(`[]`))
+	}))
+	defer ts.Close()
+
+	c := NewArkhamDBClient(ts.URL)
+	c.SearchReferenceDecks("01001", -1, -1, "", 0, 5)
+
+	if !strings.Contains(capturedURL, "popular") {
+		t.Errorf("expected popular endpoint, got %q", capturedURL)
 	}
 }

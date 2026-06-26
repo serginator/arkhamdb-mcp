@@ -422,7 +422,7 @@ func (s *MCPServer) getAvailableTools() []Tool {
 		},
 		{
 			Name:        "arkhamdb_search_reference_decks",
-			Description: "Search recently published community decklists on ArkhamDB. Filter by investigator code, XP spent range, and tags (e.g. 'solo', 'multiplayer', 'beginner'). Iterates the public API backwards from today. Use this to find reference decks for inspiration or comparison.",
+			Description: "Search popular community decklists on ArkhamDB, sorted by likes. Filter by investigator code, XP spent range, and tags. Returns community-validated decks — use these as archetype references or starting points for deck building.",
 			InputSchema: map[string]interface{}{
 				"type": "object",
 				"properties": map[string]interface{}{
@@ -430,7 +430,7 @@ func (s *MCPServer) getAvailableTools() []Tool {
 					"xpMin":            map[string]interface{}{"type": "integer", "description": "Minimum XP spent (0 = starter decks included). -1 or omit = no minimum."},
 					"xpMax":            map[string]interface{}{"type": "integer", "description": "Maximum XP spent. -1 or omit = no maximum."},
 					"tags":             map[string]interface{}{"type": "string", "description": "Comma-separated tags to search for, e.g. 'solo,beginner'"},
-					"daysBack":         map[string]interface{}{"type": "integer", "description": "How many days back to search (default 30, max 90)"},
+					"daysBack":         map[string]interface{}{"type": "integer", "description": "Unused, kept for backwards compatibility"},
 					"maxResults":       map[string]interface{}{"type": "integer", "description": "Max results to return (default 10, max 50)"},
 				},
 			},
