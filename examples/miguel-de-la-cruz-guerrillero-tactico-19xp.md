@@ -100,30 +100,37 @@ Este mazo aprovecha la habilidad única de [Miguel de la Cruz](/card/60551) de t
   - Talento, coste 2, límite 1 por investigador
   - Usa 3 suministros
   - **Reacción:** Tras enganchar un enemigo, gasta 1 suministro y agota Instinto de cazador: añade un evento nivel 0-2 de tu pila de descartes a tu mano
-  - Motor central del mazo: recupera [Tácticas de guerrilla](/card/60576), [Esperar al acecho](/card/60566), [Trampa de señuelo](/card/60562), [Otear con prismáticos](/card/60563), [¡Qué suerte!](/card/01084), [Vivir y aprender](/card/04200)
+  - Motor central del mazo: recupera [Tácticas de guerrilla](/card/60576), [Esperar al acecho](/card/60566), [Trampa de señuelo](/card/60562), [Otear con prismáticos](/card/60563), [¡Qué suerte!](/card/01084), [Refugio oculto](/card/60565)
   - 3 usos = 3 eventos recuperados antes de necesitar rejugarlo
   - 3 iconos (combate + agilidad + comodín) = excelente para commit
   - Sinergia con habilidad de Miguel: enganchas enemigos frecuentemente → recuperas eventos → usas acción extra para jugarlos
 
-#### **Equipo de supervivencia y movilidad (4 cartas):**
+#### **Equipo de supervivencia y movilidad (5 cartas):**
 
-- **[Pata de conejo](/card/01075)** x2 (0 PX)
+- **[Pata de conejo](/card/01075)** x1 (0 PX)
   - Accesorio [[Charm]], coste 1
   - **Reacción:** Tras fallar una prueba, agota Pata de conejo: roba 1 carta
   - Economía de cartas: convierte fallos en oportunidades
-  - Barato (1 recurso) y siempre útil
-  - Survivor philosophy: acepta fallos, conviértelos en ventaja
   - 1 icono comodín para commit
+
+- **[Lo mismo de siempre](/card/60561)** x2 (0 PX)
+  - Apoyo [[Condición]], coste 2, sin slot
+  - Usa 5 suministros. Si no quedan suministros, descártalo
+  - **Pasivo:** Puedes gastar suministros de Lo mismo de siempre como recursos para pagar eventos jugados por cualquier investigador en tu ubicación
+  - Motor económico directo: pagas 2 para obtener 5 descuentos en eventos = +3 netos
+  - Perfecto para Miguel: sus 16 eventos (trampas a 2, Tácticas de guerrilla a 1...) se pagan con suministros, liberando recursos para apoyos caros
+  - Recuperable con [Matar o morir](/card/60568) y [Habilidoso](/card/03039) (apoyo Survivor)
+  - 1 icono intelecto para commit
 
 - **[Solitario](/card/60557)** x2 (0 PX)
   - Apoyo [[Talento]], coste 2, límite 1 por investigador
   - **[Rápido]** Agota Solitario: Muévete a una ubicación conectada vacía
   - Acción de movimiento gratuita: Miguel pasa de 4 a 5 acciones efectivas por turno cuando Solitario está en juego
-  - Combo con trampas: coloca trampa en ubicación adyacente (con Mochila de Miguel), activa Solitario para moverte allí sin coste → enemigos Cazadores te siguen y entran en la ubicación trampeada → se activa automáticamente
+  - Combo con trampas: coloca trampa en ubicación adyacente (con Morral de Miguel), activa Solitario para moverte allí sin coste → enemigos Cazadores te siguen y entran en la ubicación trampeada → se activa automáticamente
   - Para enemigos no-Cazadores: te alejas de ellos hacia la trampa y los rematas con [Tácticas de guerrilla](/card/60576) desde la distancia
   - Reposicionamiento sin coste = cobertura de mapa superior en todos los turnos
 
-#### **Eventos tácticos y trampas (14 cartas):**
+#### **Eventos tácticos y trampas (13 cartas):**
 
 - **[Tácticas de guerrilla](/card/60576)** x2 (2 PX cada)
   - Coste 1, [[Táctica]]
@@ -189,13 +196,15 @@ Este mazo aprovecha la habilidad única de [Miguel de la Cruz](/card/60551) de t
   - Economía de cartas: se reemplaza a sí mismo
   - Recuperable con [Instinto de cazador](/card/60574)
 
-- **[Vivir y aprender](/card/04200)** x2 (0 PX)
-  - Coste 0, Rápido, [[Espíritu]]
-  - Juega tras finalizar una prueba fallida (después de resolver efectos): reintenta esa prueba. +2 al valor de habilidad
-  - Segunda oportunidad DESPUÉS de que el fallo se resuelva
-  - Combo con trampas: fallas activación de trampa → resuelves efectos → Vivir y aprender → +2 para segundo intento
-  - 1 icono comodín
-  - Recuperable con [Instinto de cazador](/card/60574)
+- **[Refugio oculto](/card/60565)** x1 (0 PX)
+  - Coste 1, Rápido, [[Suministro]] [[Truco]]
+  - Se adjunta a tu ubicación. Límite 1 por ubicación
+  - **Reacción:** Al final de la ronda, cada investigador en esta ubicación elige: robar 1 carta, ganar 1 recurso, curar 1 daño, o curar 1 horror
+  - **Obligado:** Cuando un enemigo entre en esta ubicación, descarta Refugio oculto
+  - Economía flexible: recurso O carta O curación según lo que el equipo necesite
+  - Miguel puede colocarlo en una ubicación segura con [Morral de Miguel](/card/60552) sin moverse
+  - Cuando se destruye (enemigo entra), [Instinto de cazador](/card/60574) lo recupera del descarte al enganchar ese enemigo → ciclo orgánico
+  - Playable con la acción extra de Miguel (es un evento)
 
 #### **Habilidades de recursión (2 cartas):**
 
@@ -220,10 +229,10 @@ Este mazo aprovecha la habilidad única de [Miguel de la Cruz](/card/60551) de t
   
 #### **Obligatorias:**
 
-- **[Mochila de Miguel](/card/60552)** x1 (Firma)
+- **[Morral de Miguel](/card/60552)** x1 (Firma)
   - Coste 2, [[Cuerpo]] slot, carta única de Miguel
   - 2 salud
-  - **Reacción:** Al jugar un evento, agota Mochila de Miguel: o bien juega ese evento en una ubicación conectada como si estuvieras allí, o roba 1 carta
+  - **Reacción:** Al jugar un evento, agota Morral de Miguel: o bien juega ese evento en una ubicación conectada como si estuvieras allí, o roba 1 carta
   - Amplifica eventos:
     - Juega trampas en ubicaciones lejanas sin moverte
     - Usa [Tácticas de guerrilla](/card/60576) desde 2 ubicaciones de distancia
@@ -232,11 +241,11 @@ Este mazo aprovecha la habilidad única de [Miguel de la Cruz](/card/60551) de t
   - Soak: 2 daño
 
 - **[Híbrido felino](/card/60553)** x1 (Debilidad de firma - enemigo)
-  - Enemigo: 4 combate, 3 evitar, 4 salud
-  - Presa: solo Miguel de la Cruz, Cazador, Represalia
+  - Enemigo: 3 combate, 3 evitar, 2 salud
+  - Escurridizo, Cazador, Presa (solo Miguel de la Cruz)
   - **Obligado:** Tras derrotar a Híbrido felino, añade Blood Drinker a tu área de amenazas (segunda fase)
-  - Hay que matarlo con armas: 4 salud requiere 2 ataques con Arco largo (2 daño cada uno)
-  - Represalia castiga ataques fallidos
+  - Con 2 salud, cae de 1 disparo del Arco largo (3 daño)
+  - Escurridizo: no puede ser enganchado directamente, atácalo con Arco largo o Tácticas de guerrilla
 
 ---
 
@@ -250,9 +259,9 @@ Este mazo aprovecha la habilidad única de [Miguel de la Cruz](/card/60551) de t
 
 Sin Carisma, Miguel solo puede tener **1 aliado en juego simultáneamente**. AGI base 4 + [Peter Sylvestre](/card/02035) (+1) = **AGI 5 efectiva**. [Arco largo](/card/60580) otorga +2 AGI adicional = **7 agilidad para combate**. Ataque: 7 AGI vs enemigo combate 3-4 = éxito muy probable. Daño: 3 por disparo (1 base +2 Arco largo) = derrota enemigos de 3 HP en 1 ataque. [Daniel Jameson](/card/60555) entra como reemplazo cuando Peter muere o es descartado, manteniendo AGI 5. Si tienes a Daniel en juego y fallas, reintenta con +1 adicional. Las 2 copias de cada uno garantizan continuidad de aliado durante toda la partida.
 
-#### **3. Trampas remotas con Mochila de Miguel**
+#### **3. Trampas remotas con Morral de Miguel**
 
-[Mochila de Miguel](/card/60552) permite jugar eventos en ubicaciones conectadas. Colocas [Esperar al acecho](/card/60566), [Trampa de señuelo](/card/60562), o [Otear con prismáticos](/card/60563) en ubicaciones a 2-3 lugares de distancia sin moverte → enemigos spawnean → trampas se activan automáticamente → combates/evades/investigas sin estar presente. **Control de mapa absoluto: cubres 3-4 ubicaciones con trampas simultáneamente.**
+[Morral de Miguel](/card/60552) permite jugar eventos en ubicaciones conectadas. Colocas [Esperar al acecho](/card/60566), [Trampa de señuelo](/card/60562), o [Otear con prismáticos](/card/60563) en ubicaciones a 2-3 lugares de distancia sin moverte → enemigos spawnean → trampas se activan automáticamente → combates/evades/investigas sin estar presente. **Control de mapa absoluto: cubres 3-4 ubicaciones con trampas simultáneamente.**
 
 #### **4. Tácticas de guerrilla (2) + Arco largo: artillería a distancia**
 
@@ -262,17 +271,17 @@ Sin Carisma, Miguel solo puede tener **1 aliado en juego simultáneamente**. AGI
 
 [Otear con prismáticos](/card/60563) usa agilidad (4 base) en lugar de intelecto (2 base) → +1 AGI = 5 efectiva para investigar → 2 pistas si descartado. [Acechar a la presa](/card/60567) descubre 1 pista automáticamente sin prueba + roba carta + roba enemigo. **Resultado: 3 pistas en 2 acciones sin usar intelecto, aprovechando tu agilidad alta.**
 
-#### **6. ¡Qué suerte! (2) + Vivir y aprender: seguro doble contra fallos**
+#### **6. Lo mismo de siempre + Refugio oculto: motor económico pasivo**
 
-[¡Qué suerte!](/card/01084) (2 XP): +2 y roba carta cuando fueses a fallar → [Vivir y aprender](/card/04200): reintenta prueba fallida con +2 → ambos recuperables con [Instinto de cazador](/card/60574). Si fallas prueba crítica: ¡Qué suerte! convierte fallo en éxito + roba carta. Si aún fallas (mala ficha): Vivir y aprender reintenta con +2 adicional. **Doble red de seguridad.**
+[Lo mismo de siempre](/card/60561): 5 suministros gastables como recursos en eventos → pagas 2, ahorras hasta 5 en costes de trampas y tácticas → libera recursos para setup de apoyos (Peter 3, Arco largo 3, Instinto de cazador 2). [Refugio oculto](/card/60565): cada ronda aporta recurso o carta o curación a cada investigador presente → cuando enemigo lo destruye, [Instinto de cazador](/card/60574) lo recupera → lo vuelves a colocar con [Morral de Miguel](/card/60552). **Resultado: economía proactiva sostenida sin depender de fallos ni condiciones.**
 
 #### **7. Instinto de cazador como motor de recursión**
 
-3 usos = 3 eventos recuperados antes de agotar → recupera [Tácticas de guerrilla](/card/60576) (combate), [¡Qué suerte!](/card/01084) (protección), [Vivir y aprender](/card/04200) (reintento), o trampas → [Matar o morir](/card/60568) recupera Instinto de cazador desde descartes → rejuegas Instinto de cazador → 3 usos más. **Ciclo sostenible de recursión infinita.**
+3 usos = 3 eventos recuperados antes de agotar → recupera [Tácticas de guerrilla](/card/60576) (combate), [¡Qué suerte!](/card/01084) (protección), [Refugio oculto](/card/60565) (economía), o trampas → [Matar o morir](/card/60568) recupera Instinto de cazador desde descartes → rejuegas Instinto de cazador → 3 usos más. **Ciclo sostenible de recursión infinita.**
 
 #### **8. Solitario + trampas: posicionamiento gratuito**
 
-[Solitario](/card/60557) permite moverse a ubicación conectada vacía como acción gratuita → colocas trampa en la ubicación adyacente con [Mochila de Miguel](/card/60552) → activas Solitario para moverte allí sin gastar acción → enemigos Cazadores te siguen y entran en la ubicación con trampa → [Esperar al acecho](/card/60566) o [Otear con prismáticos](/card/60563) se activan automáticamente. Para enemigos no-Cazadores: te quedas en la ubicación trampeada y los rematas con [Tácticas de guerrilla](/card/60576) o [Arco largo](/card/60580) sin moverte. **Solitario convierte cada turno en 5 acciones efectivas y optimiza la colocación de trampas sin coste.**
+[Solitario](/card/60557) permite moverse a ubicación conectada vacía como acción gratuita → colocas trampa en la ubicación adyacente con [Morral de Miguel](/card/60552) → activas Solitario para moverte allí sin gastar acción → enemigos Cazadores te siguen y entran en la ubicación con trampa → [Esperar al acecho](/card/60566) o [Otear con prismáticos](/card/60563) se activan automáticamente. Para enemigos no-Cazadores: te quedas en la ubicación trampeada y los rematas con [Tácticas de guerrilla](/card/60576) o [Arco largo](/card/60580) sin moverte. **Solitario convierte cada turno en 5 acciones efectivas y optimiza la colocación de trampas sin coste.**
 
 #### **9. Alijo de emergencia + acción extra de Miguel: motor económico**
 
@@ -285,11 +294,12 @@ Sin Carisma, Miguel solo puede tener **1 aliado en juego simultáneamente**. AGI
 #### **Mulligan:**
 
 **Mantener:**
-- [Mochila de Miguel](/card/60552) (firma, única copia, crítica)
+- [Morral de Miguel](/card/60552) (firma, única copia, crítica)
 - [Arco largo](/card/60580) (arma principal, única copia)
 - [Peter Sylvestre](/card/02035) (aliado core, +1 AGI/WIL)
 - [Instinto de cazador](/card/60574) (motor de recursión)
 - [Solitario](/card/60557) (movimiento gratuito, activa combos de trampa)
+- [Lo mismo de siempre](/card/60561) (economía de eventos, crítico para setup rápido)
 - [Pata de conejo](/card/01075) (economía de cartas barata)
 
 **Descartar:**
@@ -303,20 +313,20 @@ Sin Carisma, Miguel solo puede tener **1 aliado en juego simultáneamente**. AGI
 #### **Fase temprana (turnos 1-3):**
 
 **Turno 1:**
-1. **Prioridad 1:** Juega [Mochila de Miguel](/card/60552) (2 recursos)
+1. **Prioridad 1:** Juega [Morral de Miguel](/card/60552) (2 recursos)
 2. **Acción extra:** Juega [Alijo de emergencia](/card/01088) si está en mano (gana 3 recursos sin coste)
 3. **Prioridad 2:** Juega [Peter Sylvestre](/card/02035) (3 recursos) — con Alijo de emergencia ya tienes recursos suficientes desde el turno 1
-4. Si te sobra acción: juega [Pata de conejo](/card/01075) (1 recurso) o muévete hacia ubicación objetivo
+4. Si te sobra acción: juega [Lo mismo de siempre](/card/60561) (2 recursos → 5 suministros para eventos) o [Pata de conejo](/card/01075) (1 recurso) o muévete hacia ubicación objetivo
 
 **Turno 2-3:**
 - Juega [Arco largo](/card/60580) (3 recursos) cuando tengas recursos
 - Juega [Instinto de cazador](/card/60574) (2 recursos) apenas puedas
-- Comienza a colocar trampas en ubicaciones conectadas usando Mochila de Miguel
+- Comienza a colocar trampas en ubicaciones conectadas usando Morral de Miguel
 - Usa [Acechar a la presa](/card/60567) para robar enemigo controlado + pista gratis + carta
 - Combate enemigos básicos con Arco largo (AGI 5-6 efectiva)
 
 **Setup ideal al final del turno 3:**
-- Mochila de Miguel + Peter Sylvestre + Arco largo + Instinto de cazador en juego
+- Morral de Miguel + Peter Sylvestre + Arco largo + Instinto de cazador en juego
 - 2-3 trampas colocadas en ubicaciones estratégicas
 - 4-5 cartas en mano
 - 2-3 recursos disponibles
@@ -334,7 +344,7 @@ Sin Carisma, Miguel solo puede tener **1 aliado en juego simultáneamente**. AGI
 - Coloca [Esperar al acecho](/card/60566) en rutas de enemigos cazadores
 - Coloca [Trampa de señuelo](/card/60562) en ubicaciones donde compañeros están investigando (protección)
 - Coloca [Otear con prismáticos](/card/60563) en ubicaciones de alto valor (3+ pistas) para investigar reactivamente
-- Usa Mochila de Miguel para colocar trampas a distancia (2-3 ubicaciones de ti)
+- Usa Morral de Miguel para colocar trampas a distancia (2-3 ubicaciones de ti)
 
 **Investigación oportunística:**
 - [Otear con prismáticos](/card/60563): cuando enemigo spawneae, investiga con AGI 5 (4 base +1 Peter), 2 pistas si descartado
@@ -343,8 +353,10 @@ Sin Carisma, Miguel solo puede tener **1 aliado en juego simultáneamente**. AGI
 **Gestión de recursos:**
 - [Alijo de emergencia](/card/01088): usa la acción extra de Miguel para ganar 3 recursos en turnos de setup o cuando la economía está apretada
 - [Instinto de cazador](/card/60574): tras enganchar enemigo, recupera evento crítico ([Tácticas de guerrilla](/card/60576), [¡Qué suerte!](/card/01084), trampas)
+- [Lo mismo de siempre](/card/60561): gasta suministros en lugar de recursos para pagar eventos, reserva recursos para apoyos
+- [Refugio oculto](/card/60565): colócalo en ubicación segura con Morral de Miguel, genera recurso/carta/curación cada ronda hasta que un enemigo lo destruya
 - [Pata de conejo](/card/01075): convierte fallos en cartas (especialmente útil en investigaciones con INT 2)
-- [Matar o morir](/card/60568): recupera Instinto de cazador o Arco largo desde descartes si perdidos
+- [Matar o morir](/card/60568): recupera Instinto de cazador, Lo mismo de siempre o Arco largo desde descartes si perdidos
 
 #### **Fase tardía (turnos 9+):**
 
@@ -359,7 +371,7 @@ Sin Carisma, Miguel solo puede tener **1 aliado en juego simultáneamente**. AGI
 - Acción 1: Combatir con Arco largo (3 daño) → derrota enemigo
 - **Instinto de cazador reacción:** Recupera [Tácticas de guerrilla](/card/60576)
 - **Acción extra de Miguel:** Juega Tácticas de guerrilla (combate a distancia) → derrota segundo enemigo (4 daño)
-- **Mochila de Miguel reacción:** Roba 1 carta
+- **Morral de Miguel reacción:** Roba 1 carta
 - Acción 2: Mueve a ubicación conectada
 - Acción 3: Investiga con Otear con prismáticos activado por enemigo spawneado (2 pistas)
 
@@ -368,16 +380,16 @@ Sin Carisma, Miguel solo puede tener **1 aliado en juego simultáneamente**. AGI
 **Boss fights:**
 - [Tácticas de guerrilla](/card/60576) (2 XP): +2 combate, 1 daño extra = 4 daño con Arco largo
 - [¡Qué suerte!](/card/01084) (2 XP): seguro contra fichas malas + roba carta
-- [Vivir y aprender](/card/04200): reintenta ataque crítico fallido con +2
+- [Daniel Jameson](/card/60555): reintenta el ataque fallido con +1 adicional
 - [Solitario](/card/60557): reposicionamiento rápido para activar trampa o escapar de peligro
 - Arco largo recargable = ataques sostenidos sin preocuparte por munición
 
 **Contra la debilidad (Híbrido felino):**
-- 4 combate, 3 evitar, 4 salud, Cazador, Represalia
-- **Solución:** Elimínalo con Arco largo (2 ataques: 3+3=6 daño)
-- AGI 6 vs combate 4 = éxito garantizado con margen de 2
+- 3 combate, 3 evitar, 2 salud, Escurridizo, Cazador
+- **Solución:** Elimínalo con Arco largo (1 disparo: 3 daño)
+- AGI 6 vs combate 3 = éxito garantizado con margen de 3
 - Si fallas: [Daniel Jameson](/card/60555) reintenta o [¡Qué suerte!](/card/01084) para +2
-- **NO evadas:** Represalia castiga ataques fallidos, no evasiones, pero matarlo es más seguro
+- Escurridizo: no puede ser enganchado directamente, atácalo con Arco largo o Tácticas de guerrilla desde distancia
 - Tras derrotarlo, aparece Blood Drinker (segunda fase) - manejable con misma estrategia
 
 ---
@@ -397,15 +409,16 @@ Sin Carisma, Miguel solo puede tener **1 aliado en juego simultáneamente**. AGI
 
 ### **Lista completa del mazo (30 cartas + obligatorias):**
 
-#### Assets (11):
+#### Assets (12):
 - [Arco largo](/card/60580) x1 (3 PX)
 - [Peter Sylvestre](/card/02035) x2 (2 PX cada)
 - [Daniel Jameson](/card/60555) x2
 - [Instinto de cazador](/card/60574) x2 (2 PX cada)
-- [Pata de conejo](/card/01075) x2
+- [Lo mismo de siempre](/card/60561) x2
+- [Pata de conejo](/card/01075) x1
 - [Solitario](/card/60557) x2
 
-#### Events (16):
+#### Events (15):
 - [Tácticas de guerrilla](/card/60576) x2 (2 PX cada)
 - [Trampa de señuelo](/card/60562) x2
 - [Otear con prismáticos](/card/60563) x2
@@ -413,14 +426,14 @@ Sin Carisma, Miguel solo puede tener **1 aliado en juego simultáneamente**. AGI
 - [Alijo de emergencia](/card/01088) x2
 - [Acechar a la presa](/card/60567) x2
 - [¡Qué suerte!](/card/01084) x2 (2 PX cada)
-- [Vivir y aprender](/card/04200) x2
+- [Refugio oculto](/card/60565) x1
 
 #### Skills (3):
 - [Matar o morir](/card/60568) x2
 - [Habilidoso](/card/03039) x1
 
 #### Obligatorias (no cuentan para tamaño de mazo):
-- [Mochila de Miguel](/card/60552) x1 (Firma)
+- [Morral de Miguel](/card/60552) x1 (Firma)
 - [Híbrido felino](/card/60553) x1 (Debilidad de firma - enemigo)
 - Debilidad básica aleatoria x1
 
@@ -434,11 +447,11 @@ Sin Carisma, Miguel solo puede tener **1 aliado en juego simultáneamente**. AGI
 - **Control de mapa superior:** Trampas en 3-4 ubicaciones simultáneamente que se activan automáticamente. Combates/evades/investigas sin estar presente.
 - **Combate sólido:** AGI 6-8 efectiva con Arco largo = derrota enemigos estándar (3-4 HP) en 1-2 ataques sin gastar munición (recarga infinita).
 - **Recursión sostenible:** Instinto de cazador recupera eventos cada vez que enganchas enemigos. Matar o morir recupera apoyos/eventos desde descartes. Elder Sign recupera Trucos/Trampas. Nunca te quedas sin opciones.
-- **Economía sólida:** [Alijo de emergencia](/card/01088) con la acción extra = 3 recursos gratuitos cuando se necesitan, acelerando el setup sin sacrificar acciones. Pata de conejo (fallo→carta), ¡Qué suerte! (2 XP: +2 y roba), Mochila de Miguel (evento→carta), Instinto de cazador (enganchar→evento), Acechar a la presa (+carta). Mantienes recursos y 5-7 cartas en mano constantemente.
+- **Economía sólida:** [Lo mismo de siempre](/card/60561) cubre costes de eventos con sus suministros, liberando recursos para apoyos caros. [Alijo de emergencia](/card/01088) con la acción extra = 3 recursos gratuitos. [Refugio oculto](/card/60565) genera recurso/carta/curación cada ronda. Morral de Miguel (evento→carta), Instinto de cazador (enganchar→evento), Acechar a la presa (+carta), ¡Qué suerte! (+roba). Mantienes recursos y 5-7 cartas en mano constantemente.
 - **Flexibilidad real:** Combate con Arco largo/Tácticas de guerrilla, investigación con Otear con prismáticos/Acechar a la presa, evasión con Trampa de señuelo/Tácticas de guerrilla, soporte con Refugio oculto. Adaptable a cualquier situación.
-- **Protección múltiple:** ¡Qué suerte! (2 XP) convierte fallos en éxitos + carta. Vivir y aprender reintenta pruebas. Daniel Jameson reintenta combates/evasiones.
+- **Protección múltiple:** ¡Qué suerte! (2 XP) convierte fallos en éxitos + carta. Daniel Jameson reintenta combates/evasiones con +1 adicional.
 - **Soak renovable:** Peter Sylvestre (3 cordura, auto-cura 1 horror/turno) + Miguel base (8 salud, 8 cordura) = 9 salud / 11 cordura con Peter. Cuando Peter muere, Daniel Jameson (2 salud, 2 cordura) toma el relevo. Tener 2 copias de cada aliado significa que puedes reponer soak varias veces. Muy resistente.
-- **Setup acelerado:** Cartas baratas (Pata de conejo 1, ¡Qué suerte! 1, eventos 0-2) permiten setup rápido turnos 1-3.
+- **Setup acelerado:** Lo mismo de siempre (coste 2, suministros para eventos) + Alijo de emergencia (acción extra, 3 recursos gratis) permiten setup completo en turnos 1-3 sin sacrificar acciones de combate.
 
 ---
 
@@ -447,7 +460,7 @@ Sin Carisma, Miguel solo puede tener **1 aliado en juego simultáneamente**. AGI
 - **Intelecto muy bajo:** 2 intelecto base = investigación directa débil. Dependes de Otear con prismáticos (AGI) y Acechar a la presa (sin prueba) para pistas. En 4 jugadores, NECESITAS cluever dedicado.
 - **Voluntad media:** 3 voluntad (4 con Peter) es decente pero no excelente. Vulnerable a traiciones de voluntad sin Peter en juego.
 - **Combate base débil:** 3 combate base (sin arma) es bajo. Dependes de Arco largo o Tácticas de guerrilla para combate efectivo. Si pierdes Arco largo sin recursión, sufres temporalmente.
-- **Debilidad paralizante:** Híbrido felino (4 combate, 4 salud, Represalia) + Blood Drinker (segunda fase) son amenazas serias. Hay que eliminarlos rápidamente o bloquean tu progreso.
+- **Debilidad paralizante:** Híbrido felino (3 combate, 2 salud, Escurridizo) + Blood Drinker (segunda fase) son amenazas serias. Hay que eliminarlos rápidamente o bloquean tu progreso.
 - **Arma única:** Solo 1 copia de Arco largo. Si la pierdes y Matar o morir/Instinto de cazador no están disponibles, combate baja significativamente hasta recuperarla.
 - **Trampas limitadas:** Límite 1 [[Trampa]] por ubicación. No puedes apilar múltiples trampas en mismo lugar. Planificación de ubicaciones crítica.
 - **Sin evasión masiva:** Puedes evadir 1 enemigo a la vez con Trampa de señuelo o Tácticas de guerrilla. Contra hordas de 3+ enemigos simultáneos, tienes problemas.
@@ -464,7 +477,7 @@ Sin Carisma, Miguel solo puede tener **1 aliado en juego simultáneamente**. AGI
 2. **Posicionamiento estratégico:**
    - Mantente cerca del cluever (1-2 ubicaciones de distancia): tus trampas protegen ubicaciones donde está investigando.
    - Tácticas de guerrilla permite atacar/evadir enemigos en ubicaciones conectadas → protege compañeros sin moverte.
-   - Mochila de Miguel permite colocar trampas en ubicaciones lejanas → cobertura de mapa máxima.
+   - Morral de Miguel permite colocar trampas en ubicaciones lejanas → cobertura de mapa máxima.
 
 3. **Coordina colocación de trampas:**
    - **Esperar al acecho:** Rutas de enemigos cazadores que persiguen al cluever.
@@ -474,10 +487,10 @@ Sin Carisma, Miguel solo puede tener **1 aliado en juego simultáneamente**. AGI
 
 4. **Gestión de economía compartida:**
    - [Alijo de emergencia](/card/01088) con la acción extra de Miguel es ideal en turnos donde el equipo necesita que estés activo tácticamente pero tú tienes presión económica: 3 recursos gratis sin renunciar a acciones de combate.
-   - Si compañeros tienen eventos críticos ([Barrera de protección](/card/01065), [Intrépido](/card/01067)), considera que Mochila de Miguel NO puede jugarlos (solo tus eventos).
+   - Si compañeros tienen eventos críticos ([Barrera de protección](/card/01065), [Intrépido](/card/01067)), considera que Morral de Miguel NO puede jugarlos (solo tus eventos).
 
 5. **Uso eficiente de acción extra:**
-   - Prioriza eventos de impacto: Tácticas de guerrilla (combate), ¡Qué suerte! (salvar fallo crítico), Vivir y aprender (reintento), Alijo de emergencia (recursos).
+   - Prioriza eventos de impacto: Tácticas de guerrilla (combate), ¡Qué suerte! (salvar fallo crítico), Refugio oculto (economía/curación), Alijo de emergencia (recursos).
    - Solitario no es un evento (no usa la acción extra) pero libera una acción regular, lo que de hecho te deja más acciones para jugar eventos de impacto con la acción extra.
 
 6. **Combate colaborativo:**
@@ -494,7 +507,7 @@ Sin Carisma, Miguel solo puede tener **1 aliado en juego simultáneamente**. AGI
 ### **Opciones de personalización según meta del grupo:**
 
 **Si necesitas MÁS combate (contra hordas):**
-- Reemplaza [Vivir y aprender](/card/04200) x2 → [Trampa de lazo](/card/60578) x2 (2 PX cada, 4 PX total): trampa que inflige 1 daño automático cuando enemigo entra, con posibilidad de mantenerse activa
+- Reemplaza [Refugio oculto](/card/60565) x1 + [Pata de conejo](/card/01075) x1 → [Trampa de lazo](/card/60578) x2 (2 PX cada, 4 PX total): trampa que inflige 1 daño automático cuando enemigo entra, con posibilidad de mantenerse activa
 - Reemplaza [Matar o morir](/card/60568) x2 → [Asalto a distancia](/card/10116) x2: skill que inflige +1 daño en combates/evasiones a distancia
 
 **Si necesitas MÁS investigación (cluever débil):**
