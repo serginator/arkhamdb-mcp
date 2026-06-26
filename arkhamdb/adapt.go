@@ -16,9 +16,9 @@ func isCardOwned(card map[string]interface{}, ownedPacks map[string]bool) bool {
 	if ownedPacks[packCode] {
 		return true
 	}
-	// Check cycle prefix (e.g. "dwl" matches "dwl01", "dwlc" etc.)
+	// Check cycle prefix (e.g. "dwl" owned matches pack "dwl01", "dwlc" etc.)
 	for owned := range ownedPacks {
-		if strings.HasPrefix(packCode, owned) || strings.HasPrefix(owned, packCode) {
+		if strings.HasPrefix(packCode, owned) {
 			return true
 		}
 	}

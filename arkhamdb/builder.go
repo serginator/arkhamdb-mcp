@@ -87,12 +87,7 @@ func (c *ArkhamDBClient) BuildStarterDeck(investigatorCode string, chapter int, 
 
 	allowedPackCodes := buildAllowedPackCodes(allPacks, chapter, cycleCodes)
 
-	// Fetch popular decks to use as archetype signal
-	popularJSON, _ := c.SearchReferenceDecks(investigatorCode, -1, -1, "", 0, 5)
-	popularContext := ""
-	if popularJSON != "" {
-		popularContext = fmt.Sprintf("Top popular decks for this investigator:\n%s\n\nPlayer strategy hint: %s", popularJSON, strategy)
-	}
+	popularContext := c.popularDeckContext(investigatorCode, strategy)
 
 	// Pre-compile text regexes for deck options
 	textRegexes := make(map[string]*regexp.Regexp)
@@ -260,6 +255,33 @@ func (c *ArkhamDBClient) BuildStarterDeck(investigatorCode string, chapter int, 
 		return "", fmt.Errorf("failed to format JSON: %w", err)
 	}
 	return string(out), nil
+}
+
+// popularDeckContext fetches popular decks for context, falling back to top-liked
+// decks across all investigators if none exist for the specific investigator.
+func (c *ArkhamDBClient) popularDeckContext(investigatorCode, strategy string) string {
+	fetch := func(invCode string) (int, string) {
+		j, _ := c.SearchReferenceDecks(invCode, -1, -1, "", 0, 5)
+		if j == "" {
+			return 0, ""
+		}
+		var r struct {
+			Count int `json:"count"`
+		}
+		if err := json.Unmarshal([]byte(j), &r); err != nil {
+			return 0, j
+		}
+		return r.Count, j
+	}
+
+	count, j := fetch(investigatorCode)
+	if count == 0 && investigatorCode != "" {
+		_, j = fetch("")
+	}
+	if j == "" {
+		return ""
+	}
+	return fmt.Sprintf("Top popular decks:\n%s\n\nPlayer strategy hint: %s", j, strategy)
 }
 
 // buildAllowedPackCodes returns a set of pack codes allowed by chapter/cycle filters.

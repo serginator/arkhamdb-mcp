@@ -621,12 +621,7 @@ func (c *ArkhamDBClient) SuggestDeckImprovements(deckID *int, decklistID *int, m
 		improvements = improvements[:maxResults]
 	}
 
-	// Fetch popular decks to use as archetype signal
-	popularJSON, _ := c.SearchReferenceDecks(investigatorCode, -1, -1, "", 0, 5)
-	popularContext := ""
-	if popularJSON != "" {
-		popularContext = fmt.Sprintf("Top popular decks for this investigator:\n%s\n\nPlayer strategy hint: %s", popularJSON, strategy)
-	}
+	popularContext := c.popularDeckContext(investigatorCode, strategy)
 
 	// Build result structure
 	investigatorName := getCardName(investigatorCard)
