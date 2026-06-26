@@ -90,6 +90,8 @@ func (c *ArkhamDBClient) SearchCardsByName(name string) (string, error) {
 			}
 		}
 		if matches {
+			// Add card_name field based on language config
+			card["card_name"] = c.cardName(card)
 			matchingCards = append(matchingCards, card)
 		}
 	}
@@ -241,6 +243,8 @@ func (c *ArkhamDBClient) SearchCardsAdvanced(
 			}
 		}
 
+		// Add card_name field based on language config
+		card["card_name"] = c.cardName(card)
 		matched = append(matched, card)
 		if len(matched) >= maxResults {
 			break
@@ -427,7 +431,7 @@ func (c *ArkhamDBClient) FindCardSynergies(cardCode string, maxResults int) (str
 	}
 
 	// Build result structure
-	targetCardName := getCardName(targetCard)
+	targetCardName := c.cardName(targetCard)
 	if targetCardName == "" {
 		targetCardName = cardCode
 	}
@@ -441,7 +445,7 @@ func (c *ArkhamDBClient) FindCardSynergies(cardCode string, maxResults int) (str
 	synergyList := []map[string]interface{}{}
 	for _, synergy := range synergies {
 		candidateCode, _ := synergy.Card["code"].(string)
-		candidateName := getCardName(synergy.Card)
+		candidateName := c.cardName(synergy.Card)
 		if candidateName == "" {
 			candidateName = candidateCode
 		}
@@ -599,7 +603,7 @@ func (c *ArkhamDBClient) SuggestDeckImprovements(deckID *int, decklistID *int, m
 	suggestionList := []map[string]interface{}{}
 	for _, improvement := range improvements {
 		candidateCode, _ := improvement.Card["code"].(string)
-		candidateName := getCardName(improvement.Card)
+		candidateName := c.cardName(improvement.Card)
 		if candidateName == "" {
 			candidateName = candidateCode
 		}

@@ -123,6 +123,21 @@ func getCardName(card map[string]interface{}) string {
 	return ""
 }
 
+// cardName returns the display name for a card based on the client's language config.
+// Returns a single string; caller should use this as the "card_name" field in output.
+func (c *ArkhamDBClient) cardName(card map[string]interface{}) string {
+	if c.collection != nil && c.collection.Language == "es" {
+		if n, _ := card["name"].(string); n != "" {
+			return n
+		}
+	}
+	if n, _ := card["real_name"].(string); n != "" {
+		return n
+	}
+	n, _ := card["name"].(string)
+	return n
+}
+
 // normalizeTrait normalizes a trait string for comparison
 func normalizeTrait(trait string) string {
 	return strings.ToLower(strings.TrimSpace(trait))
