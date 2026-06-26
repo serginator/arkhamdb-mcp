@@ -494,6 +494,20 @@ func (s *MCPServer) getAvailableTools() []Tool {
 				"required": []string{"ownedCycles"},
 			},
 		},
+		{
+			Name:        "arkhamdb_adapt_deck_to_collection",
+			Description: "Take a public decklist and identify which cards you don't own, then suggest owned replacements of the same faction, type, and XP level. Run this after arkhamdb_search_reference_decks to adapt a popular deck to your collection.",
+			InputSchema: map[string]interface{}{
+				"type": "object",
+				"properties": map[string]interface{}{
+					"decklistID": map[string]interface{}{
+						"type":        "integer",
+						"description": "Public decklist ID from ArkhamDB",
+					},
+				},
+				"required": []string{"decklistID"},
+			},
+		},
 	}
 }
 
@@ -739,6 +753,13 @@ func (s *MCPServer) executeTool(name string, args map[string]interface{}) (strin
 		lang, _ := args["language"].(string)
 		useTaboo, _ := args["useTaboo"].(bool)
 		return s.ArkhamDB.SetCollection(cycles, lang, useTaboo)
+
+	case "arkhamdb_adapt_deck_to_collection":
+		id := intFromArgDefault(args["decklistID"], 0)
+		if id == 0 {
+			return "", fmt.Errorf("decklistID is required")
+		}
+		return s.ArkhamDB.AdaptDeckToCollection(id)
 
 	default:
 		return "", fmt.Errorf("unknown tool: %s", name)

@@ -18,4 +18,5 @@ type ArkhamDBTool interface {
 	ValidateDeck(deckID *int, decklistID *int) (string, error)
 	GetCollection() (string, error)
 	SetCollection(ownedCycles []string, language string, useTaboo bool) (string, error)
+	AdaptDeckToCollection(decklistID int) (string, error)
 }
