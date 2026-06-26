@@ -87,7 +87,7 @@ func TestSearchCardsAdvanced_FactionFilter(t *testing.T) {
 	client, srv := newTestArkhamDBClient(testCards, testPacks)
 	defer srv.Close()
 
-	result, err := client.SearchCardsAdvanced(0, "", "guardian", "", -1, -1, -1, -1, nil, nil, 50)
+	result, err := client.SearchCardsAdvanced(0, "", "guardian", "", -1, -1, -1, -1, nil, nil, "", 50)
 	if err != nil {
 		t.Fatalf("unexpected error: %v", err)
 	}
@@ -121,7 +121,7 @@ func TestSearchCardsAdvanced_XPRangeFilter(t *testing.T) {
 	defer srv.Close()
 
 	// xpMin=1, xpMax=2 — should return Guard Dog (xp=2) and Overpower (xp=1)
-	result, err := client.SearchCardsAdvanced(0, "", "", "", 1, 2, -1, -1, nil, nil, 50)
+	result, err := client.SearchCardsAdvanced(0, "", "", "", 1, 2, -1, -1, nil, nil, "", 50)
 	if err != nil {
 		t.Fatalf("unexpected error: %v", err)
 	}
@@ -140,7 +140,7 @@ func TestSearchCardsAdvanced_CostRangeFilter_ExcludesNilCost(t *testing.T) {
 	defer srv.Close()
 
 	// costMin=1, costMax=3 — Overpower has nil cost and should be excluded
-	result, err := client.SearchCardsAdvanced(0, "", "", "", -1, -1, 1, 3, nil, nil, 50)
+	result, err := client.SearchCardsAdvanced(0, "", "", "", -1, -1, 1, 3, nil, nil, "", 50)
 	if err != nil {
 		t.Fatalf("unexpected error: %v", err)
 	}
@@ -167,7 +167,7 @@ func TestSearchCardsAdvanced_TraitFilter(t *testing.T) {
 	client, srv := newTestArkhamDBClient(testCards, testPacks)
 	defer srv.Close()
 
-	result, err := client.SearchCardsAdvanced(0, "", "", "", -1, -1, -1, -1, []string{"Ally"}, nil, 50)
+	result, err := client.SearchCardsAdvanced(0, "", "", "", -1, -1, -1, -1, []string{"Ally"}, nil, "", 50)
 	if err != nil {
 		t.Fatalf("unexpected error: %v", err)
 	}
@@ -185,7 +185,7 @@ func TestSearchCardsAdvanced_TagFilter(t *testing.T) {
 	client, srv := newTestArkhamDBClient(testCards, testPacks)
 	defer srv.Close()
 
-	result, err := client.SearchCardsAdvanced(0, "", "", "", -1, -1, -1, -1, nil, []string{"hh"}, 50)
+	result, err := client.SearchCardsAdvanced(0, "", "", "", -1, -1, -1, -1, nil, []string{"hh"}, "", 50)
 	if err != nil {
 		t.Fatalf("unexpected error: %v", err)
 	}
@@ -204,7 +204,7 @@ func TestSearchCardsAdvanced_CyclePrefixFilter(t *testing.T) {
 	defer srv.Close()
 
 	// cycleCode "eoe" should match pack code "eoe1" via prefix
-	result, err := client.SearchCardsAdvanced(0, "eoe", "", "", -1, -1, -1, -1, nil, nil, 50)
+	result, err := client.SearchCardsAdvanced(0, "eoe", "", "", -1, -1, -1, -1, nil, nil, "", 50)
 	if err != nil {
 		t.Fatalf("unexpected error: %v", err)
 	}
@@ -222,7 +222,7 @@ func TestSearchCardsAdvanced_SkipsInvestigatorsAndWeaknesses(t *testing.T) {
 	client, srv := newTestArkhamDBClient(testCards, testPacks)
 	defer srv.Close()
 
-	result, err := client.SearchCardsAdvanced(0, "", "", "", -1, -1, -1, -1, nil, nil, 200)
+	result, err := client.SearchCardsAdvanced(0, "", "", "", -1, -1, -1, -1, nil, nil, "", 200)
 	if err != nil {
 		t.Fatalf("unexpected error: %v", err)
 	}

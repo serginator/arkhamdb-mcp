@@ -392,6 +392,7 @@ func (s *MCPServer) getAvailableTools() []Tool {
 					"costMax":     map[string]interface{}{"type": "integer", "description": "Maximum resource cost. Omit for no maximum."},
 					"traits":      map[string]interface{}{"type": "array", "items": map[string]interface{}{"type": "string"}, "description": "All traits must be present, e.g. [\"Ally\", \"Blessed\"]"},
 					"tags":        map[string]interface{}{"type": "array", "items": map[string]interface{}{"type": "string"}, "description": "Any tag must be present, e.g. [\"hd\", \"hh\"]"},
+					"textSearch":  map[string]interface{}{"type": "string", "description": "Search card text for keywords, e.g. 'free action' or 'after you successfully investigate'. Results ranked by relevance."},
 					"maxResults":  map[string]interface{}{"type": "integer", "description": "Max results (default 50, max 200)"},
 				},
 			},
@@ -676,8 +677,9 @@ func (s *MCPServer) executeTool(name string, args map[string]interface{}) (strin
 		costMax := intFromArgDefault(args["costMax"], -1)
 		traits := stringSliceFromArg(args["traits"])
 		tags := stringSliceFromArg(args["tags"])
+		textSearch, _ := args["textSearch"].(string)
 		maxResults := intFromArgDefault(args["maxResults"], 50)
-		return s.ArkhamDB.SearchCardsAdvanced(chapter, cycleCode, factionCode, typeCode, xpMin, xpMax, costMin, costMax, traits, tags, maxResults)
+		return s.ArkhamDB.SearchCardsAdvanced(chapter, cycleCode, factionCode, typeCode, xpMin, xpMax, costMin, costMax, traits, tags, textSearch, maxResults)
 
 	case "arkhamdb_get_packs_and_cycles":
 		return s.ArkhamDB.GetPacksAndCycles()

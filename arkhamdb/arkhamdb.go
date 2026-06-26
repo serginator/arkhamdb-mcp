@@ -108,6 +108,7 @@ func (c *ArkhamDBClient) SearchCardsByName(name string) (string, error) {
 
 // SearchCardsAdvanced searches cards with multiple filters.
 // chapter: 1 or 2 (0 = any). xpMin/xpMax/costMin/costMax: -1 = unset.
+// textSearch: optional keyword search, filters by text match and ranks by relevance.
 func (c *ArkhamDBClient) SearchCardsAdvanced(
 	chapter int,
 	cycleCode string,
@@ -117,6 +118,7 @@ func (c *ArkhamDBClient) SearchCardsAdvanced(
 	costMin int, costMax int,
 	traits []string,
 	tags []string,
+	textSearch string,
 	maxResults int,
 ) (string, error) {
 	if maxResults <= 0 {
@@ -246,14 +248,47 @@ func (c *ArkhamDBClient) SearchCardsAdvanced(
 		// Add card_name field based on language config
 		card["card_name"] = c.cardName(card)
 		matched = append(matched, card)
-		if len(matched) >= maxResults {
-			break
+	}
+
+	// Text search: score cards by how many times the search terms appear in the text
+	var matchingCards []map[string]interface{}
+	if textSearch != "" {
+		terms := strings.Fields(strings.ToLower(textSearch))
+		type scoredCard struct {
+			card  map[string]interface{}
+			score int
 		}
+		var scored []scoredCard
+		for _, card := range matched {
+			cardText := strings.ToLower(getCardText(card))
+			score := 0
+			for _, term := range terms {
+				score += strings.Count(cardText, term)
+			}
+			if score > 0 {
+				scored = append(scored, scoredCard{card, score})
+			}
+		}
+		// Sort by score descending
+		sort.Slice(scored, func(i, j int) bool {
+			return scored[i].score > scored[j].score
+		})
+		matchingCards = make([]map[string]interface{}, 0, len(scored))
+		for _, s := range scored {
+			matchingCards = append(matchingCards, s.card)
+		}
+	} else {
+		matchingCards = matched
+	}
+
+	// Limit results to maxResults
+	if len(matchingCards) > maxResults {
+		matchingCards = matchingCards[:maxResults]
 	}
 
 	out, err := json.MarshalIndent(map[string]interface{}{
-		"count": len(matched),
-		"cards": matched,
+		"count": len(matchingCards),
+		"cards": matchingCards,
 	}, "", "  ")
 	if err != nil {
 		return "", fmt.Errorf("failed to format JSON: %w", err)
