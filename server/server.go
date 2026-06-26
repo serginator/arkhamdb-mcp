@@ -422,6 +422,7 @@ func (s *MCPServer) getAvailableTools() []Tool {
 					"cycleCodes":       map[string]interface{}{"type": "array", "items": map[string]interface{}{"type": "string"}, "description": "Pack/cycle code prefixes to restrict card pool, e.g. [\"core\", \"dwl\"]. Empty = all packs."},
 					"xpBudget":         map[string]interface{}{"type": "integer", "description": "XP budget (0 for starter, e.g. 15 for an upgraded deck). Default: 0."},
 					"strategy":         map[string]interface{}{"type": "string", "description": "Freetext strategy hint, e.g. 'fast cluever, minimal combat'. Used alongside popular decks to guide card selection."},
+					"useTaboo":         map[string]interface{}{"type": "boolean", "description": "Enforce taboo list rules. Defaults to your collection config setting (default: false)."},
 				},
 				"required": []string{"investigatorCode"},
 			},
@@ -461,6 +462,7 @@ func (s *MCPServer) getAvailableTools() []Tool {
 				"properties": map[string]interface{}{
 					"deckID":     map[string]interface{}{"type": "integer", "description": "Private deck ID"},
 					"decklistID": map[string]interface{}{"type": "integer", "description": "Public decklist ID"},
+					"useTaboo":   map[string]interface{}{"type": "boolean", "description": "Enforce taboo list rules. Defaults to your collection config setting (default: false)."},
 				},
 			},
 		},

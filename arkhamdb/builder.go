@@ -51,6 +51,11 @@ func (c *ArkhamDBClient) BuildStarterDeck(investigatorCode string, chapter int, 
 		return "", err
 	}
 
+	var tabooList map[string]*TabooEntry
+	if c.shouldUseTaboo(nil) {
+		tabooList, _ = c.fetchTabooList()
+	}
+
 	sigCodes := map[string]bool{}
 	var entries []deckEntry
 	sigSlotsUsed := 0
@@ -119,6 +124,13 @@ func (c *ArkhamDBClient) BuildStarterDeck(investigatorCode string, chapter int, 
 		st, _ := card["subtype_code"].(string)
 		if st == "basicweakness" || st == "weakness" {
 			continue
+		}
+
+		// Skip taboo-banned cards
+		if tabooList != nil {
+			if entry, ok := tabooList[code]; ok && entry.Banned {
+				continue
+			}
 		}
 
 		if len(allowedPackCodes) > 0 {

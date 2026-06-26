@@ -52,6 +52,12 @@ func (c *ArkhamDBClient) ValidateDeck(deckID *int, decklistID *int) (string, err
 	if err != nil {
 		return "", err
 	}
+
+	var tabooList map[string]*TabooEntry
+	if c.shouldUseTaboo(nil) {
+		tabooList, _ = c.fetchTabooList()
+	}
+
 	cardByCode := make(map[string]map[string]interface{}, len(allCards))
 	for _, card := range allCards {
 		if code, _ := card["code"].(string); code != "" {
@@ -171,6 +177,23 @@ func (c *ArkhamDBClient) ValidateDeck(deckID *int, decklistID *int) (string, err
 		if opt.Limit > 0 && optionCounts[i] > opt.Limit {
 			desc := deckOptionsDescription(opt)
 			errors = append(errors, fmt.Sprintf("Option \"%s\": has %d cards but limit is %d. %s", desc, optionCounts[i], opt.Limit, opt.Error))
+		}
+	}
+
+	// Check taboo violations
+	if tabooList != nil {
+		for code := range deckCards {
+			if entry, ok := tabooList[code]; ok {
+				cardName := code
+				if card, exists := cardByCode[code]; exists {
+					cardName = getCardName(card)
+				}
+				if entry.Banned {
+					errors = append(errors, fmt.Sprintf("TABOO: %s (%s) is banned by the taboo list", cardName, code))
+				} else if entry.XPCost > 0 {
+					warnings = append(warnings, fmt.Sprintf("TABOO: %s (%s) costs %d additional XP under taboo rules", cardName, code, entry.XPCost))
+				}
+			}
 		}
 	}
 
