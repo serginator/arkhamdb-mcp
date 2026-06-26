@@ -705,7 +705,11 @@ func (s *MCPServer) executeTool(name string, args map[string]interface{}) (strin
 		cycleCodes := stringSliceFromArg(args["cycleCodes"])
 		xpBudget := intFromArgDefault(args["xpBudget"], 0)
 		strategy, _ := args["strategy"].(string)
-		return s.ArkhamDB.BuildStarterDeck(invCode, chapter, cycleCodes, xpBudget, strategy)
+		var tabooOverride *bool
+		if v, ok := args["useTaboo"].(bool); ok {
+			tabooOverride = &v
+		}
+		return s.ArkhamDB.BuildStarterDeck(invCode, chapter, cycleCodes, xpBudget, strategy, tabooOverride)
 
 	case "arkhamdb_search_reference_decks":
 		invCode, _ := args["investigatorCode"].(string)
@@ -747,7 +751,11 @@ func (s *MCPServer) executeTool(name string, args map[string]interface{}) (strin
 		if deckID == nil && decklistID == nil {
 			return "", fmt.Errorf("either deckID or decklistID must be provided")
 		}
-		return s.ArkhamDB.ValidateDeck(deckID, decklistID)
+		var tabooOverride *bool
+		if v, ok := args["useTaboo"].(bool); ok {
+			tabooOverride = &v
+		}
+		return s.ArkhamDB.ValidateDeck(deckID, decklistID, tabooOverride)
 
 	case "arkhamdb_get_collection":
 		return s.ArkhamDB.GetCollection()

@@ -7,7 +7,7 @@ import (
 )
 
 // ValidateDeck validates a deck or decklist for legality
-func (c *ArkhamDBClient) ValidateDeck(deckID *int, decklistID *int) (string, error) {
+func (c *ArkhamDBClient) ValidateDeck(deckID *int, decklistID *int, tabooOverride *bool) (string, error) {
 	var deckData map[string]interface{}
 	if deckID != nil {
 		raw, err := c.GetDeck(*deckID)
@@ -54,7 +54,7 @@ func (c *ArkhamDBClient) ValidateDeck(deckID *int, decklistID *int) (string, err
 	}
 
 	var tabooList map[string]*TabooEntry
-	if c.shouldUseTaboo(nil) {
+	if c.shouldUseTaboo(tabooOverride) {
 		tabooList, _ = c.fetchTabooList()
 	}
 

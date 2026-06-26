@@ -21,7 +21,7 @@ type deckEntry struct {
 // chapter: 1 or 2 (0 = no chapter filter).
 // cycleCodes: list of pack/cycle codes to restrict card pool (empty = all packs for chapter).
 // xpBudget: 0 for a standard starter deck; >0 allows higher-level cards.
-func (c *ArkhamDBClient) BuildStarterDeck(investigatorCode string, chapter int, cycleCodes []string, xpBudget int, strategy string) (string, error) {
+func (c *ArkhamDBClient) BuildStarterDeck(investigatorCode string, chapter int, cycleCodes []string, xpBudget int, strategy string, tabooOverride *bool) (string, error) {
 	invJSON, err := c.GetCard(investigatorCode)
 	if err != nil {
 		return "", fmt.Errorf("investigator not found: %w", err)
@@ -52,7 +52,7 @@ func (c *ArkhamDBClient) BuildStarterDeck(investigatorCode string, chapter int, 
 	}
 
 	var tabooList map[string]*TabooEntry
-	if c.shouldUseTaboo(nil) {
+	if c.shouldUseTaboo(tabooOverride) {
 		tabooList, _ = c.fetchTabooList()
 	}
 
