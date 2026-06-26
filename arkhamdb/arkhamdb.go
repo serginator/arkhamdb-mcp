@@ -471,7 +471,7 @@ func (c *ArkhamDBClient) FindCardSynergies(cardCode string, maxResults int) (str
 
 // SuggestDeckImprovements suggests cards that would improve a deck
 // It considers investigator requirements (deck size, class, level, experience)
-func (c *ArkhamDBClient) SuggestDeckImprovements(deckID *int, decklistID *int, maxResults int) (string, error) {
+func (c *ArkhamDBClient) SuggestDeckImprovements(deckID *int, decklistID *int, maxResults int, strategy string) (string, error) {
 	// Default maxResults to 20 if not specified or invalid
 	if maxResults <= 0 {
 		maxResults = 20
@@ -586,6 +586,13 @@ func (c *ArkhamDBClient) SuggestDeckImprovements(deckID *int, decklistID *int, m
 		improvements = improvements[:maxResults]
 	}
 
+	// Fetch popular decks to use as archetype signal
+	popularJSON, _ := c.SearchReferenceDecks(investigatorCode, -1, -1, "", 0, 5)
+	popularContext := ""
+	if popularJSON != "" {
+		popularContext = fmt.Sprintf("Top popular decks for this investigator:\n%s\n\nPlayer strategy hint: %s", popularJSON, strategy)
+	}
+
 	// Build result structure
 	investigatorName := getCardName(investigatorCard)
 	if investigatorName == "" {
@@ -593,11 +600,12 @@ func (c *ArkhamDBClient) SuggestDeckImprovements(deckID *int, decklistID *int, m
 	}
 
 	result := map[string]interface{}{
-		"investigatorCode":    investigatorCode,
-		"investigatorName":    investigatorName,
-		"deckSize":            int(deckSize),
-		"deckOptions": deckOptions,
-		"suggestions":         []map[string]interface{}{},
+		"investigatorCode": investigatorCode,
+		"investigatorName": investigatorName,
+		"deckSize":         int(deckSize),
+		"deckOptions":      deckOptions,
+		"suggestions":      []map[string]interface{}{},
+		"strategyContext":  popularContext,
 	}
 
 	suggestionList := []map[string]interface{}{}

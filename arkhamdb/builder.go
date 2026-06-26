@@ -21,7 +21,7 @@ type deckEntry struct {
 // chapter: 1 or 2 (0 = no chapter filter).
 // cycleCodes: list of pack/cycle codes to restrict card pool (empty = all packs for chapter).
 // xpBudget: 0 for a standard starter deck; >0 allows higher-level cards.
-func (c *ArkhamDBClient) BuildStarterDeck(investigatorCode string, chapter int, cycleCodes []string, xpBudget int) (string, error) {
+func (c *ArkhamDBClient) BuildStarterDeck(investigatorCode string, chapter int, cycleCodes []string, xpBudget int, strategy string) (string, error) {
 	invJSON, err := c.GetCard(investigatorCode)
 	if err != nil {
 		return "", fmt.Errorf("investigator not found: %w", err)
@@ -75,7 +75,19 @@ func (c *ArkhamDBClient) BuildStarterDeck(investigatorCode string, chapter int, 
 		}
 	}
 
+	// If collection has owned cycles, restrict to those (user's cycleCodes param takes priority)
+	if len(cycleCodes) == 0 && c.collection != nil && len(c.collection.OwnedCycles) > 0 {
+		cycleCodes = c.collection.OwnedCycles
+	}
+
 	allowedPackCodes := buildAllowedPackCodes(allPacks, chapter, cycleCodes)
+
+	// Fetch popular decks to use as archetype signal
+	popularJSON, _ := c.SearchReferenceDecks(investigatorCode, -1, -1, "", 0, 5)
+	popularContext := ""
+	if popularJSON != "" {
+		popularContext = fmt.Sprintf("Top popular decks for this investigator:\n%s\n\nPlayer strategy hint: %s", popularJSON, strategy)
+	}
 
 	// Pre-compile text regexes for deck options
 	textRegexes := make(map[string]*regexp.Regexp)
@@ -228,6 +240,7 @@ func (c *ArkhamDBClient) BuildStarterDeck(investigatorCode string, chapter int, 
 		"cards":            entries,
 		"totalCards":       totalCards,
 		"warnings":         warnings,
+		"strategyContext":  popularContext,
 	}
 
 	out, err := json.MarshalIndent(result, "", "  ")

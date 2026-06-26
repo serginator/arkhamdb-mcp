@@ -361,6 +361,10 @@ func (s *MCPServer) getAvailableTools() []Tool {
 						"type":        "integer",
 						"description": "Maximum number of card suggestions to return (default: 20, max: 50)",
 					},
+					"strategy": map[string]interface{}{
+						"type":        "string",
+						"description": "Freetext strategy hint, e.g. 'fast cluever, minimal combat'. Used alongside popular decks to guide card selection.",
+					},
 				},
 			},
 		},
@@ -416,6 +420,7 @@ func (s *MCPServer) getAvailableTools() []Tool {
 					"chapter":          map[string]interface{}{"type": "integer", "description": "1 or 2 to restrict card pool by chapter. 0 or omit for all chapters."},
 					"cycleCodes":       map[string]interface{}{"type": "array", "items": map[string]interface{}{"type": "string"}, "description": "Pack/cycle code prefixes to restrict card pool, e.g. [\"core\", \"dwl\"]. Empty = all packs."},
 					"xpBudget":         map[string]interface{}{"type": "integer", "description": "XP budget (0 for starter, e.g. 15 for an upgraded deck). Default: 0."},
+					"strategy":         map[string]interface{}{"type": "string", "description": "Freetext strategy hint, e.g. 'fast cluever, minimal combat'. Used alongside popular decks to guide card selection."},
 				},
 				"required": []string{"investigatorCode"},
 			},
@@ -640,7 +645,8 @@ func (s *MCPServer) executeTool(name string, args map[string]interface{}) (strin
 			}
 		}
 
-		return s.ArkhamDB.SuggestDeckImprovements(deckID, decklistID, maxResults)
+		strategy, _ := args["strategy"].(string)
+		return s.ArkhamDB.SuggestDeckImprovements(deckID, decklistID, maxResults, strategy)
 
 	case "arkhamdb_search_cards_advanced":
 		chapter := 0
@@ -680,7 +686,8 @@ func (s *MCPServer) executeTool(name string, args map[string]interface{}) (strin
 		}
 		cycleCodes := stringSliceFromArg(args["cycleCodes"])
 		xpBudget := intFromArgDefault(args["xpBudget"], 0)
-		return s.ArkhamDB.BuildStarterDeck(invCode, chapter, cycleCodes, xpBudget)
+		strategy, _ := args["strategy"].(string)
+		return s.ArkhamDB.BuildStarterDeck(invCode, chapter, cycleCodes, xpBudget, strategy)
 
 	case "arkhamdb_search_reference_decks":
 		invCode, _ := args["investigatorCode"].(string)
