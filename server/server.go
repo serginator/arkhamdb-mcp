@@ -458,6 +458,37 @@ func (s *MCPServer) getAvailableTools() []Tool {
 				},
 			},
 		},
+		{
+			Name:        "arkhamdb_get_collection",
+			Description: "Get your current collection config: owned cycles, language preference, and taboo setting.",
+			InputSchema: map[string]interface{}{
+				"type":       "object",
+				"properties": map[string]interface{}{},
+			},
+		},
+		{
+			Name:        "arkhamdb_set_collection",
+			Description: "Save your collection: which cycles/packs you own, language ('es' or 'en'), and whether to enforce taboo rules. OwnedCycles is a list of cycle codes e.g. [\"core\",\"dwl\",\"ptc\",\"tfa\",\"tcu\",\"tde\",\"tic\",\"eoe\",\"tsk\",\"fhv\"]. Chapter 1 = all of those. Miguel de la Cruz starter = add [\"mdc\"].",
+			InputSchema: map[string]interface{}{
+				"type": "object",
+				"properties": map[string]interface{}{
+					"ownedCycles": map[string]interface{}{
+						"type":  "array",
+						"items": map[string]interface{}{"type": "string"},
+						"description": "Cycle/pack codes you own",
+					},
+					"language": map[string]interface{}{
+						"type":        "string",
+						"description": "'es' for Spanish card names, 'en' for English (default)",
+					},
+					"useTaboo": map[string]interface{}{
+						"type":        "boolean",
+						"description": "Enforce the taboo list (default false)",
+					},
+				},
+				"required": []string{"ownedCycles"},
+			},
+		},
 	}
 }
 
@@ -692,6 +723,15 @@ func (s *MCPServer) executeTool(name string, args map[string]interface{}) (strin
 			return "", fmt.Errorf("either deckID or decklistID must be provided")
 		}
 		return s.ArkhamDB.ValidateDeck(deckID, decklistID)
+
+	case "arkhamdb_get_collection":
+		return s.ArkhamDB.GetCollection()
+
+	case "arkhamdb_set_collection":
+		cycles := stringSliceFromArg(args["ownedCycles"])
+		lang, _ := args["language"].(string)
+		useTaboo, _ := args["useTaboo"].(bool)
+		return s.ArkhamDB.SetCollection(cycles, lang, useTaboo)
 
 	default:
 		return "", fmt.Errorf("unknown tool: %s", name)

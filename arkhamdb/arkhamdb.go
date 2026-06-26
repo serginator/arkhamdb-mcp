@@ -16,13 +16,19 @@ import (
 type ArkhamDBClient struct {
 	baseURL    string
 	httpClient *http.Client
+	collection *CollectionConfig
 }
 
 // NewArkhamDBClient creates a new ArkhamDBClient
 func NewArkhamDBClient(baseURL string) *ArkhamDBClient {
+	cfg, _ := loadCollection(collectionPath())
+	if cfg == nil {
+		cfg = defaultCollection()
+	}
 	return &ArkhamDBClient{
 		baseURL:    baseURL,
 		httpClient: &http.Client{},
+		collection: cfg,
 	}
 }
 

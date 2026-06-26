@@ -16,4 +16,6 @@ type ArkhamDBTool interface {
 	SearchReferenceDecks(investigatorCode string, xpMin int, xpMax int, tags string, daysBack int, maxResults int) (string, error)
 	GetUpgradePath(deckID *int, decklistID *int, xpBudget int) (string, error)
 	ValidateDeck(deckID *int, decklistID *int) (string, error)
+	GetCollection() (string, error)
+	SetCollection(ownedCycles []string, language string, useTaboo bool) (string, error)
 }
